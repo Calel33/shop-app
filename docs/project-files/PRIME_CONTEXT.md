@@ -6,9 +6,11 @@ Read the README.md file to get an understanding of the project.
 
 Read key files in the directories:
 
-@constitution.md
-
 @ARCHITECTURE.md
+@constitution.md
+@project folder and its files
+
+
 
 
 Explain back to me:
