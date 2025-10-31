@@ -1,0 +1,617 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Sunrise Bakery &amp; Café - Local Business Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #2563eb;
+        }
+
+        .breadcrumb {
+            padding: 24px 0 16px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .image-gallery {
+            position: relative;
+            height: 400px;
+            background: #e2e8f0;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .gallery-dot.active {
+            background: white;
+        }
+
+        .business-header {
+            padding: 32px;
+        }
+
+        .business-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .title-left h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .business-category {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .business-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars {
+            color: #f59e0b;
+        }
+
+        .business-description {
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-secondary:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-icon {
+            color: #2563eb;
+            width: 20px;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #64748b;
+        }
+
+        .info-value a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .hour-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .day {
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .time {
+            color: #64748b;
+        }
+
+        .time.open {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .social-proof {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .proof-icon {
+            width: 32px;
+            height: 32px;
+            background: #2563eb;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .proof-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .last-updated {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .reviews-preview {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .reviews-preview i {
+            font-size: 32px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        .reviews-text {
+            color: #64748b;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" data-mc-element-id="8844">
+        <div class="container" data-mc-element-id="8876">
+            <div class="header-content" data-mc-element-id="8912">
+                <div class="logo" data-mc-element-id="8957">LocalConnect</div>
+                <nav class="nav" data-mc-element-id="9010">
+                    <a href="#" data-mc-element-id="9048">Directory</a>
+                    <a href="#" data-mc-element-id="9094">Categories</a>
+                    <a href="#" data-mc-element-id="9141">Add Business</a>
+                    <a href="#" data-mc-element-id="9190">Sign In</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" data-mc-element-id="9290">
+        <div class="breadcrumb" data-mc-element-id="9322">
+            <a href="#" data-mc-element-id="9359">Home</a> / <a href="#" data-mc-element-id="9382">Restaurants</a> / <a href="#" data-mc-element-id="9412">Bakeries</a> / Sunrise Bakery &amp; Café
+        </div>
+
+        <div class="main-content" data-mc-element-id="9485">
+            <main data-mc-element-id="9524">
+                <div class="hero-section" data-mc-element-id="9547">
+                    <div class="image-gallery" data-mc-element-id="9594">
+                        <img src="https://storage.googleapis.com/forge-sites/f6ad9c0b961ad2661e5e199576c218730149a5cc5ab049dedd079dc1f029d856.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000148Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=977962b1435434bfedd13c3d636ad17300e8ce8d41fe76f4a7298d9c11c4ac38fd106ebf3135ef31fef886b5678dcece82773ab49bb29d82f4df8792e241247cce15169f0a21aaab4f22304cba2cac193fe7438cf316d84a87a65da808768f891f36030e2043f504183308b9d52f9d4b9970ba5fe3ef2fee620e6925b37232f5da27e236709b50308f6106a928a8e0859b79d9c3f86bf106f2ddd44da500d60876ed8c7b06fd8a01b0e0f22d67610586f212ac5464e3ad41b9413f894494fe99cfb8397f18fc1bc4408516e4842223f3dcc4df19a3d94bd6e74ddf1ba8aeda1cfc87bcedc32487f96cc25571bd23fe5a2631db0dff93cfd2234619be001e7b72" alt="Warm and inviting bakery interior with wooden tables, exposed brick walls, display cases filled with fresh pastries, and soft lighting creating a cozy atmosphere" class="main-image" data-mc-element-id="9646">
+                        <div class="gallery-nav" data-mc-element-id="9894">
+                            <div class="gallery-dot active" data-mc-element-id="9948"></div>
+                            <div class="gallery-dot" data-mc-element-id="10015"></div>
+                            <div class="gallery-dot" data-mc-element-id="10075"></div>
+                            <div class="gallery-dot" data-mc-element-id="10135"></div>
+                            <div class="gallery-dot" data-mc-element-id="10195"></div>
+                        </div>
+                    </div>
+
+                    <div class="business-header" data-mc-element-id="10306">
+                        <div class="business-title" data-mc-element-id="10360">
+                            <div class="title-left" data-mc-element-id="10417">
+                                <h1 data-mc-element-id="10474">Sunrise Bakery &amp; Café</h1>
+                                <div class="business-category" data-mc-element-id="10537">Bakery • Café • Breakfast</div>
+                            </div>
+                            <div class="verification-badge" data-mc-element-id="10663">
+                                <i class="fas fa-shield-check" data-mc-element-id="10728"></i>
+                                Verified Business
+                            </div>
+                        </div>
+
+                        <div class="business-meta" data-mc-element-id="10905">
+                            <div class="rating" data-mc-element-id="10961">
+                                <div class="stars" data-mc-element-id="11014">
+                                    <i class="fas fa-star" data-mc-element-id="11070"></i>
+                                    <i class="fas fa-star" data-mc-element-id="11134"></i>
+                                    <i class="fas fa-star" data-mc-element-id="11198"></i>
+                                    <i class="fas fa-star" data-mc-element-id="11262"></i>
+                                    <i class="fas fa-star" data-mc-element-id="11326"></i>
+                                </div>
+                                <span data-mc-element-id="11425">4.8 (127 reviews)</span>
+                            </div>
+                            <div class="meta-item" data-mc-element-id="11519">
+                                <i class="fas fa-map-marker-alt" data-mc-element-id="11575"></i>
+                                <span data-mc-element-id="11645">0.8 miles away</span>
+                            </div>
+                            <div class="meta-item" data-mc-element-id="11736">
+                                <i class="fas fa-clock" data-mc-element-id="11792"></i>
+                                <span class="open" data-mc-element-id="11853">Open until 7:00 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="business-description" data-mc-element-id="11989">
+                            Welcome to Sunrise Bakery &amp; Café, your neighborhood gathering place for freshly baked goods, artisan coffee, and hearty breakfast favorites. We've been serving the community with love and tradition since 2018, using locally sourced ingredients and time-honored recipes passed down through generations. From our signature sourdough bread to seasonal pastries, every item is crafted with care in our kitchen each morning.
+                        </div>
+
+                        <div class="action-buttons" data-mc-element-id="12528">
+                            <a href="#" class="btn btn-primary" data-mc-element-id="12585">
+                                <i class="fas fa-phone" data-mc-element-id="12654"></i>
+                                Call Now
+                            </a>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="12785">
+                                <i class="fas fa-directions" data-mc-element-id="12856"></i>
+                                Get Directions
+                            </a>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="12998">
+                                <i class="fas fa-globe" data-mc-element-id="13069"></i>
+                                Visit Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="sidebar" data-mc-element-id="13291">
+                <div class="info-card" data-mc-element-id="13331">
+                    <h3 class="card-title" data-mc-element-id="13375">
+                        <i class="fas fa-info-circle" data-mc-element-id="13423"></i>
+                        Business Information
+                    </h3>
+                    <div class="info-item" data-mc-element-id="13549">
+                        <i class="fas fa-map-marker-alt info-icon" data-mc-element-id="13597"></i>
+                        <div class="info-content" data-mc-element-id="13669">
+                            <div class="info-label" data-mc-element-id="13724">Address</div>
+                            <div class="info-value" data-mc-element-id="13790">
+                                425 Oak Street<br data-mc-element-id="13861">
+                                Springfield, IL 62701
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="14033">
+                        <i class="fas fa-phone info-icon" data-mc-element-id="14081"></i>
+                        <div class="info-content" data-mc-element-id="14144">
+                            <div class="info-label" data-mc-element-id="14199">Phone</div>
+                            <div class="info-value" data-mc-element-id="14263">
+                                <a href="tel:+12175551234" data-mc-element-id="14320">(217) 555-1234</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="14479">
+                        <i class="fas fa-globe info-icon" data-mc-element-id="14527"></i>
+                        <div class="info-content" data-mc-element-id="14590">
+                            <div class="info-label" data-mc-element-id="14645">Website</div>
+                            <div class="info-value" data-mc-element-id="14711">
+                                <a href="#" target="_blank" data-mc-element-id="14768">sunrisebakery.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="14931">
+                        <i class="fas fa-envelope info-icon" data-mc-element-id="14979"></i>
+                        <div class="info-content" data-mc-element-id="15045">
+                            <div class="info-label" data-mc-element-id="15100">Email</div>
+                            <div class="info-value" data-mc-element-id="15164">
+                                <a href="mailto:hello@sunrisebakery.com" data-mc-element-id="15221">hello@sunrisebakery.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="15423">
+                    <h3 class="card-title" data-mc-element-id="15467">
+                        <i class="fas fa-clock" data-mc-element-id="15515"></i>
+                        Hours of Operation
+                    </h3>
+                    <div class="hours-grid" data-mc-element-id="15633">
+                        <div class="hour-row" data-mc-element-id="15682">
+                            <span class="day" data-mc-element-id="15733">Monday</span>
+                            <span class="time" data-mc-element-id="15793">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="15892">
+                            <span class="day" data-mc-element-id="15943">Tuesday</span>
+                            <span class="time open" data-mc-element-id="16004">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="16108">
+                            <span class="day" data-mc-element-id="16159">Wednesday</span>
+                            <span class="time" data-mc-element-id="16222">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="16321">
+                            <span class="day" data-mc-element-id="16372">Thursday</span>
+                            <span class="time" data-mc-element-id="16434">6:00 AM - 7:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="16533">
+                            <span class="day" data-mc-element-id="16584">Friday</span>
+                            <span class="time" data-mc-element-id="16644">6:00 AM - 8:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="16743">
+                            <span class="day" data-mc-element-id="16794">Saturday</span>
+                            <span class="time" data-mc-element-id="16856">7:00 AM - 8:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="16955">
+                            <span class="day" data-mc-element-id="17006">Sunday</span>
+                            <span class="time" data-mc-element-id="17066">7:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="17208">
+                    <h3 class="card-title" data-mc-element-id="17252">
+                        <i class="fas fa-award" data-mc-element-id="17300"></i>
+                        Credentials &amp; Recognition
+                    </h3>
+                    <div class="social-proof" data-mc-element-id="17425">
+                        <div class="proof-item" data-mc-element-id="17476">
+                            <div class="proof-icon" data-mc-element-id="17529">
+                                <i class="fas fa-calendar" data-mc-element-id="17586"></i>
+                            </div>
+                            <div class="proof-text" data-mc-element-id="17681">Established in 2018 • 6 years in business</div>
+                        </div>
+                        <div class="proof-item" data-mc-element-id="17808">
+                            <div class="proof-icon" data-mc-element-id="17861">
+                                <i class="fas fa-certificate" data-mc-element-id="17918"></i>
+                            </div>
+                            <div class="proof-text" data-mc-element-id="18016">Licensed Food Service Establishment</div>
+                        </div>
+                        <div class="proof-item" data-mc-element-id="18137">
+                            <div class="proof-icon" data-mc-element-id="18190">
+                                <i class="fas fa-leaf" data-mc-element-id="18247"></i>
+                            </div>
+                            <div class="proof-text" data-mc-element-id="18338">Certified Organic Ingredients</div>
+                        </div>
+                        <div class="proof-item" data-mc-element-id="18453">
+                            <div class="proof-icon" data-mc-element-id="18506">
+                                <i class="fas fa-heart" data-mc-element-id="18563"></i>
+                            </div>
+                            <div class="proof-text" data-mc-element-id="18655">Community Choice Award 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="18811">
+                    <h3 class="card-title" data-mc-element-id="18855">
+                        <i class="fas fa-star" data-mc-element-id="18903"></i>
+                        Customer Reviews
+                    </h3>
+                    <div class="reviews-preview" data-mc-element-id="19018">
+                        <i class="fas fa-comments" data-mc-element-id="19072"></i>
+                        <div class="reviews-text" data-mc-element-id="19128">
+                            Review system coming soon!<br data-mc-element-id="19209">
+                            Help us build trust in our community.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="last-updated" data-mc-element-id="19378">
+                    <i class="fas fa-sync" data-mc-element-id="19425"></i>
+                    Last updated by owner on March 15, 2024
+                </div>
+            </aside>
+        </div>
+    </div>
+
+<script>__MC_SITE_ID__ = "ba7b6168ca94dbe9b24e4e8a3b8306ac54cde1f783a35a2af8104f2057483c65"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

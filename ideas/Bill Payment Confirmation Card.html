@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Successful Bill Payment Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.97);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+        .fade-in {
+            animation: fadeIn 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        body {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div id="card" class="fade-in bg-[#181C23] border border-[#2D2F36] max-w-sm w-full rounded-xl shadow-2xl overflow-hidden">
+        <div class="p-6 flex flex-col items-center">
+            <div class="w-14 h-14 flex items-center justify-center bg-green-500/10 rounded-full mb-4 shadow-md">
+                <svg class="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 12.5l3 3.5 5-6.5" />
+                </svg>
+            </div>
+            <h2 class="text-gray-100 text-xl font-bold mb-1 text-center">Bill Payment Successful</h2>
+            <p class="text-gray-400 text-sm text-center mb-5">Your payment has been processed securely. Thank you!</p>
+            <div class="bg-[#23262E] rounded-lg w-full px-4 py-3 mb-4">
+                <div class="flex justify-between items-center text-sm mb-2">
+                    <span class="text-gray-400">Amount</span>
+                    <span class="text-gray-100 font-semibold">$120.50</span>
+                </div>
+                <div class="flex justify-between items-center text-sm mb-2">
+                    <span class="text-gray-400">To</span>
+                    <span class="text-gray-100">Acme Utilities</span>
+                </div>
+                <div class="flex justify-between items-center text-sm mb-2">
+                    <span class="text-gray-400">Payment Date</span>
+                    <span class="text-gray-100">Jun 11, 2024</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-400">Transaction ID</span>
+                    <span class="text-gray-100">#9823451</span>
+                </div>
+            </div>
+            <button class="w-full py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors mb-2">Download Receipt</button>
+            <button onclick="closeCard()" class="w-full py-2 bg-[#23262E] hover:bg-[#2d313b] text-gray-200 font-medium rounded-md transition-colors">Dismiss</button>
+        </div>
+        <button onclick="closeCard()" aria-label="Close" class="absolute top-3 right-3 text-gray-400 hover:text-gray-200 p-1 rounded transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l8 8M6 14L14 6" />
+            </svg>
+        </button>
+    </div>
+    <script>
+        function closeCard() {
+            document.getElementById('card').classList.add('hidden');
+        }
+        // Dismiss on Escape key
+        window.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') closeCard();
+        });
+    </script>
+</body>
+</html>

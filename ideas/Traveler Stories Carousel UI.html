@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Traveler Stories - Adventures Around the Globe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    body {
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      min-width: 100vw;
+      position: relative;
+    }
+    #shader-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .scroll-container {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+    @keyframes scroll-x {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scroll-x-reverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .auto-scroll {
+      animation: scroll-x 32s linear infinite;
+    }
+    .auto-scroll-reverse {
+      animation: scroll-x-reverse 36s linear infinite;
+    }
+    .mask-gradient {
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .perspective {
+      perspective: 1200px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black min-h-screen font-sans relative">
+
+  <!-- Animated Starfield Shader Background -->
+  <canvas id="shader-canvas"></canvas>
+  <script id="fragShader" type="x-shader/x-fragment">
+precision highp float;
+
+uniform vec2 iResolution;
+uniform float iTime;
+
+vec3 hash( vec3 p ) {
+  p = vec3( dot(p,vec3(127.1,311.7, 74.7)),
+            dot(p,vec3(269.5,183.3,246.1)),
+            dot(p,vec3(113.5,271.9,124.6)));
+  return -1.0 + 2.0*fract(sin(p)*43758.5453123);
+}
+
+float noise( in vec3 p ) {
+  vec3 i = floor( p );
+  vec3 f = fract( p );
+  vec3 u = f*f*(3.0-2.0*f);
+  return mix( mix( mix( dot( hash( i + vec3(0.0,0.0,0.0) ), f - vec3(0.0,0.0,0.0) ),
+                      dot( hash( i + vec3(1.0,0.0,0.0) ), f - vec3(1.0,0.0,0.0) ), u.x),
+                 mix( dot( hash( i + vec3(0.0,1.0,0.0) ), f - vec3(0.0,1.0,0.0) ),
+                      dot( hash( i + vec3(1.0,1.0,0.0) ), f - vec3(1.0,1.0,0.0) ), u.x), u.y),
+            mix( mix( dot( hash( i + vec3(0.0,0.0,1.0) ), f - vec3(0.0,0.0,1.0) ),
+                      dot( hash( i + vec3(1.0,0.0,1.0) ), f - vec3(1.0,0.0,1.0) ), u.x),
+                 mix( dot( hash( i + vec3(0.0,1.0,1.0) ), f - vec3(0.0,1.0,1.0) ),
+                      dot( hash( i + vec3(1.0,1.0,1.0) ), f - vec3(1.0,1.0,1.0) ), u.x), u.y), u.z );
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / iResolution.xy;
+  vec3 stars_direction = normalize(vec3(uv * 2.0 - 1.0, 1.0));
+  float stars_threshold = 8.0;
+  float stars_exposure = 200.0;
+  float stars = pow(clamp(noise(stars_direction * 200.0), 0.0, 1.0), stars_threshold) * stars_exposure;
+  stars *= mix(0.4, 1.4, noise(stars_direction * 100.0 + vec3(iTime)));
+  gl_FragColor = vec4(vec3(stars),1.0);
+}
+  </script>
+  <script>
+const canvas = document.getElementById('shader-canvas');
+const gl = canvas.getContext('webgl');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+}
+window.addEventListener('resize', resize);
+resize();
+
+function compileShader(gl, source, type) {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    throw new Error(gl.getShaderInfoLog(shader));
+  }
+  return shader;
+}
+
+const vertSrc = `
+attribute vec2 position;
+void main() {
+  gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+const fragSrc = document.getElementById('fragShader').textContent;
+
+const vertShader = compileShader(gl, vertSrc, gl.VERTEX_SHADER);
+const fragShader = compileShader(gl, fragSrc, gl.FRAGMENT_SHADER);
+
+const program = gl.createProgram();
+gl.attachShader(program, vertShader);
+gl.attachShader(program, fragShader);
+gl.linkProgram(program);
+if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+  throw new Error(gl.getProgramInfoLog(program));
+}
+gl.useProgram(program);
+
+const posLoc = gl.getAttribLocation(program, 'position');
+const buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+  -1, -1, 1, -1, -1, 1,
+  -1, 1, 1, -1, 1, 1,
+]), gl.STATIC_DRAW);
+gl.enableVertexAttribArray(posLoc);
+gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+const iResolution = gl.getUniformLocation(program, 'iResolution');
+const iTime = gl.getUniformLocation(program, 'iTime');
+
+function render(time) {
+  gl.uniform2f(iResolution, canvas.width, canvas.height);
+  gl.uniform1f(iTime, time * 0.001);
+  gl.drawArrays(gl.TRIANGLES, 0, 6);
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+  </script>
+
+  <!-- Foreground Content -->
+  <div class="relative z-10 py-20 px-4">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        Traveler <span class="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">Stories</span> from Around the Globe
+      </h2>
+      <p class="text-lg text-zinc-400 max-w-2xl mx-auto">
+        Real journeys. Real memories. See how the world inspired our explorers!
+      </p>
+    </div>
+    <!-- Carousel Row 1 -->
+    <div class="relative mb-12">
+      <div class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+      <div class="overflow-hidden">
+        <div class="scroll-container mask-gradient perspective">
+          <div class="flex space-x-8 auto-scroll w-max">
+            <!-- Cards, repeated for seamless scroll -->
+            <!-- Card 1 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Alex Chen</h4>
+                  <p class="text-indigo-400 text-sm">@alextravels</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Hiking through the Andes was a dream come true. The beauty of Machu Picchu at sunrise left me speechless. Can't wait for my next adventure!"
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Sarah Johnson</h4>
+                  <p class="text-indigo-400 text-sm">@sarah_in_wonderland</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Exploring the markets of Marrakech was a sensory delight! The colors, the spices, and the people made it an unforgettable cultural experience."
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(0deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Mike Rodriguez</h4>
+                  <p class="text-indigo-400 text-sm">@miketheexplorer</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Camping under the northern lights in Iceland was magical. I’ve never witnessed anything so awe-inspiring. Highly recommend to every traveler!"
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Emma Davis</h4>
+                  <p class="text-indigo-400 text-sm">@emmaonthego</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Sailing through the Greek Isles was paradise. Each island had its own charm, and the sunsets were pure magic every evening."
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">David Kim</h4>
+                  <p class="text-indigo-400 text-sm">@davidworldwide</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Safari in Kenya was thrilling! Watching elephants and lions in their natural habitat was a lifelong dream realized. Already planning my return."
+              </p>
+            </div>
+            <!-- Duplicates for seamless scroll -->
+            <!-- Card 1 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Alex Chen</h4>
+                  <p class="text-indigo-400 text-sm">@alextravels</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Hiking through the Andes was a dream come true. The beauty of Machu Picchu at sunrise left me speechless. Can't wait for my next adventure!"
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Sarah Johnson</h4>
+                  <p class="text-indigo-400 text-sm">@sarah_in_wonderland</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Exploring the markets of Marrakech was a sensory delight! The colors, the spices, and the people made it an unforgettable cultural experience."
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(0deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Mike Rodriguez</h4>
+                  <p class="text-indigo-400 text-sm">@miketheexplorer</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Camping under the northern lights in Iceland was magical. I’ve never witnessed anything so awe-inspiring. Highly recommend to every traveler!"
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">Emma Davis</h4>
+                  <p class="text-indigo-400 text-sm">@emmaonthego</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Sailing through the Greek Isles was paradise. Each island had its own charm, and the sunsets were pure magic every evening."
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-indigo-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-indigo-400">
+                <div>
+                  <h4 class="text-white font-semibold">David Kim</h4>
+                  <p class="text-indigo-400 text-sm">@davidworldwide</p>
+                </div>
+              </div>
+              <p class="text-indigo-200 leading-relaxed">
+                "Safari in Kenya was thrilling! Watching elephants and lions in their natural habitat was a lifelong dream realized. Already planning my return."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Carousel Row 2 (Reverse scroll) -->
+    <div class="relative">
+      <div class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+      <div class="overflow-hidden">
+        <div class="scroll-container mask-gradient perspective">
+          <div class="flex space-x-8 auto-scroll-reverse w-max">
+            <!-- Cards, repeated for seamless reverse scroll -->
+            <!-- Card 6 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Priya Singh</h4>
+                  <p class="text-pink-400 text-sm">@priyawanders</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "The cherry blossoms in Kyoto were breathtaking. I felt like I was walking through a fairytale. Japan is magical in springtime!"
+              </p>
+            </div>
+            <!-- Card 7 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Luca Bianchi</h4>
+                  <p class="text-pink-400 text-sm">@lucavoyager</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Tasting authentic pizza in Naples was a highlight of my Italian journey. The food, the history, the people – Italy has my heart!"
+              </p>
+            </div>
+            <!-- Card 8 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(0deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Samantha Lee</h4>
+                  <p class="text-pink-400 text-sm">@samonthemove</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Snorkeling in Australia's Great Barrier Reef was like entering another world. The colors and marine life were mesmerizing!"
+              </p>
+            </div>
+            <!-- Card 9 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Tom Müller</h4>
+                  <p class="text-pink-400 text-sm">@tomexplores</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Climbing the Swiss Alps was challenging, but the views from the summit were absolutely worth every step. Bucket list: checked!"
+              </p>
+            </div>
+            <!-- Card 10 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Isabella Garcia</h4>
+                  <p class="text-pink-400 text-sm">@isabellaworld</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Dancing at Rio Carnival was pure joy! The music, the costumes, and the energy of Brazil are unforgettable. Highly recommend!"
+              </p>
+            </div>
+            <!-- Duplicates for seamless scroll -->
+            <!-- Card 6 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Priya Singh</h4>
+                  <p class="text-pink-400 text-sm">@priyawanders</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "The cherry blossoms in Kyoto were breathtaking. I felt like I was walking through a fairytale. Japan is magical in springtime!"
+              </p>
+            </div>
+            <!-- Card 7 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Luca Bianchi</h4>
+                  <p class="text-pink-400 text-sm">@lucavoyager</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Tasting authentic pizza in Naples was a highlight of my Italian journey. The food, the history, the people – Italy has my heart!"
+              </p>
+            </div>
+            <!-- Card 8 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(0deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Samantha Lee</h4>
+                  <p class="text-pink-400 text-sm">@samonthemove</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Snorkeling in Australia's Great Barrier Reef was like entering another world. The colors and marine life were mesmerizing!"
+              </p>
+            </div>
+            <!-- Card 9 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-7deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Tom Müller</h4>
+                  <p class="text-pink-400 text-sm">@tomexplores</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Climbing the Swiss Alps was challenging, but the views from the summit were absolutely worth every step. Bucket list: checked!"
+              </p>
+            </div>
+            <!-- Card 10 -->
+            <div class="flex-shrink-0 w-80 h-64 border-2 border-pink-400 rounded-2xl p-6 relative bg-black/60 backdrop-blur"
+                 style="transform: rotateY(-12deg);">
+              <div class="flex items-center mb-4">
+                <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=60&h=60&fit=crop&crop=face"
+                     alt="Avatar" class="w-12 h-12 rounded-full mr-4 border-2 border-pink-400">
+                <div>
+                  <h4 class="text-white font-semibold">Isabella Garcia</h4>
+                  <p class="text-pink-400 text-sm">@isabellaworld</p>
+                </div>
+              </div>
+              <p class="text-pink-200 leading-relaxed">
+                "Dancing at Rio Carnival was pure joy! The music, the costumes, and the energy of Brazil are unforgettable. Highly recommend!"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<section class="relative z-10 animate-[fadeInUp_1s_ease-out_1.2s_forwards]" style="transform: translateY(50px);">
+    <div class="max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <!-- Diagram -->
+        <div class="relative">
+          <div class="absolute -inset-6 -z-10 opacity-30">
+            <img alt="" src="https://cdn.midjourney.com/f50bf4af-8fd7-4c3c-b93c-e3927506a2c9/0_0.png?w=800&amp;q=80" class="h-full w-full rounded-3xl object-cover mix-blend-overlay hover:opacity-50 transition-opacity duration-500" style="">
+          </div>
+          <div
+            class="relative max-w-md ring-1 ring-white/10 bg-neutral-900/40 rounded-3xl mr-auto ml-auto pt-8 pr-8 pb-8 pl-8 hover:ring-white/20 hover:bg-neutral-900/60 transition-all duration-500">
+            <div class="relative aspect-square w-full">
+              <!-- network lines (simple) -->
+              <div class="absolute inset-0 rounded-2xl border border-dashed border-emerald-400/20 animate-pulse"></div>
+              <div class="absolute inset-6 rounded-2xl border border-dashed border-cyan-400/20 animate-pulse"
+                style="animation-delay: 0.5s;"></div>
+  
+              <!-- Nodes -->
+              <div
+                class="absolute left-6 top-1/2 -translate-y-1/2 hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                <div
+                  class="grid h-16 w-16 place-items-center rounded-full bg-neutral-900 ring-1 ring-white/10 group-hover:ring-emerald-400/40 group-hover:bg-neutral-800 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    data-lucide="target"
+                    class="lucide lucide-target w-[24px] h-[24px] text-zinc-400 group-hover:text-emerald-400 transition-colors"
+                    style="width: 24px; height: 24px;">
+                    <circle cx="12" cy="12" r="10" class=""></circle>
+                    <circle cx="12" cy="12" r="6" class=""></circle>
+                    <circle cx="12" cy="12" r="2" class=""></circle>
+                  </svg>
+                </div>
+                <p class="mt-2 text-sm text-neutral-300 group-hover:text-emerald-200 transition-colors font-sans"
+                  style="">1.5 mm Precision</p>
+              </div>
+  
+              <div
+                class="absolute right-6 top-1/2 -translate-y-1/2 text-right hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                <div
+                  class="grid h-16 w-16 place-items-center rounded-full bg-neutral-900 ring-1 ring-white/10 group-hover:ring-emerald-400/40 group-hover:bg-neutral-800 transition-all duration-300">
+                  <span class="text-xl font-semibold text-zinc-400 group-hover:text-emerald-400 transition-colors font-sans" style="">45</span>
+                </div>
+                <p class="mt-2 text-sm text-neutral-300 group-hover:text-emerald-200 transition-colors font-sans"
+                  style="">Spectral bands</p>
+              </div>
+  
+              <div
+                class="absolute left-1/2 top-6 -translate-x-1/2 hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                <div
+                  class="grid h-16 w-16 place-items-center rounded-full bg-neutral-900 ring-1 ring-white/10 group-hover:ring-emerald-400/40 group-hover:bg-neutral-800 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    data-lucide="shield"
+                    class="lucide lucide-shield w-[24px] h-[24px] text-zinc-400 group-hover:text-emerald-400 transition-colors"
+                    style="width: 24px; height: 24px;">
+                    <path
+                      d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                      class=""></path>
+                  </svg>
+                </div>
+                <p class="mt-2 text-sm text-neutral-300 text-center w-28 -ml-6 group-hover:text-emerald-200 transition-colors font-sans"
+                  style="">Industrial Grade</p>
+              </div>
+  
+              <div
+                class="absolute bottom-6 left-1/2 -translate-x-1/2 hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                <div
+                  class="grid h-16 w-16 place-items-center rounded-full bg-neutral-900 ring-1 ring-white/10 group-hover:ring-emerald-400/40 group-hover:bg-neutral-800 transition-all duration-300">
+                  <span class="text-xl font-semibold text-zinc-400 group-hover:text-emerald-400 transition-colors font-sans" style="">×8</span>
+                </div>
+                <p class="mt-2 text-sm text-neutral-300 text-center w-32 -ml-8 group-hover:text-emerald-200 transition-colors font-sans"
+                  style="">Enhanced sensitivity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Copy & stats -->
+        <div class="">
+          <div class="mb-4 flex flex-wrap items-center gap-2 text-xs" id="tech-tabs">
+            <button class="tech-tab active rounded-full bg-emerald-400/10 px-3 py-1 font-medium text-emerald-300 ring-1 ring-emerald-400/30 font-sans transition-all duration-200" data-tab="technology" style="">Technology</button>
+            <button class="tech-tab rounded-full bg-white/5 px-3 py-1 font-medium text-neutral-300 ring-1 ring-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-200 font-sans" data-tab="specs" style="">Technical Specs</button>
+            <button class="tech-tab rounded-full bg-white/5 px-3 py-1 font-medium text-neutral-300 ring-1 ring-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-200 font-sans" data-tab="certifications" style="">Certifications</button>
+          </div>
+  
+          <div class="tech-content" id="technology">
+            <h3
+              class="text-4xl tracking-tight text-white sm:text-5xl font-sans font-semibold hover:text-emerald-200 transition-colors duration-500"
+              style="">Industry‑leading precision, professionally certified</h3>
+            <p class="mt-4 text-neutral-300 font-sans" style="">Advanced multi-spectral analysis technology delivers
+              unmatched color accuracy across diverse materials and lighting conditions. Engineered for professionals who
+              demand excellence in every measurement.</p>
+          </div>
+  
+          <div class="tech-content hidden" id="specs">
+            <h3 class="text-4xl tracking-tight text-white sm:text-5xl font-sans font-semibold" style="">Technical
+              Specifications</h3>
+            <p class="mt-4 text-neutral-300 font-sans" style="">Precision engineered with cutting-edge hardware and
+              software integration for professional color analysis workflows.</p>
+            <div class="mt-6 space-y-3">
+              <div class="flex justify-between py-2 border-b border-white/5">
+                <span class="text-sm text-neutral-400 font-sans">Spectral Range</span>
+                <span class="text-sm text-neutral-200 font-sans">380-780 nm</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-white/5">
+                <span class="text-sm text-neutral-400 font-sans">Accuracy</span>
+                <span class="text-sm text-neutral-200 font-sans">±0.03 ΔE*ab</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-white/5">
+                <span class="text-sm text-neutral-400 font-sans">Measurement Time</span>
+                <span class="text-sm text-neutral-200 font-sans">0.5 seconds</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="tech-content hidden" id="certifications">
+            <h3 class="text-4xl tracking-tight text-white sm:text-5xl font-sans font-semibold" style="">Certifications
+              &amp; Standards</h3>
+            <p class="mt-4 text-neutral-300 font-sans" style="">Meets and exceeds international standards for color
+              measurement and professional certification requirements.</p>
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-lg bg-white/5 p-3 ring-1 ring-white/10">
+                <div class="text-sm font-medium text-white font-sans">ISO 11664</div>
+                <div class="text-xs text-neutral-400 font-sans">Colorimetry Standards</div>
+              </div>
+              <div class="rounded-lg bg-white/5 p-3 ring-1 ring-white/10">
+                <div class="text-sm font-medium text-white font-sans">CIE Standard</div>
+                <div class="text-xs text-neutral-400 font-sans">Illuminant D65</div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="mt-6 grid gap-6 sm:grid-cols-2">
+            <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer">
+              <div
+                class="grid h-10 w-10 place-items-center rounded-full bg-white/5 ring-1 ring-white/10 hover:ring-emerald-400/40 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star"
+                  class="lucide lucide-star w-[20px] h-[20px] text-zinc-400 hover:text-emerald-400 transition-colors"
+                  style="width: 20px; height: 20px;">
+                  <path
+                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+                    class=""></path>
+                </svg>
+              </div>
+              <div class="">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-2xl tracking-tight font-sans font-semibold rating-number" data-target="4.8" style="">0</span>
+                  <span class="text-sm text-neutral-400 font-sans" style="">/5</span>
+                </div>
+                <p class="text-xs text-neutral-400 font-sans" style="">22k+ professional reviews</p>
+              </div>
+            </div>
+  
+            <div class="flex items-center gap-3 hover:scale-105 transition-transform duration-200 cursor-pointer">
+              <div
+                class="grid h-10 w-10 place-items-center rounded-full bg-white/5 ring-1 ring-white/10 hover:ring-emerald-400/40 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  data-lucide="users"
+                  class="lucide lucide-users w-[20px] h-[20px] text-gray-400 hover:text-emerald-400 transition-colors"
+                  style="width: 20px; height: 20px;">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" class=""></path>
+                  <path d="M16 3.128a4 4 0 0 1 0 7.744" class=""></path>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" class=""></path>
+                  <circle cx="9" cy="7" r="4" class=""></circle>
+                </svg>
+              </div>
+              <div class="">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-2xl tracking-tight font-sans font-semibold rating-number" data-target="94" style="">0%</span>
+                </div>
+                <p class="text-xs text-neutral-400 font-sans" style="">Users recommend to colleagues</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="mt-8">
+            <a href="#"
+              class="relative inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium text-white hover:scale-105 transition-all duration-200 group">
+              <span class="absolute inset-0 rounded-xl bg-gradient-to-r from-emerald-500/20 to-cyan-500/20"></span>
+              <span class="absolute inset-0 rounded-xl ring-1 ring-emerald-400/40 group-hover:ring-emerald-400/60 transition-all"></span>
+              <span class="relative font-sans" style="">Technical Documentation</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                data-lucide="chevrons-right"
+                class="lucide lucide-chevrons-right relative h-4 w-4 group-hover:translate-x-1 transition-transform">
+                <path d="m6 17 5-5-5-5" class=""></path>
+                <path d="m13 17 5-5-5-5" class=""></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

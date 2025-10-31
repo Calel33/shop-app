@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Success Modal</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        .modal-animation {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .ring-glow {
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.12), 0 4px 36px 0 rgba(59, 130, 246, 0.08);
+        }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #3b82f6 100%);
+        }
+        .backdrop {
+            backdrop-filter: blur(8px);
+        }
+        .gradient-bar {
+            background: linear-gradient(90deg, #2563eb 0%, #60a5fa 50%, #a5b4fc 100%);
+        }
+        .confetti-canvas {
+            pointer-events: none;
+            position: fixed;
+            z-index: 40;
+            inset: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative">
+
+    <!-- Confetti Canvas Overlay -->
+    <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+    <!-- Background overlay -->
+    <div class="fixed inset-0 bg-black bg-opacity-60 backdrop z-10"></div>
+    
+    <!-- Success Modal -->
+    <div class="w-full max-w-md bg-gradient-to-b from-[#172554]/90 via-[#13151A]/95 to-[#090A0D]/95 border border-[#2D2F36] rounded-xl shadow-2xl overflow-hidden relative z-20 modal-animation ring-glow">
+        <!-- Top Celebration Bar -->
+        <div class="h-1.5 w-full gradient-bar"></div>
+        <!-- Modal Content -->
+        <div class="relative z-10 flex flex-col p-7 pb-6">
+            <div class="flex justify-between items-start mb-5">
+                <div class="flex items-center">
+                    <div class="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500/30 to-indigo-400/40 flex items-center justify-center mr-4 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-slate-100 text-xl font-semibold tracking-tight">Success! 🎉</h3>
+                </div>
+                <button class="text-slate-400 hover:text-slate-200 transition-colors" onclick="closeModal()" id="closeButton" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="py-2">
+                <p class="text-slate-300 text-base leading-relaxed">
+                    Your changes have been successfully saved.<br>
+                    All team members will now see the updated workflow.
+                </p>
+                
+                <div class="mt-8 flex flex-col space-y-3">
+                    <button id="ctaButton" class="w-full px-5 py-3 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400 hover:from-blue-700 hover:to-indigo-500 text-white text-base font-bold rounded-lg shadow-lg transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none">
+                        Go to Dashboard
+                    </button>
+                    <button id="confettiButton" class="w-full px-4 py-2 bg-[#22243a] hover:bg-[#2a2e4b] text-blue-200 text-sm font-medium rounded-md border border-blue-800/30 transition-colors duration-150">
+                        Celebrate again 🎊
+                    </button>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-[#28304b]">
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-500 text-xs">Created just now</span>
+                        <div class="flex items-center text-xs text-slate-500">
+                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 pulse-animation"></span>
+                            System message
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Celebration Bar -->
+        <div class="h-1 w-full gradient-bar"></div>
+    </div>
+    
+    <script>
+        // Use the confetti-canvas for tsparticles confetti
+        function runConfetti() {
+            confetti({
+                particleCount: 120,
+                spread: 100,
+                origin: { y: 0.5 },
+                colors: ['#3B82F6', '#818CF8', '#A5B4FC', '#38BDF8', '#F472B6', '#FDE68A', '#FFFFFF', "#6366F1"],
+                shapes: ["circle", "square"],
+                scalar: 1.1,
+                gravity: 0.7,
+                ticks: 210,
+                zIndex: 40,
+                disableForReducedMotion: true
+            });
+        }
+        // Celebrate on load and when pressing the celebrate button
+        window.addEventListener('load', () => {
+            setTimeout(runConfetti, 350);
+        });
+        document.getElementById('confettiButton').addEventListener('click', runConfetti);
+        // Modal close and CTA actions
+        function closeModal() {
+            document.querySelector('.max-w-md').classList.add('hidden');
+            document.querySelector('.fixed.inset-0').classList.add('hidden');
+            document.getElementById('confetti-canvas').classList.add('hidden');
+        }
+        window.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') closeModal();
+        });
+        document.getElementById('ctaButton').addEventListener('click', function() {
+            window.location.href = "#dashboard";
+        });
+
+        // Render confetti on a custom canvas for a more immersive effect
+        (function hookConfettiCanvas() {
+            const canvas = document.getElementById('confetti-canvas');
+            if (window.confetti && canvas) {
+                window.confetti = window.confetti.create(canvas, { resize: true, useWorker: true });
+            }
+        })();
+    </script>
+</body>
+</html>

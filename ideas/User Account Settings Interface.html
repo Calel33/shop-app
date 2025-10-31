@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura-Style Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            aura: {
+              bg: '#0d0e10',
+              card: '#13141a',
+              border: '#1f2023',
+              accent: '#5e6ad2',
+              purple: '#8b5cf6',
+              text: '#b4bcd0',
+              muted: '#7c8794'
+            }
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-effect {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .aura-card {
+      background: linear-gradient(135deg, rgba(19, 20, 26, 0.9) 0%, rgba(31, 32, 35, 0.5) 100%);
+      border: 1px solid rgba(31, 32, 35, 0.8);
+    }
+    .aura-card-active {
+      background: linear-gradient(135deg, rgba(94, 106, 210, 0.1) 0%, rgba(19, 20, 26, 0.95) 30%);
+      border: 1px solid rgba(94, 106, 210, 0.3);
+    }
+    .header-card {
+      background: linear-gradient(135deg, rgba(19, 20, 26, 0.95) 0%, rgba(31, 32, 35, 0.8) 100%);
+      border: 1px solid rgba(31, 32, 35, 0.8);
+    }
+    .nav-link {
+      transition: background 0.18s;
+    }
+    .nav-link-active, .nav-link:hover {
+      background: rgba(94, 106, 210, 0.08);
+      color: #5e6ad2 !important;
+    }
+    .switch input:checked + .slider {
+      background-color: #5e6ad2;
+    }
+    .switch input:checked + .slider:before {
+      transform: translateX(1.25rem);
+      background: linear-gradient(135deg, #5e6ad2, #8b5cf6);
+    }
+    .switch input:focus + .slider {
+      box-shadow: 0 0 0 2px #5e6ad2;
+    }
+    .slider {
+      transition: .2s;
+    }
+    .slider:before {
+      transition: .2s;
+    }
+    .slider {
+      position: relative;
+      display: block;
+      width: 2.5rem;
+      height: 1.25rem;
+      border-radius: 9999px;
+      background: #23242b;
+      border: 1px solid #1f2023;
+      cursor: pointer;
+    }
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 1rem;
+      width: 1rem;
+      left: 0.13rem;
+      bottom: 0.12rem;
+      background: #b4bcd0;
+      border-radius: 9999px;
+      box-shadow: 0 1px 2px rgba(94,106,210,0.10);
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  </style>
+</head>
+<body class="bg-aura-bg text-aura-text font-inter min-h-screen">
+  <div class="max-w-5xl mx-auto p-8 flex flex-col gap-8">
+    <!-- Header -->
+    <div class="header-card glass-effect rounded-2xl p-8 flex items-center justify-between mb-2">
+      <div class="flex items-center gap-4">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-14 h-14 rounded-full border-2 border-aura-accent object-cover shadow" alt="User Avatar">
+        <div>
+          <h1 class="text-2xl font-medium text-white mb-1">Account Settings</h1>
+          <p class="text-aura-muted text-sm">Manage your profile, privacy, and application preferences</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="social-icon text-aura-text hover:text-white">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+        <button class="social-icon text-aura-text hover:text-white">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex gap-8">
+      <!-- Sidebar -->
+      <aside class="w-56 flex-shrink-0">
+        <div class="aura-card glass-effect rounded-xl py-6 px-4 flex flex-col gap-1">
+          <a href="#" class="nav-link nav-link-active flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-aura-accent">
+            <i class="fas fa-user-cog"></i> Profile
+          </a>
+          <a href="#" class="nav-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-aura-text">
+            <i class="fas fa-shield-alt"></i> Security
+          </a>
+          <a href="#" class="nav-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-aura-text">
+            <i class="fas fa-bell"></i> Notifications
+          </a>
+          <a href="#" class="nav-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-aura-text">
+            <i class="fas fa-palette"></i> Appearance
+          </a>
+          <a href="#" class="nav-link flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-aura-text">
+            <i class="fas fa-cogs"></i> Preferences
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1">
+        <form class="space-y-8">
+          <!-- Profile Section -->
+          <div class="aura-card glass-effect rounded-xl p-7 space-y-6">
+            <h2 class="text-lg font-semibold text-white mb-2">Profile Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-xs font-medium text-aura-muted mb-1">Full Name</label>
+                <input type="text" class="w-full rounded-md bg-aura-border border border-aura-border px-3 py-2 text-sm text-white placeholder-aura-muted focus:outline-none focus:border-aura-accent" placeholder="Your Name" value="Alex Johnson">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-aura-muted mb-1">Email Address</label>
+                <input type="email" class="w-full rounded-md bg-aura-border border border-aura-border px-3 py-2 text-sm text-white placeholder-aura-muted focus:outline-none focus:border-aura-accent" placeholder="email@example.com" value="alex.johnson@email.com">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-aura-muted mb-1">Username</label>
+                <input type="text" class="w-full rounded-md bg-aura-border border border-aura-border px-3 py-2 text-sm text-white placeholder-aura-muted focus:outline-none focus:border-aura-accent" placeholder="alexjohnson">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-aura-muted mb-1">Location</label>
+                <input type="text" class="w-full rounded-md bg-aura-border border border-aura-border px-3 py-2 text-sm text-white placeholder-aura-muted focus:outline-none focus:border-aura-accent" placeholder="Enter location">
+              </div>
+            </div>
+            <div class="flex items-center gap-4 pt-4">
+              <button type="submit" class="px-5 py-2 rounded-lg bg-aura-accent text-white font-semibold shadow hover:bg-aura-purple transition">Save Changes</button>
+              <button type="reset" class="px-4 py-2 rounded-lg bg-aura-border text-aura-muted border border-aura-border hover:bg-aura-card transition">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Preferences Section -->
+          <div class="aura-card glass-effect rounded-xl p-7 space-y-6">
+            <h2 class="text-lg font-semibold text-white mb-2">Preferences</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <label class="block text-sm text-white font-medium">Dark Mode</label>
+                  <span class="text-xs text-aura-muted">Enable or disable dark theme</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <label class="block text-sm text-white font-medium">Email Notifications</label>
+                  <span class="text-xs text-aura-muted">Get updates via email</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <label class="block text-sm text-white font-medium">Two-Factor Authentication</label>
+                  <span class="text-xs text-aura-muted">Extra security on login</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <label class="block text-sm text-white font-medium">Language</label>
+                  <span class="text-xs text-aura-muted">Choose your language</span>
+                </div>
+                <select class="rounded-md bg-aura-border border border-aura-border px-3 py-2 ml-4 text-sm text-white focus:outline-none focus:border-aura-accent">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>German</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="aura-card glass-effect rounded-xl p-7">
+            <h2 class="text-lg font-semibold text-white mb-3">Danger Zone</h2>
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <span class="text-sm text-aura-muted">Delete your account and all associated data. This action cannot be undone.</span>
+              </div>
+              <button type="button" class="px-5 py-2 rounded-lg bg-red-600/70 hover:bg-red-700 text-white font-semibold shadow transition">
+                <i class="fas fa-trash-alt mr-2"></i>Delete Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

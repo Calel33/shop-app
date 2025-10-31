@@ -1,0 +1,289 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluxMail - Compose Email</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: {
+            flux: {
+              50:'#faf7ff',
+              100:'#f3efff',
+              200:'#e9dfff',
+              300:'#d6c2ff',
+              400:'#b794ff',
+              500:'#9567ff',
+              600:'#7c3aed',
+              700:'#6d28d9',
+              800:'#5b21b6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-feature-settings: "ss01","cv02"; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Inter&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased bg-zinc-900 px-6 text-sm">
+  <div class="max-w-7xl mx-auto bg-zinc-800 shadow-xl rounded-xl overflow-hidden my-4 md:my-6 border border-zinc-700">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row items-start md:items-center justify-between md:px-6 border-zinc-700 bg-gradient-to-b from-zinc-800/50 border-b pt-4 pr-4 pb-4 pl-4">
+      <div class="flex items-center space-x-2 mb-3 md:mb-0">
+        <div class="bg-clip-text text-xl font-medium text-transparent tracking-tighter bg-gradient-to-r from-flux-400 to-flux-300">Mail</div>
+        <span class="text-zinc-500 text-xs">/ Compose</span>
+      </div>
+      
+      <nav class="flex flex-wrap gap-3 md:gap-6 text-xs font-medium mb-3 md:mb-0">
+        <a href="#" class="flex items-center space-x-1.5 text-zinc-400 hover:text-flux-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
+          <span>Inbox</span>
+        </a>
+        <a href="#" class="flex items-center space-x-1.5 text-flux-400 font-semibold">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+          <span>Compose</span>
+        </a>
+        <a href="#" class="flex items-center space-x-1.5 text-zinc-400 hover:text-flux-400 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
+          <span>Drafts</span>
+        </a>
+      </nav>
+      
+      <div class="flex items-center space-x-1.5">
+        <button class="p-1.5 rounded-md bg-zinc-700 hover:bg-zinc-600 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-300"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+        </button>
+        <button class="p-1.5 rounded-md bg-flux-600 text-white hover:bg-flux-700 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Compose Content -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
+      <!-- Sidebar -->
+      <aside class="col-span-1 lg:col-span-3 lg:p-6 lg:border-r lg:border-zinc-700 bg-gradient-to-b from-zinc-800/30 to-zinc-800/50 pt-4 pr-4 pb-4 pl-4">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-sm font-semibold text-white">Compose</h2>
+          <div class="flex items-center space-x-1 text-xs text-zinc-400">
+            <div class="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+            <span>Draft auto-saved</span>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="space-y-2 mb-6">
+          <button class="w-full flex items-center space-x-2 px-3 py-2 bg-flux-600 text-white rounded-md hover:bg-flux-700 transition-colors text-xs font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+            <span>Send Email</span>
+            <div class="ml-auto text-xs opacity-60">⌘↵</div>
+          </button>
+          
+          <div class="grid grid-cols-2 gap-2">
+            <button class="flex items-center justify-center space-x-1 px-2 py-1.5 border border-zinc-600 text-zinc-300 rounded-md hover:bg-zinc-700 transition-colors text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12h.01"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M22 13a18.15 18.15 0 0 1-20 0"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+              <span>Draft</span>
+            </button>
+            <button class="flex items-center justify-center space-x-1 px-2 py-1.5 border border-zinc-600 text-zinc-300 rounded-md hover:bg-zinc-700 transition-colors text-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+              <span>Delete</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Email Settings -->
+        <div class="space-y-3 mb-6">
+          <h3 class="text-xs font-medium text-zinc-400 uppercase tracking-wider">Settings</h3>
+          <div class="space-y-2">
+            <label class="flex items-center justify-between text-xs text-zinc-300 cursor-pointer">
+              <span>Priority: High</span>
+              <input type="checkbox" class="w-3 h-3 rounded border-zinc-600 bg-zinc-700 text-flux-600 focus:ring-flux-500 focus:ring-1">
+            </label>
+            <label class="flex items-center justify-between text-xs text-zinc-300 cursor-pointer">
+              <span>Read receipt</span>
+              <input type="checkbox" class="w-3 h-3 rounded border-zinc-600 bg-zinc-700 text-flux-600 focus:ring-flux-500 focus:ring-1">
+            </label>
+            <label class="flex items-center justify-between text-xs text-zinc-300 cursor-pointer">
+              <span>Schedule send</span>
+              <input type="checkbox" class="w-3 h-3 rounded border-zinc-600 bg-zinc-700 text-flux-600 focus:ring-flux-500 focus:ring-1">
+            </label>
+          </div>
+        </div>
+
+        <!-- Templates -->
+        <div class="space-y-3 mb-6">
+          <h3 class="text-xs font-medium text-zinc-400 uppercase tracking-wider">Templates</h3>
+          <div class="space-y-1">
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center justify-between">
+                <p class="font-medium text-zinc-200 text-xs">Meeting Request</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M9 18l6-6-6-6"></path></svg>
+              </div>
+              <p class="text-zinc-400 text-xs">Schedule meetings efficiently</p>
+            </button>
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center justify-between">
+                <p class="font-medium text-zinc-200 text-xs">Project Update</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M9 18l6-6-6-6"></path></svg>
+              </div>
+              <p class="text-zinc-400 text-xs">Weekly status updates</p>
+            </button>
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center justify-between">
+                <p class="font-medium text-zinc-200 text-xs">Follow Up</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M9 18l6-6-6-6"></path></svg>
+              </div>
+              <p class="text-zinc-400 text-xs">Professional follow-ups</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Recent Contacts -->
+        <div class="space-y-3">
+          <h3 class="text-xs font-medium text-zinc-400 uppercase tracking-wider">Recent Contacts</h3>
+          <div class="space-y-1">
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center space-x-2">
+                <div class="w-5 h-5 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-medium">J</div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-medium text-zinc-200 truncate">John Smith</p>
+                  <p class="text-xs text-zinc-400 truncate">john@company.com</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+              </div>
+            </button>
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center space-x-2">
+                <div class="w-5 h-5 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-medium">S</div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-medium text-zinc-200 truncate">Sarah Wilson</p>
+                  <p class="text-xs text-zinc-400 truncate">sarah@design.co</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+              </div>
+            </button>
+            <button class="w-full text-left p-2 rounded-md hover:bg-zinc-700 transition-colors group">
+              <div class="flex items-center space-x-2">
+                <div class="w-5 h-5 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-xs font-medium">M</div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-medium text-zinc-200 truncate">Mike Chen</p>
+                  <p class="text-xs text-zinc-400 truncate">mike@startup.io</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Compose Form -->
+      <main class="col-span-1 lg:col-span-9 lg:p-8 space-y-5 pt-4 pr-4 pb-4 pl-4">
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="text-lg font-semibold text-white">New Message</h1>
+          <div class="flex items-center space-x-1.5 text-xs text-zinc-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Auto-saved 2 minutes ago</span>
+          </div>
+        </div>
+
+        <!-- Email Form -->
+        <form class="space-y-4">
+          <!-- Recipients -->
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <label class="w-12 text-xs font-medium text-zinc-300">To:</label>
+              <input type="email" placeholder="Enter recipient emails..." class="flex-1 px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-md text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-flux-500 focus:border-transparent">
+            </div>
+            
+            <div class="flex items-center space-x-3">
+              <label class="w-12 text-xs font-medium text-zinc-300">CC:</label>
+              <input type="email" placeholder="Carbon copy recipients..." class="flex-1 px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-md text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-flux-500 focus:border-transparent">
+            </div>
+            
+            <div class="flex items-center space-x-3">
+              <label class="w-12 text-xs font-medium text-zinc-300">BCC:</label>
+              <input type="email" placeholder="Blind carbon copy recipients..." class="flex-1 px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-md text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-flux-500 focus:border-transparent">
+            </div>
+          </div>
+
+          <!-- Subject -->
+          <div class="flex items-center space-x-3">
+            <label class="w-12 text-xs font-medium text-zinc-300">Subject:</label>
+            <input type="text" placeholder="Enter email subject..." class="flex-1 px-3 py-2 bg-zinc-700 border border-zinc-600 rounded-md text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-flux-500 focus:border-transparent">
+          </div>
+
+          <!-- Formatting Toolbar -->
+          <div class="border-t border-b border-zinc-600 py-3">
+            <div class="flex items-center space-x-0.5 flex-wrap gap-1">
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 1 1 0 8H6z"></path><path d="M6 12h7a4 4 0 1 1 0 8H6z"></path></svg>
+              </button>
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 4h-9M14 20H5M15 9v11"></path></svg>
+              </button>
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17L11 12 6 7"></path><path d="M13 7L18 12 13 17"></path></svg>
+              </button>
+              <div class="w-px h-4 bg-zinc-600 mx-1"></div>
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"></path><path d="M6 12h15"></path><path d="M3 18h18"></path></svg>
+              </button>
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              </button>
+              <button type="button" class="p-1.5 rounded hover:bg-zinc-700 text-zinc-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Message Body -->
+          <div class="space-y-2">
+            <label class="block text-xs font-medium text-zinc-300">Message:</label>
+            <textarea rows="10" placeholder="Write your email message here..." class="w-full px-3 py-3 bg-zinc-700 border border-zinc-600 rounded-md text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-flux-500 focus:border-transparent resize-y"></textarea>
+          </div>
+
+          <!-- Attachments -->
+          <div class="border border-zinc-600 border-dashed rounded-md p-4">
+            <div class="text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 mx-auto mb-1"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+              <p class="text-zinc-400 text-xs mb-1">Drag and drop files here or</p>
+              <button type="button" class="text-flux-400 hover:text-flux-300 text-xs font-medium">browse files</button>
+            </div>
+          </div>
+
+          <!-- Send Options -->
+          <div class="flex items-center justify-between pt-4 border-t border-zinc-600">
+            <div class="flex items-center space-x-3 text-xs text-zinc-400">
+              <span>Draft saved • 124 chars</span>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <button type="button" class="px-3 py-1.5 border border-zinc-600 text-zinc-300 rounded-md hover:bg-zinc-700 transition-colors text-xs">
+                Save Draft
+              </button>
+              <button type="submit" class="px-4 py-1.5 bg-flux-600 text-white rounded-md hover:bg-flux-700 transition-colors font-medium text-xs">
+                Send Email
+              </button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

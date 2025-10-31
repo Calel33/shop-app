@@ -1,0 +1,373 @@
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quantum GPU Analytics - Resource Overview</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+body{font-family:'Inter',sans-serif;}
+.pixel{font-family:'Space Mono',monospace;letter-spacing:-0.02em;}
+.fade-in{animation:fadeIn 0.6s ease-out forwards;}
+.slide-up{animation:slideUp 0.8s ease-out forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style></head>
+<body class="min-h-screen lg:p-8 bg-neutral-900 pt-4 pr-4 pb-4 pl-4"><div class="spline-container fixed top-0 left-0 w-full h-screen -z-10 hue-rotate-15"><iframe src="https://my.spline.design/aidatamodelinteraction-mdTL3FktFVHgDvFr5TKtnYDV" frameborder="0" width="100%" height="100%" id="aura-spline"></iframe></div>
+<div class="max-w-6xl mx-auto">
+  <!-- Header -->
+  <div class="mb-8 fade-in" style="animation-delay: 0.1s;">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 rounded-lg bg-blue-600" style="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" class="lucide lucide-cpu w-5 h-5 text-white" style="stroke-width: 1.5;"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg>
+        </div>
+        <h1 class="pixel text-2xl lg:text-3xl tracking-tight font-space-grotesk text-white font-light" style="">QUANTUM GPU</h1>
+      </div>
+      <div class="flex items-center space-x-2">
+        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse" style=""></div>
+        <span class="text-sm font-geist text-zinc-400">Live</span>
+      </div>
+    </div>
+    <p class="text-sm font-geist text-zinc-400">Real-time GPU cluster monitoring and resource allocation</p>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Main Dashboard -->
+    <div class="lg:col-span-2 space-y-6">
+      <!-- Resource Overview Card -->
+      <div class="ring-1 fade-in bg-black rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl ring-zinc-700/20" style="animation-delay: 0.2s;">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="pixel text-xl tracking-tight font-geist text-white">RESOURCE OVERVIEW</h2>
+          <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" class="lucide lucide-activity w-4 h-4 text-blue-400" style="stroke-width: 1.5;"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+            <span class="text-sm font-geist text-zinc-400">Last updated: 2s ago</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div class="rounded-lg p-4 border hover:border-blue-500 transition-colors bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center space-x-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap w-4 h-4 text-yellow-400" style="stroke-width: 1.5;"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+              <span class="text-xs uppercase tracking-wider font-geist text-zinc-400">Total GPUs</span>
+            </div>
+            <div class="text-2xl font-space-grotesk text-white font-light" style="">42</div>
+            <div class="text-xs font-geist text-green-400" style="">+3 from last hour</div>
+          </div>
+          <div class="rounded-lg p-4 border hover:border-green-500 transition-colors bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center space-x-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="server" class="lucide lucide-server w-4 h-4 text-green-400" style="stroke-width: 1.5;"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+              <span class="text-xs uppercase tracking-wider font-geist text-zinc-400">Active Units</span>
+            </div>
+            <div class="text-2xl font-space-grotesk text-white font-light" style="">247</div>
+            <div class="text-xs font-geist text-green-400" style="">89% utilization</div>
+          </div>
+          <div class="rounded-lg p-4 border hover:border-purple-500 transition-colors bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center space-x-2 mb-2">
+              <i data-lucide="chip" class="w-4 h-4 text-purple-400" style="stroke-width: 1.5;"></i>
+              <span class="text-xs uppercase tracking-wider font-geist text-zinc-400">A100s</span>
+            </div>
+            <div class="text-2xl font-space-grotesk text-white font-light" style="">28</div>
+            <div class="text-xs font-geist text-blue-400" style="">Premium tier</div>
+          </div>
+          <div class="rounded-lg p-4 border hover:border-red-500 transition-colors bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center space-x-2 mb-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" class="lucide lucide-cpu w-4 h-4 text-red-400" style="stroke-width: 1.5;"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg>
+              <span class="text-xs uppercase tracking-wider font-geist text-zinc-400">H100s</span>
+            </div>
+            <div class="text-2xl font-space-grotesk text-white font-light" style="">14</div>
+            <div class="text-xs font-geist text-red-400" style="">Ultra tier</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="border rounded-lg p-4 mb-6 border-zinc-800" style="">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-3" class="lucide lucide-bar-chart-3 w-4 h-4 text-zinc-400" style="stroke-width: 1.5;"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+              <span class="text-sm font-medium uppercase tracking-wider font-geist text-zinc-200">Usage Breakdown</span>
+            </div>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+              <div class="relative">
+                <select id="range" class="appearance-none text-sm pl-3 pr-8 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-white bg-zinc-800 border-zinc-800" style="">
+                  <option value="24" class="font-geist">Last 24 hours</option>
+                  <option value="168" class="font-geist">Last 7 days</option>
+                  <option value="720" class="font-geist">Last 30 days</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down absolute right-2 top-2.5 w-4 h-4 pointer-events-none text-zinc-400" style="stroke-width: 1.5;"><path d="m6 9 6 6 6-6"></path></svg>
+              </div>
+              <div class="relative">
+                <select id="type" class="appearance-none text-sm pl-3 pr-8 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-white bg-zinc-800 border-zinc-800" style="">
+                  <option class="font-geist">A100 Cluster</option>
+                  <option class="font-geist">H100 Cluster</option>
+                  <option class="font-geist">Mixed Workload</option>
+                </select>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down absolute right-2 top-2.5 w-4 h-4 pointer-events-none text-zinc-400" style="stroke-width: 1.5;"><path d="m6 9 6 6 6-6"></path></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 bg-red-500 rounded-full" style=""></div>
+            <span class="text-xs font-geist text-zinc-300">neural-forge-ai</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 bg-orange-500 rounded-full" style=""></div>
+            <span class="text-xs font-geist text-zinc-300">voice-synthesis</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 rounded-full bg-amber-400" style=""></div>
+            <span class="text-xs font-geist text-zinc-300">vision-pipeline</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+            <span class="text-xs font-geist text-zinc-300">quantum-solver</span>
+          </div>
+        </div>
+
+        <!-- Chart Container -->
+        <div class="rounded-lg p-4 border bg-zinc-900 border-zinc-800" style="">
+          <canvas id="usageChart" class="w-full h-64" width="1356" height="512" style="display: block; box-sizing: border-box; height: 256px; width: 678px;"></canvas>
+        </div>
+      </div>
+
+      <!-- Performance Metrics -->
+      <div class="ring-1 fade-in rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl bg-black ring-zinc-700/20" style="animation-delay: 0.4s;">
+        <h3 class="pixel text-lg text-white tracking-tight font-geist mb-4">PERFORMANCE METRICS</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-lg p-4 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-geist text-zinc-400">Temperature</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="thermometer" class="lucide lucide-thermometer w-4 h-4 text-blue-400" style="stroke-width: 1.5;"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
+            </div>
+            <div class="text-xl font-medium font-geist text-white">72°C</div>
+            <div class="text-xs font-geist text-green-400" style="">Optimal range</div>
+          </div>
+          <div class="rounded-lg p-4 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-geist text-zinc-400">Power Draw</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="battery-charging" class="lucide lucide-battery-charging w-4 h-4 text-yellow-400" style="stroke-width: 1.5;"><path d="m11 7-3 5h4l-3 5"></path><path d="M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935"></path><path d="M22 14v-4"></path><path d="M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936"></path></svg>
+            </div>
+            <div class="text-xl font-medium font-geist text-white">1.2MW</div>
+            <div class="text-xs font-geist text-yellow-400">High efficiency</div>
+          </div>
+          <div class="rounded-lg p-4 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-geist text-zinc-400">Uptime</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-4 h-4 text-green-400" style="stroke-width: 1.5;"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            </div>
+            <div class="text-xl font-medium font-geist text-white">99.9%</div>
+            <div class="text-xs font-geist text-green-400" style="">42 days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <!-- System Status -->
+      <div class="ring-1 fade-in bg-black rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl ring-zinc-700/20" style="animation-delay: 0.3s;">
+        <div class="flex items-center space-x-2 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" class="lucide lucide-shield-check w-4 h-4 text-green-400" style="stroke-width: 1.5;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <h3 class="pixel text-lg tracking-tight font-geist text-white">SYSTEM STATUS</h3>
+        </div>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-geist text-zinc-400">Cluster Health</span>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-green-500 rounded-full" style=""></div>
+              <span class="text-sm font-geist text-green-400" style="">Optimal</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-geist text-zinc-400">Load Balancer</span>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-green-500 rounded-full" style=""></div>
+              <span class="text-sm font-geist text-green-400" style="">Active</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-geist text-zinc-400">Cooling System</span>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <span class="text-sm font-geist text-yellow-400">Moderate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Jobs -->
+      <div class="ring-1 fade-in bg-black rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl ring-zinc-700/20" style="animation-delay: 0.5s;">
+        <div class="flex items-center space-x-2 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play-circle" class="lucide lucide-play-circle w-4 h-4 text-blue-400" style="stroke-width: 1.5;"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          <h3 class="pixel text-lg tracking-tight font-geist text-white">ACTIVE JOBS</h3>
+        </div>
+        <div class="space-y-3">
+          <div class="rounded-lg p-3 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-white">neural-forge-ai</span>
+              <span class="text-xs font-geist text-green-400" style="">Running</span>
+            </div>
+            <div class="text-xs font-geist text-zinc-400">GPUs: 12 • ETA: 2.3h</div>
+          </div>
+          <div class="rounded-lg p-3 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-white">vision-pipeline</span>
+              <span class="text-xs font-geist text-yellow-400">Queued</span>
+            </div>
+            <div class="text-xs font-geist text-zinc-400">GPUs: 8 • ETA: 1.7h</div>
+          </div>
+          <div class="rounded-lg p-3 border bg-zinc-800 border-zinc-800" style="">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-white">quantum-solver</span>
+              <span class="text-xs font-geist text-blue-400" style="">Starting</span>
+            </div>
+            <div class="text-xs font-geist text-zinc-400">GPUs: 4 • ETA: 45m</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resource Allocation -->
+      <div class="ring-1 fade-in bg-black rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl ring-zinc-700/20" style="animation-delay: 0.6s;">
+        <div class="flex items-center space-x-2 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="pie-chart" class="lucide lucide-pie-chart w-4 h-4 text-purple-400" style="stroke-width: 1.5;"><path d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"></path><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path></svg>
+          <h3 class="pixel text-lg tracking-tight font-geist text-white">ALLOCATION</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-zinc-400">Compute</span>
+              <span class="text-sm font-geist text-white">78%</span>
+            </div>
+            <div class="w-full rounded-full h-2 bg-zinc-800">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 78%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-zinc-400">Memory</span>
+              <span class="text-sm font-geist text-white">65%</span>
+            </div>
+            <div class="w-full rounded-full h-2 bg-zinc-800">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 65%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-sm font-geist text-zinc-400">Storage</span>
+              <span class="text-sm font-geist text-white">42%</span>
+            </div>
+            <div class="w-full rounded-full h-2 bg-zinc-800">
+              <div class="bg-yellow-500 h-2 rounded-full" style="width: 42%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+const ctx = document.getElementById('usageChart');
+const hours = Array.from({length: 24}, (_, i) => i + 1);
+const randomSeries = () => hours.map(() => Math.floor(Math.random() * 16) + 6);
+
+const data = {
+  labels: hours,
+  datasets: [
+    {
+      label: 'neural-forge-ai',
+      backgroundColor: '#ef4444',
+      data: randomSeries(),
+      stack: 'combined',
+      borderRadius: 2,
+      barPercentage: 0.8,
+      categoryPercentage: 0.9
+    },
+    {
+      label: 'voice-synthesis',
+      backgroundColor: '#f97316',
+      data: randomSeries(),
+      stack: 'combined',
+      borderRadius: 2,
+      barPercentage: 0.8,
+      categoryPercentage: 0.9
+    },
+    {
+      label: 'vision-pipeline',
+      backgroundColor: '#f59e0b',
+      data: randomSeries(),
+      stack: 'combined',
+      borderRadius: 2,
+      barPercentage: 0.8,
+      categoryPercentage: 0.9
+    },
+    {
+      label: 'quantum-solver',
+      backgroundColor: '#eab308',
+      data: randomSeries(),
+      stack: 'combined',
+      borderRadius: 2,
+      barPercentage: 0.8,
+      categoryPercentage: 0.9
+    }
+  ]
+};
+
+const usageChart = new Chart(ctx, {
+  type: 'bar',
+  data,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#171717',
+        titleColor: '#ffffff',
+        bodyColor: '#d4d4d4',
+        borderColor: '#404040',
+        borderWidth: 1
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { 
+          color: '#6b7280', 
+          font: { family: 'Inter', size: 11 } 
+        }
+      },
+      y: {
+        beginAtZero: true,
+        grid: { color: '#262626' },
+        ticks: { 
+          color: '#6b7280', 
+          font: { family: 'Inter', size: 11 } 
+        }
+      }
+    }
+  }
+});
+
+const updateData = () => {
+  usageChart.data.datasets.forEach(dataset => {
+    dataset.data = randomSeries();
+  });
+  usageChart.update('none');
+};
+
+document.getElementById('range').addEventListener('change', updateData);
+document.getElementById('type').addEventListener('change', updateData);
+
+// Auto-refresh every 5 seconds
+setInterval(updateData, 5000);
+</script>
+
+</body></html>

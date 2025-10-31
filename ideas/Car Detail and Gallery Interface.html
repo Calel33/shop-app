@@ -1,0 +1,413 @@
+<html lang="en" class="scroll-smooth antialiased"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Details - DriveShare</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<style>
+body{font-family:'Inter',sans-serif}
+@keyframes fadeIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
+.animate{opacity:0}
+</style></head>
+<body class="bg-gray-950 text-gray-100" style="animation:fadeIn .8s ease forwards">
+
+<header class="shadow-sm border-b bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .05s">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#" class="flex items-center space-x-2 font-bold text-xl tracking-tight">
+        
+        <span class="">DriveShare</span>
+      </a>
+
+      <nav class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="#" class="transition text-gray-400 hover:text-gray-100">Browse Cars</a>
+        <a href="#" class="transition text-gray-400 hover:text-gray-100">List Your Car</a>
+        <a href="#" class="transition text-gray-400 hover:text-gray-100">How It Works</a>
+        <a href="#" class="transition text-gray-400 hover:text-gray-100">Support</a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <a href="#" class="hidden md:inline-flex items-center hover:bg-indigo-500 transition text-sm font-semibold text-black bg-gradient-to-b from-blue-400 to-blue-600 rounded-md pt-2 pr-4 pb-2 pl-4 shadow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" class="lucide lucide-plus w-4 h-4 mr-2"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+          List&nbsp;Car
+        </a>
+
+        <button class="relative transition text-gray-400 hover:text-gray-100" aria-label="Messages">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-square" class="lucide lucide-message-square w-5 h-5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 text-[10px] font-semibold bg-red-500 rounded-full text-black">2</span>
+        </button>
+
+        <div class="flex items-center space-x-2">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5113900d-1c55-4c45-a282-e60d9aea22d6_320w.jpg" alt="User avatar" class="w-8 h-8 rounded-full object-cover">
+          <button class="transition text-gray-400 hover:text-gray-100" aria-label="User menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down w-4 h-4"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+        </div>
+
+        <button class="md:hidden transition text-gray-400 hover:text-gray-100" aria-label="Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu w-6 h-6"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center space-x-2 text-sm text-gray-500" style="animation:fadeIn .8s ease forwards .1s">
+    <a href="#" class="transition hover:text-gray-300">Home</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-4 h-4"><path d="m9 18 6-6-6-6"></path></svg>
+    <a href="#" class="transition hover:text-gray-300">Los Angeles</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-4 h-4"><path d="m9 18 6-6-6-6"></path></svg>
+    <span class="text-gray-100">BMW X5 M Sport</span>
+  </nav>
+
+  <!-- Gallery -->
+  <section class="">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-3">
+      <img class="col-span-2 row-span-2 h-96 w-full object-cover rounded-xl shadow-sm" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="BMW X5 main view" style="animation:fadeIn .8s ease forwards .15s">
+      <img class="h-48 w-full object-cover rounded-xl shadow-sm" src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="BMW X5 interior" style="animation:fadeIn .8s ease forwards .2s">
+      <img class="h-48 w-full object-cover rounded-xl shadow-sm" src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="BMW X5 dashboard" style="animation:fadeIn .8s ease forwards .25s">
+      <img class="h-44 w-full object-cover rounded-xl shadow-sm" src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="BMW X5 rear view" style="animation:fadeIn .8s ease forwards .3s">
+      <div class="relative h-44 w-full rounded-xl shadow-sm overflow-hidden cursor-pointer transition bg-gray-100 hover:bg-gray-200" style="animation:fadeIn .8s ease forwards .35s">
+        <img class="w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="More photos">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-center text-black">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="images" class="lucide lucide-images w-8 h-8 mx-auto mb-2"><path d="M18 22H4a2 2 0 0 1-2-2V6"></path><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"></path><circle cx="12" cy="8" r="2"></circle><rect width="16" height="16" x="6" y="2" rx="2"></rect></svg>
+            <span class="text-sm font-medium">View all 24 photos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Title & Actions -->
+  <section class="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-6 lg:space-y-0" style="animation:fadeIn .8s ease forwards .4s">
+    <div class="flex-1">
+      <div class="flex items-center space-x-3 mb-2">
+        <h1 class="text-3xl font-semibold tracking-tight">2023 BMW X5 M Sport</h1>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap w-3 h-3 mr-1"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+          Instant Book
+        </span>
+      </div>
+      
+      <div class="flex flex-wrap items-center gap-4 text-sm mb-4 text-gray-400">
+        <div class="flex items-center space-x-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-4 h-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Beverly Hills, CA</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star w-4 h-4 fill-current text-yellow-500"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+          <span class="font-medium">4.9</span>
+          <span>(127 trips)</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" class="lucide lucide-shield-check w-4 h-4 text-green-400"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          <span>All-Star Host</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-4 h-4"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+          <span>Free cancellation</span>
+        </div>
+      </div>
+
+      <div class="text-2xl font-bold text-gray-100">
+        $189<span class="text-lg font-medium text-gray-400">/day</span>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <button class="flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition border-gray-700 bg-black hover:bg-gray-950">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart w-4 h-4 mr-2 text-gray-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+        Save
+      </button>
+      <button class="flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition border-gray-700 bg-black hover:bg-gray-950">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="share-2" class="lucide lucide-share-2 w-4 h-4 mr-2 text-gray-400"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+        Share
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Left Column -->
+    <div class="lg:col-span-2 space-y-8">
+      <!-- Vehicle Details -->
+      <div class="rounded-xl shadow-sm border p-6 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .45s">
+        <h2 class="text-xl font-semibold mb-6 tracking-tight">Vehicle Details</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 bg-indigo-900">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-6 h-6 text-indigo-400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            </div>
+            <div class="text-sm font-medium text-gray-100">5 seats</div>
+            <div class="text-xs text-gray-500">Passengers</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 bg-indigo-900">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="briefcase" class="lucide lucide-briefcase w-6 h-6 text-indigo-400"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+            </div>
+            <div class="text-sm font-medium text-gray-100">4 bags</div>
+            <div class="text-xs text-gray-500">Luggage</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 bg-indigo-900">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings" class="lucide lucide-settings w-6 h-6 text-indigo-400"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </div>
+            <div class="text-sm font-medium text-gray-100">Automatic</div>
+            <div class="text-xs text-gray-500">Transmission</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 bg-indigo-900">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="fuel" class="lucide lucide-fuel w-6 h-6 text-indigo-400"><line x1="3" x2="15" y1="22" y2="22"></line><line x1="4" x2="14" y1="9" y2="9"></line><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"></path><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"></path></svg>
+            </div>
+            <div class="text-sm font-medium text-gray-100">Premium</div>
+            <div class="text-xs text-gray-500">Fuel Type</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features & Amenities -->
+      <div class="rounded-xl shadow-sm border p-6 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .5s">
+        <h2 class="text-xl font-semibold mb-6 tracking-tight">Features &amp; Amenities</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="smartphone" class="lucide lucide-smartphone w-5 h-5 text-indigo-400"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+            <span class="text-sm">Apple CarPlay &amp; Android Auto</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="bluetooth" class="lucide lucide-bluetooth w-5 h-5 text-indigo-400"><path d="m7 7 10 10-5 5V2l5 5L7 17"></path></svg>
+            <span class="text-sm">Bluetooth Connectivity</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="navigation" class="lucide lucide-navigation w-5 h-5 text-indigo-400"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+            <span class="text-sm">GPS Navigation System</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="camera" class="lucide lucide-camera w-5 h-5 text-indigo-400"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+            <span class="text-sm">Backup Camera</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="snowflake" class="lucide lucide-snowflake w-5 h-5 text-indigo-400"><path d="m10 20-1.25-2.5L6 18"></path><path d="M10 4 8.75 6.5 6 6"></path><path d="m14 20 1.25-2.5L18 18"></path><path d="m14 4 1.25 2.5L18 6"></path><path d="m17 21-3-6h-4"></path><path d="m17 3-3 6 1.5 3"></path><path d="M2 12h6.5L10 9"></path><path d="m20 10-1.5 2 1.5 2"></path><path d="M22 12h-6.5L14 15"></path><path d="m4 10 1.5 2L4 14"></path><path d="m7 21 3-6-1.5-3"></path><path d="m7 3 3 6h4"></path></svg>
+            <span class="text-sm">Climate Control</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="sun" class="lucide lucide-sun w-5 h-5 text-indigo-400"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            <span class="text-sm">Panoramic Sunroof</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="volume-2" class="lucide lucide-volume-2 w-5 h-5 text-indigo-400"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg>
+            <span class="text-sm">Premium Sound System</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="key" class="lucide lucide-key w-5 h-5 text-indigo-400"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle></svg>
+            <span class="text-sm">Keyless Entry</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="wifi" class="lucide lucide-wifi w-5 h-5 text-indigo-400"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.859a10 10 0 0 1 14 0"></path><path d="M8.5 16.429a5 5 0 0 1 7 0"></path></svg>
+            <span class="text-sm">Wi-Fi Hotspot</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="usb" class="lucide lucide-usb w-5 h-5 text-indigo-400"><circle cx="10" cy="7" r="1"></circle><circle cx="4" cy="20" r="1"></circle><path d="M4.7 19.3 19 5"></path><path d="m21 3-3 1 2 2Z"></path><path d="M9.26 7.68 5 12l2 5"></path><path d="m10 14 5 2 3.5-3.5"></path><path d="m18 12 1-1 1 1-1 1Z"></path></svg>
+            <span class="text-sm">USB Charging Ports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="rounded-xl shadow-sm border p-6 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .55s">
+        <h2 class="text-xl font-semibold mb-4 tracking-tight">About This Car</h2>
+        <div class="prose prose-sm max-w-none text-gray-300">
+          <p class="mb-4">
+            Experience luxury and performance with this stunning 2023 BMW X5 M Sport. This premium SUV combines 
+            sophisticated design with cutting-edge technology, making it perfect for both business trips and weekend getaways.
+          </p>
+          <p class="mb-4">
+            The vehicle features a powerful turbocharged engine, adaptive suspension, and BMW's latest iDrive infotainment system. 
+            The spacious interior is wrapped in premium leather with heated and ventilated seats for maximum comfort.
+          </p>
+          <div class="border-l-4 p-4 rounded-r-lg bg-yellow-950 border-yellow-600">
+            <div class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-triangle" class="lucide lucide-alert-triangle w-5 h-5 mr-3 mt-0.5 text-yellow-600"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+              <div class="text-sm">
+                <p class="font-medium mb-1 text-yellow-200">House Rules</p>
+                <ul class="space-y-1 text-yellow-300">
+                  <li>• No smoking inside the vehicle</li>
+                  <li class="">• No pets without prior approval</li>
+                  <li>• Return with same fuel level</li>
+                  <li class="">• Maximum speed limit enforcement via GPS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Host Information -->
+      <div class="rounded-xl shadow-sm border p-6 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .6s">
+        <h2 class="text-xl font-semibold mb-6 tracking-tight">Hosted by Marcus Chen</h2>
+        <div class="flex items-start space-x-4">
+          <div class="relative">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6653564f-d2bb-4c35-8fef-be58ac89ffe0_320w.jpg" alt="Marcus Chen" class="w-16 h-16 rounded-full object-cover">
+            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 flex items-center justify-center border-black">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check w-3 h-3 text-black"><path d="M20 6 9 17l-5-5"></path></svg>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center space-x-2 mb-2">
+              <h3 class="font-semibold text-lg">Marcus Chen</h3>
+              <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-900 text-blue-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star w-3 h-3 mr-1"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                All-Star Host
+              </span>
+            </div>
+            <div class="flex items-center space-x-4 text-sm mb-3 text-gray-400">
+              <div class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star w-4 h-4 fill-current text-yellow-500"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                <span class="font-medium">4.9</span>
+                <span>(240 reviews)</span>
+              </div>
+              <div class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" class="lucide lucide-calendar w-4 h-4"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+                <span>Joined March 2022</span>
+              </div>
+              <div class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-circle" class="lucide lucide-message-circle w-4 h-4"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+                <span>Response rate: 98%</span>
+              </div>
+            </div>
+            <p class="text-sm mb-4 text-gray-300">
+              Luxury car enthusiast with over 15 premium vehicles available. Known for exceptional service 
+              and maintaining vehicles in pristine condition. Available 24/7 for guest support.
+            </p>
+            <div class="flex space-x-3">
+              <button class="flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition border-gray-700 bg-black hover:bg-gray-950">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="message-square" class="lucide lucide-message-square w-4 h-4 mr-2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Contact Host
+              </button>
+              <button class="flex items-center px-4 py-2 rounded-lg border text-sm font-medium transition border-gray-700 bg-black hover:bg-gray-950">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="user" class="lucide lucide-user w-4 h-4 mr-2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                View Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location & Pickup -->
+      <div class="rounded-xl shadow-sm border p-6 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .65s">
+        <h2 class="text-xl font-semibold mb-6 tracking-tight">Pickup &amp; Return</h2>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center mt-1 bg-green-900">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-4 h-4 text-green-400"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div class="">
+              <h4 class="font-medium text-gray-100">Beverly Hills Luxury Garage</h4>
+              <p class="text-sm text-gray-400">9876 Rodeo Drive, Beverly Hills, CA 90210</p>
+              <p class="text-xs text-gray-500 mt-1">0.3 miles from Beverly Hills center</p>
+            </div>
+          </div>
+          <div class="h-64 rounded-lg overflow-hidden bg-gray-800">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/42613158-88f6-4b87-ac2c-9c5aeef7a88a_1600w.jpg" alt="Pickup location map" class="w-full h-full object-cover">
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4" id="aura-emdl5vk16">
+            <div class="flex items-center space-x-2 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-4 h-4 text-gray-500"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+              <span class="text-gray-300">Available 24/7</span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-4 h-4 text-gray-500"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+              <span class="text-gray-300">Free delivery within 5 miles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Panel -->
+    <aside class="lg:col-span-1">
+      <div class="rounded-xl shadow-lg border p-6 sticky top-8 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .7s">
+        <div class="text-center mb-6">
+          <div class="text-3xl font-bold text-gray-100">$189<span class="text-lg font-medium text-gray-400">/day</span></div>
+          <div class="text-sm text-gray-500">Plus fees and taxes</div>
+        </div>
+
+        <!-- Trip Dates -->
+        <div class="space-y-4 mb-6">
+          <div class="">
+            <label class="block text-sm font-medium mb-2 text-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" class="lucide lucide-calendar w-4 h-4 inline mr-1"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+              Trip Start
+            </label>
+            <input type="datetime-local" value="2024-03-15T10:00" class="w-full focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-gray-900 border-gray-800 border rounded-lg pt-2 pr-3 pb-2 pl-3">
+          </div>
+          <div class="">
+            <label class="block text-sm font-medium mb-2 text-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar" class="lucide lucide-calendar w-4 h-4 inline mr-1"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>
+              Trip End
+            </label>
+            <input type="datetime-local" value="2024-03-18T10:00" class="w-full focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm bg-gray-900 border-gray-800 border rounded-lg pt-2 pr-3 pb-2 pl-3">
+          </div>
+        </div>
+
+        <!-- Pricing Breakdown -->
+        <div class="border-t pt-4 mb-6 space-y-3 text-sm border-gray-800">
+          <div class="flex justify-between">
+            <span class="text-gray-400">$189 × 3 days</span>
+            <span class="text-gray-100">$567.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-400">Trip fee</span>
+            <span class="text-gray-100">$15.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-400">Protection plan</span>
+            <span class="text-gray-100">$45.00</span>
+          </div>
+          <div class="border-t pt-3 flex justify-between font-semibold border-gray-800">
+            <span class="text-gray-100">Total</span>
+            <span class="text-gray-100">$627.00</span>
+          </div>
+        </div>
+
+        <button class="w-full transition hover:bg-indigo-300 font-semibold text-black bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg mb-3 pt-3 pr-4 pb-3 pl-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" class="lucide lucide-lock w-4 h-4 inline mr-2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Continue to Book
+        </button>
+
+        <div class="text-center text-xs text-gray-500 mb-4">
+          You won't be charged until your trip is confirmed
+        </div>
+
+        <button class="w-full flex items-center justify-center py-2 px-4 border rounded-lg text-sm font-medium transition border-gray-700 text-gray-300 hover:bg-gray-950">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="flag" class="lucide lucide-flag w-4 h-4 mr-2"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg>
+          Report this listing
+        </button>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer class="border-t py-12 mt-16 bg-black border-gray-800" style="animation:fadeIn .8s ease forwards .75s">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-center space-x-8 text-sm text-gray-400">
+      <a href="#" class="transition hover:text-gray-100">Privacy Policy</a>
+      <a href="#" class="transition hover:text-gray-100">Terms of Service</a>
+      <a href="#" class="transition hover:text-gray-100">Support</a>
+      <span>© 2024 DriveShare, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons({attrs:{'stroke-width':1.5}});
+</script>
+
+</body></html>

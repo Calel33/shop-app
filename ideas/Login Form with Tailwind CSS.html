@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#101014',
+            accent: '#5E6AD2',
+            subtle: 'rgba(255,255,255,0.1)'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark min-h-screen flex items-center justify-center text-white font-sans">
+  <div class="absolute inset-0 bg-gradient-to-b from-accent/10 via-[#101014] to-accent/10 pointer-events-none -z-10"></div>
+  <div class="w-full max-w-md mx-auto p-8 rounded-2xl shadow-2xl border border-subtle bg-[#181821] backdrop-blur">
+    <div class="flex items-center justify-center mb-9">
+      <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="ml-3 text-2xl font-semibold">Quantum</span>
+    </div>
+    <h2 class="text-2xl font-bold mb-2 text-center">Sign in to your account</h2>
+    <p class="text-gray-400 mb-8 text-sm text-center">Welcome back! Please enter your credentials.</p>
+    <form>
+      <div class="mb-5">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email</label>
+        <input id="email" type="email" autocomplete="email" required
+               class="w-full px-4 py-3 rounded-md bg-subtle text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition" placeholder="you@example.com">
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-300">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required
+               class="w-full px-4 py-3 rounded-md bg-subtle text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition" placeholder="••••••••">
+      </div>
+      <div class="flex items-center justify-between mb-7">
+        <label class="flex items-center space-x-2 text-sm text-gray-400">
+          <input type="checkbox" class="accent-accent rounded bg-subtle border-subtle focus:ring-0" />
+          <span>Remember me</span>
+        </label>
+        <a href="#" class="text-accent hover:underline text-sm font-medium">Forgot password?</a>
+      </div>
+      <button type="submit" class="w-full py-3 bg-accent text-white font-semibold rounded-full hover:bg-opacity-90 transition">Sign in</button>
+    </form>
+    <div class="mt-8 text-center">
+      <span class="text-sm text-gray-400">Don’t have an account?</span>
+      <a href="#" class="text-accent font-medium hover:underline ml-1">Sign up</a>
+    </div>
+  </div>
+</body>
+</html>

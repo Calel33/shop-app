@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">LocalConnect - Discover Local Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #2563eb;
+        }
+
+        .nav .btn-add-business {
+            background: #f59e0b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav .btn-add-business:hover {
+            background: #d97706;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 16px 20px;
+            font-size: 16px;
+            border-radius: 12px;
+            color: #334155;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .location-input {
+            min-width: 200px;
+            border: none;
+            padding: 16px 20px;
+            font-size: 16px;
+            border-radius: 12px;
+            color: #334155;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .search-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .location-stats {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            opacity: 0.9;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Quick Filters */
+        .quick-filters {
+            padding: 32px 0;
+            background: white;
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .filter-tag:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 64px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .category-tile {
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(45deg, #2563eb, #1d4ed8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+
+        .category-content {
+            color: white;
+        }
+
+        .category-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .category-count {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .category-icon {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 32px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        /* Trending Section */
+        .trending-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 48px;
+        }
+
+        .trending-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .trending-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trending-subtitle {
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .view-all-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .view-all-link:hover {
+            transform: translateX(4px);
+        }
+
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .business-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .business-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .business-category {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .trending-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .rating-stars {
+            color: #f59e0b;
+        }
+
+        .card-description {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary-sm {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary-sm:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary-sm {
+            background: white;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+
+        .btn-secondary-sm:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* New Businesses Section */
+        .new-businesses {
+            margin-bottom: 64px;
+        }
+
+        .new-business-header {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 32px;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
+        }
+
+        .new-business-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .new-business-subtitle {
+            opacity: 0.9;
+        }
+
+        .new-business-grid {
+            background: white;
+            padding: 32px;
+            border-radius: 0 0 16px 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .new-business-card {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .new-business-card:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+        }
+
+        .new-business-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            border: 3px solid #10b981;
+        }
+
+        .new-business-name {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .new-business-category {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Recently Verified Carousel */
+        .verified-section {
+            margin-bottom: 64px;
+        }
+
+        .verified-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .verified-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .carousel-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .verified-carousel {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .verified-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            min-width: 250px;
+        }
+
+        .verified-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .verified-business-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .verified-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .verified-info h4 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .verified-info .category {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .verified-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Location Personalization */
+        .location-banner {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .location-icon {
+            font-size: 24px;
+            color: #0ea5e9;
+        }
+
+        .location-text {
+            flex: 1;
+        }
+
+        .location-title {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .location-subtitle {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .change-location {
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .trending-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .new-business-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .verified-carousel {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .location-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .new-business-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .verified-carousel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .trending-header,
+            .verified-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-grid,
+            .new-business-grid,
+            .verified-carousel {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" data-mc-element-id="19425">
+        <div class="container" data-mc-element-id="19457">
+            <div class="header-content" data-mc-element-id="19493">
+                <div class="logo" data-mc-element-id="19538">
+                    <i class="fas fa-map-marker-alt" data-mc-element-id="19577"></i>
+                    LocalConnect
+                </div>
+                <nav class="nav" data-mc-element-id="19687">
+                    <a href="#" data-mc-element-id="19725">Browse Directory</a>
+                    <a href="#" data-mc-element-id="19778">Categories</a>
+                    <a href="#" data-mc-element-id="19825">About</a>
+                    <a href="#" class="btn-add-business" data-mc-element-id="19867">
+                        <i class="fas fa-plus" data-mc-element-id="19929"></i>
+                        Add Your Business
+                    </a>
+                    <a href="#" data-mc-element-id="20044">Sign In</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" data-mc-element-id="20144">
+        <div class="container" data-mc-element-id="20175">
+            <div class="hero-content" data-mc-element-id="20211">
+                <h1 data-mc-element-id="20254">Discover Amazing Local Businesses</h1>
+                <p class="hero-subtitle" data-mc-element-id="20313">Connect with trusted, verified businesses in your community. From restaurants to services, find exactly what you need nearby.</p>
+                
+                <div class="search-container" data-mc-element-id="20501">
+                    <input type="text" class="search-input" placeholder="What are you looking for?" data-mc-element-id="20552">
+                    <input type="text" class="location-input" placeholder="Springfield, IL" data-mc-element-id="20653">
+                    <button class="search-btn" data-mc-element-id="20746">
+                        <i class="fas fa-search" data-mc-element-id="20798"></i>
+                        Search
+                    </button>
+                </div>
+
+                <div class="location-stats" data-mc-element-id="20929">
+                    <div class="stat-item" data-mc-element-id="20978">
+                        <span class="stat-number" data-mc-element-id="21026">2,847</span>
+                        <span class="stat-label" data-mc-element-id="21089">Verified Businesses</span>
+                    </div>
+                    <div class="stat-item" data-mc-element-id="21188">
+                        <span class="stat-number" data-mc-element-id="21236">98%</span>
+                        <span class="stat-label" data-mc-element-id="21297">Customer Satisfaction</span>
+                    </div>
+                    <div class="stat-item" data-mc-element-id="21398">
+                        <span class="stat-number" data-mc-element-id="21446">24/7</span>
+                        <span class="stat-label" data-mc-element-id="21508">Platform Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-filters" data-mc-element-id="21663">
+        <div class="container" data-mc-element-id="21703">
+            <div class="filters-container" data-mc-element-id="21739">
+                <a href="#" class="filter-tag" data-mc-element-id="21787">
+                    <i class="fas fa-fire" data-mc-element-id="21839"></i> Trending Now
+                </a>
+                <a href="#" class="filter-tag" data-mc-element-id="21917">
+                    <i class="fas fa-clock" data-mc-element-id="21969"></i> Open Now
+                </a>
+                <a href="#" class="filter-tag" data-mc-element-id="22044">
+                    <i class="fas fa-star" data-mc-element-id="22096"></i> Highly Rated
+                </a>
+                <a href="#" class="filter-tag" data-mc-element-id="22174">
+                    <i class="fas fa-map-marker-alt" data-mc-element-id="22226"></i> Nearby
+                </a>
+                <a href="#" class="filter-tag" data-mc-element-id="22308">
+                    <i class="fas fa-tag" data-mc-element-id="22360"></i> Special Offers
+                </a>
+                <a href="#" class="filter-tag" data-mc-element-id="22439">
+                    <i class="fas fa-shield-check" data-mc-element-id="22491"></i> Newly Verified
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content" data-mc-element-id="22617">
+        <div class="container" data-mc-element-id="22653">
+            <div class="location-banner" data-mc-element-id="22689">
+                <div class="location-icon" data-mc-element-id="22735">
+                    <i class="fas fa-location-arrow" data-mc-element-id="22783"></i>
+                </div>
+                <div class="location-text" data-mc-element-id="22860">
+                    <div class="location-title" data-mc-element-id="22908">Showing results for Springfield, IL</div>
+                    <div class="location-subtitle" data-mc-element-id="22998">We found 847 businesses in your area</div>
+                </div>
+                <a href="#" class="change-location" data-mc-element-id="23111">Change Location</a>
+            </div>
+
+            <div class="section-header" data-mc-element-id="23199">
+                <h2 class="section-title" data-mc-element-id="23244">Explore by Category</h2>
+                <p class="section-subtitle" data-mc-element-id="23311">Browse our most popular business categories and discover what your community has to offer</p>
+            </div>
+
+            <div class="category-grid" data-mc-element-id="23465">
+                <div class="category-tile" data-mc-element-id="23509">
+                    <img src="https://storage.googleapis.com/forge-sites/6d78bb238de870859a7699387322c148b61a9167fa2b35192986a3dd870c4882.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=3bb0d26366091854f945f7881db554d30f5de9f3279b720bf690ac309ea1522fb53ea41466ec6f2174719f5345da9b9db4d214c30df0b6d053a67447f28b53895173b6850b79788216b0030b1b00ccf01fb3e0391994021f10c47983b24fcc4e9191a150d469444b543c9c836c7de6330a1f33dc8e7cd53ebc003ad6fedfd8faa5c1bd1482fccfdca8afe578f7b201ed2d54c0e4415602135441013fa73159f648af74ab3eec2e24decc3b9f08776f7ebcf40eb8ca2858b76440f729f388c64fab34934f57d29b16e13619a100eb9c9e092853134b891e29f19dc0c39a3680a451206c0f36d988b7bcbb0331e42099ac251085df7fcedd9475b628092830bc05" alt="Modern restaurant interior with elegant dining tables, warm lighting, and bustling atmosphere" class="category-image" data-mc-element-id="23557">
+                    <div class="category-overlay" data-mc-element-id="23736">
+                        <div class="category-content" data-mc-element-id="23791">
+                            <div class="category-name" data-mc-element-id="23850">Restaurants</div>
+                            <div class="category-count" data-mc-element-id="23923">284 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="24050">
+                        <i class="fas fa-utensils" data-mc-element-id="24102"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="24201">
+                    <img src="https://storage.googleapis.com/forge-sites/b9a763c324b539d7e2fdeee99d8a9935355f98e8b5e57b69e10e53ad00c7abb1.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=a635fcc769768ecfa55cbfe3a5a171a69ce51083142ff89dcf3861b1e6d9e87dae7300f510e2f1e3d9c65012efad4f767e0f1a62fca999345a6459c219ad4428baad893f0de3e1528e1e07ae567eb310dbe30f058f2874f7adaf7ceee2f0833e026a05a7d8cb6a4c57c4be83258c2e8d50642aaf041018ac9926e973f4cff5434a3670cc2e68ac5684408908416565bd3f7e6d60f747c34d44b5edd30b614bfdafd2c5dc4c22a0882ee24ec98b9ad046d48f38d94aba752db60760007cbcd15982c10222019afd5e24ea43077543a92cd964d904f661444a4ac069061c7ad1aa25764f6fd334e1525aed8527a4533fbac83d2287d68d4d41fe81a424913d0e84" alt="Clean, professional healthcare clinic with modern medical equipment and caring staff" class="category-image" data-mc-element-id="24249">
+                    <div class="category-overlay" data-mc-element-id="24417">
+                        <div class="category-content" data-mc-element-id="24472">
+                            <div class="category-name" data-mc-element-id="24531">Healthcare</div>
+                            <div class="category-count" data-mc-element-id="24603">156 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="24730">
+                        <i class="fas fa-heartbeat" data-mc-element-id="24782"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="24882">
+                    <img src="https://storage.googleapis.com/forge-sites/715fce69a1889956d88337d112c089f2b4aad54a0d773152b5e2af26fcaa63e8.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=1170a5c77eaceb6ffba71e6cd28ff7d362181620a17bc724a866efd7156185fc3dd4cedec0f78a438b5b8635872e12a42fca4a6d6e6d1fd8640d727ced2e7aa3e1a668c51e2487eb4f46a699222a5f8505ba0c39b53b5ea255e2a6b104fa6c0442bd2d6c9607066a08a1ab5e8cbd769e3f3c6aea0bd03e26540734219a67d2f6e4b8daab58d92c86cd8097a1b36a525058b29568f6962916a0d17c2da86dbb301ed6105290387dda0b54b2b951429e857651d1e6787510fa3a8a0297758b0908ae52c1ad56e91b1afd55c26a893369010857dc893fdbea22c48d2d4424bb3c736228f18c0fec90680a563e7ef6443c34a8494872c3e75a1142ff2bc5fc496d82" alt="Trendy retail store with fashionable clothing displays and modern shopping environment" class="category-image" data-mc-element-id="24930">
+                    <div class="category-overlay" data-mc-element-id="25095">
+                        <div class="category-content" data-mc-element-id="25150">
+                            <div class="category-name" data-mc-element-id="25209">Shopping</div>
+                            <div class="category-count" data-mc-element-id="25279">198 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="25406">
+                        <i class="fas fa-shopping-bag" data-mc-element-id="25458"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="25561">
+                    <img src="https://storage.googleapis.com/forge-sites/8dd8368af48d9d68e13fce4acf0284dfd5a039d07d7e3b971393706e1b922767.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=9f473fa4afbe884e1156cceadcb86cac0cf9688b7cd9da6ee0b1e4a9dbf55b6eea99450e9d39de651f2ce1a7be845997254c917de2efd5121b856dfb7848e20f234c9c6b1a0581cfef7db198eba722bd607e47b7679a65c3d384cd9dafc01224bf1f3e1861bffbfac3fab11a3e743e15168065fca09675e038be09aebf2754f5d998e62b621d4f12a36796f4f8eeae34da72aa9ce8dcfb9ff491f5206603ee93979a60137f9b73765f271128c48df6f286577e73e7b40045ea9a1cd9680ecc0d45c145c73aef90a044b730b326a7acf5e06d7dbf08cb5a305c1f70f75647a4c8e4921dbd1e77bf955b8e7b7fdc615a67582002a2f00a204b0ff8142b431f2898" alt="Professional automotive garage with modern equipment, clean workspace, and skilled mechanics" class="category-image" data-mc-element-id="25609">
+                    <div class="category-overlay" data-mc-element-id="25785">
+                        <div class="category-content" data-mc-element-id="25840">
+                            <div class="category-name" data-mc-element-id="25899">Automotive</div>
+                            <div class="category-count" data-mc-element-id="25971">89 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="26097">
+                        <i class="fas fa-car" data-mc-element-id="26149"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="26243">
+                    <img src="https://storage.googleapis.com/forge-sites/4a2092d0b6e8f29c208bb32c08324a4f7e89b37946737916dfce3d93ea2eb73d.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7e98864011b862c5337b18533cd60e15d56c0dfa8e42b388dd9fb6bdf5aa3d8b285b5f2bc382d8d5aa5b1a7244fb893f433920d7370a464daf6e42f23bb281f7c44aec89d281c204f1aa351fece53d0ff99fafbe054940e8ce744ebc53b12283be64acfbe3fa81afdadc38d45e688e841b5b6fe03538146dbac600b7416f1741863ca26a06b8ae0aefcf38d4f8e187cff755870a3210b97562c1bebcf538c78c78616d0ad85f8b87b07bd52522b259fb8b94da5612d406017956d3c750e02116879228cc8c2fc14e2a24c534805c4fdaf0a48a0192df884e119b52986c6a0fc7803f25f3c3596acae35aa9c3e2bd949d0148b71c413f750fcd3ba83799c7fcae" alt="Upscale beauty salon with styling chairs, modern equipment, and professional atmosphere" class="category-image" data-mc-element-id="26291">
+                    <div class="category-overlay" data-mc-element-id="26457">
+                        <div class="category-content" data-mc-element-id="26512">
+                            <div class="category-name" data-mc-element-id="26571">Beauty &amp; Wellness</div>
+                            <div class="category-count" data-mc-element-id="26650">142 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="26777">
+                        <i class="fas fa-cut" data-mc-element-id="26829"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="26923">
+                    <img src="https://storage.googleapis.com/forge-sites/cac0e65d31bdddef9ce9fcc34bcc48771ab368cba025e0a3ed681e75ec405162.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=c9fb4d7c7d39dbfe83fe5e9a1b52716ea1138604b9201a2378b10928eb352df85ef17655b90357e695af36e932bcf0438dfdba6282d183a02e111b46646d6a499020dca01ed9ce36db28cf9b34237da82a234f84b0c712fa37720298abb044043854b91bd8778dd5cdaed4c662a25dab2b4a5f5b5d5e81ce016936a97bd103a60207d990171d69b5c9e41aace0c89eeff799904af276a57efa34b95510f3666b72d3634697f2aa05f91d364290802d2e9b0f02ef71ae1c2d6a554eec66949b8cbed1ecd48cd5a8a09311d583271004ea961f72962b31946fb5c0b0e6612f0280abb4759c62279f1221105f844d6a27dc51d1a57d1da0027a0ae38638a550cc1d" alt="Modern fitness center with state-of-the-art equipment, open space, and motivating environment" class="category-image" data-mc-element-id="26971">
+                    <div class="category-overlay" data-mc-element-id="27142">
+                        <div class="category-content" data-mc-element-id="27197">
+                            <div class="category-name" data-mc-element-id="27256">Fitness</div>
+                            <div class="category-count" data-mc-element-id="27325">73 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="27451">
+                        <i class="fas fa-dumbbell" data-mc-element-id="27503"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="27602">
+                    <img src="https://storage.googleapis.com/forge-sites/a1f2f10de4f890089ad323b59169d193db4d1289ec8ba5495cfa2891607e811f.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=7a0d9a0c32f085a66b29972cdb35cba25d48816e017b8866daea7f001bd47c6dc9f9289423fc8ea9563dbb0b59c382eabcdae223eb3dadaac7a1accba583a4df00abf611af1ffc11271ff62ca2bb2a0f1572cee9fbcdbe900aa2c831aa5792f5864bf94325b412dcd4aad0fdb097c9e9e8164c05aed141ae42184669c7cbb0bc9c6c9d759212ae25bfdab06683854856bad11962fdcc01e0954f9b537add26892938348d97175201fa9adadd80897bddf8011dc7e46ac6cfc52403ee21ad3d9235d864f6b0cd9412a83f0fd948cb84a23520533e14e8c6b9c0923330ec9b1e4dec7eeb663d943448dfaf94a6e14cb539382a60928f165e1d9eece602bf65057f" alt="Professional home service workers with tools and equipment in residential setting" class="category-image" data-mc-element-id="27650">
+                    <div class="category-overlay" data-mc-element-id="27811">
+                        <div class="category-content" data-mc-element-id="27866">
+                            <div class="category-name" data-mc-element-id="27925">Home Services</div>
+                            <div class="category-count" data-mc-element-id="28000">167 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="28127">
+                        <i class="fas fa-home" data-mc-element-id="28179"></i>
+                    </div>
+                </div>
+
+                <div class="category-tile" data-mc-element-id="28274">
+                    <img src="https://storage.googleapis.com/forge-sites/6d2c18021858a8092a207efb01fa6bcf57d94714e60223a1f2c23803aeb9a6cd.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=12581de865ea7a99c516d6b3ffe9680dd5e64fdd0bc4ec27f78b108e037348b1c9cfab8d1b74521a7413d5c5bd4b45dc160831915d34afae778335cc8ee4ab50ed823e58a796f6a45d26d56609542fd7dd6cd9e3de04b0740b669f3206d0ebfdc5091a23fafd873e654020a9117986c687f48921d01b306e8cbdbbe54b5ddaaf5327eca58750b309c974a9a12d2389dfca99f75bc31d1f78a5f91d0c149664ba2039bdbe5c987f53811c821df58bbfdf5de85bcf3acc50f21028ace4d6b4071c6dfe3b95cddbb944a316e9a5573544b07e68f798808815aa3fb7b1a3bf97ffb683d4e883906580a11b9ad44168527dc3a536ed9ca4eb6f48e763b63d35719aaf" alt="Modern office environment with professionals working, clean design, and business atmosphere" class="category-image" data-mc-element-id="28322">
+                    <div class="category-overlay" data-mc-element-id="28501">
+                        <div class="category-content" data-mc-element-id="28556">
+                            <div class="category-name" data-mc-element-id="28615">Professional</div>
+                            <div class="category-count" data-mc-element-id="28689">124 businesses</div>
+                        </div>
+                    </div>
+                    <div class="category-icon" data-mc-element-id="28816">
+                        <i class="fas fa-briefcase" data-mc-element-id="28868"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trending-section" data-mc-element-id="28983">
+                <div class="trending-header" data-mc-element-id="29030">
+                    <div data-mc-element-id="29080">
+                        <h3 class="trending-title" data-mc-element-id="29110">
+                            <i class="fas fa-fire" data-mc-element-id="29166"></i>
+                            Trending This Week
+                        </h3>
+                        <p class="trending-subtitle" data-mc-element-id="29295">Most popular businesses based on views, bookings, and customer engagement</p>
+                    </div>
+                    <a href="#" class="view-all-link" data-mc-element-id="29449">
+                        View All Trending
+                        <i class="fas fa-arrow-right" data-mc-element-id="29550"></i>
+                    </a>
+                </div>
+
+                <div class="trending-grid" data-mc-element-id="29650">
+                    <div class="business-card" data-mc-element-id="29698">
+                        <img src="https://storage.googleapis.com/forge-sites/cd899e56d7eb918ea9b604e8307d84d0889edffc8f900bf6d26526f9824738fc.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235514Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=af465d835d8a833ad4dc97589fdc047e494358084d0ddd006601917205d422cb64dfff3e366442b652101ae58f424af145f126fa645e8140ae2a73e1577a2521e5d8c66b70c2f3863e27003970ccee994268bbef142c50f67c7f7c77d64bb0f5af7114c55108a31a224c57979130bd93c06038461721ea1247c04cea26392df1e3fa70fe71650343be823f26778f40c1348a708ae77781b86ce54ebb8f1be479f2c776a78fb2fcc2a55150841b9d7de21abea8358db926fa6d77f4ade193d0433976a241a077ee702328d95d7b9858828782dbb3acf7ea1a83e3f3621eb47eb3335f6fef2296aad8ba70f45247f5caf71ea73d70e7c9f49dced73a28c05f319c" alt="Popular farm-to-table restaurant with fresh ingredients and rustic modern decor" class="card-image" data-mc-element-id="29750">
+                        <div class="card-content" data-mc-element-id="29915">
+                            <div class="card-header" data-mc-element-id="29970">
+                                <div data-mc-element-id="30028">
+                                    <h4 class="business-name" data-mc-element-id="30070">Farm &amp; Table Bistro</h4>
+                                    <p class="business-category" data-mc-element-id="30157">Farm-to-Table Restaurant</p>
+                                </div>
+                                <div class="trending-badge" data-mc-element-id="30286">
+                                    <i class="fas fa-trending-up" data-mc-element-id="30351"></i>
+                                    #1 Trending
+                                </div>
+                            </div>
+                            <div class="card-meta" data-mc-element-id="30536">
+                                <div class="meta-item" data-mc-element-id="30592">
+                                    <div class="rating-stars" data-mc-element-id="30652">
+                                        <i class="fas fa-star" data-mc-element-id="30719"></i>
+                                        <i class="fas fa-star" data-mc-element-id="30787"></i>
+                                        <i class="fas fa-star" data-mc-element-id="30855"></i>
+                                        <i class="fas fa-star" data-mc-element-id="30923"></i>
+                                        <i class="fas fa-star" data-mc-element-id="30991"></i>
+                                    </div>
+                                    <span data-mc-element-id="31098">4.9 (127)</span>
+                                </div>
+                                <div class="meta-item" data-mc-element-id="31192">
+                                    <i class="fas fa-map-marker-alt" data-mc-element-id="31252"></i>
+                                    <span data-mc-element-id="31326">0.8 miles</span>
+                                </div>
+                            </div>
+                            <p class="card-description" data-mc-element-id="31451">Fresh, locally-sourced ingredients crafted into seasonal dishes. Award-winning chef creates innovative comfort food.</p>
+                            <div class="card-actions" data-mc-element-id="31628">
+                                <a href="#" class="btn-sm btn-primary-sm" data-mc-element-id="31687">
+                                    <i class="fas fa-calendar" data-mc-element-id="31766"></i>
+                                    Reserve Table
+                                </a>
+                                <a href="#" class="btn-sm btn-secondary-sm" data-mc-element-id="31917">View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-card" data-mc-element-id="32089">
+                        <img src="https://storage.googleapis.com/forge-sites/daa6cef506f47ce0edd34e249ac39a1a624c0c6882639c0136faca045cede73d.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=5cfe516f05d3d3f3f615fbe034ab361b681eebf2653524ad9e7ad63b958d22d5a3734369d385f1813f75af48664b78139b46c54f8979ec3670b99c55f9bf261cc57a3623618ef002d34db6798f26a6feb79f1c145975a0fa884a39d7bbf1a678eff4ecb2b161215d5b386c0d4657d78059972d6ce974cdd87cee6fcc9517be904fd8ede6eecdd4b67d003e292b149f9ba6b59c6c8c17c5bfc189558be5b4525c7ef78742a943f853df78485ac3410f21a3e2baa24a9cc8327313fbe7603789ed283362ed65f684c311b3654316b6f8da3bf8fae36f4145b1d9ae49612b36e0a2ada5eff5f730fb9dc78659b1d6a04a0027740eeef5d774afa59bb691caa34a27" alt="Modern CrossFit gym with functional training equipment and energetic workout atmosphere" class="card-image" data-mc-element-id="32141">
+                        <div class="card-content" data-mc-element-id="32311">
+                            <div class="card-header" data-mc-element-id="32366">
+                                <div data-mc-element-id="32424">
+                                    <h4 class="business-name" data-mc-element-id="32466">CoreFit CrossTraining</h4>
+                                    <p class="business-category" data-mc-element-id="32555">Fitness Studio</p>
+                                </div>
+                                <div class="trending-badge" data-mc-element-id="32674">
+                                    <i class="fas fa-fire" data-mc-element-id="32739"></i>
+                                    Hot This Week
+                                </div>
+                            </div>
+                            <div class="card-meta" data-mc-element-id="32919">
+                                <div class="meta-item" data-mc-element-id="32975">
+                                    <div class="rating-stars" data-mc-element-id="33035">
+                                        <i class="fas fa-star" data-mc-element-id="33102"></i>
+                                        <i class="fas fa-star" data-mc-element-id="33170"></i>
+                                        <i class="fas fa-star" data-mc-element-id="33238"></i>
+                                        <i class="fas fa-star" data-mc-element-id="33306"></i>
+                                        <i class="fas fa-star" data-mc-element-id="33374"></i>
+                                    </div>
+                                    <span data-mc-element-id="33481">4.8 (89)</span>
+                                </div>
+                                <div class="meta-item" data-mc-element-id="33574">
+                                    <i class="fas fa-map-marker-alt" data-mc-element-id="33634"></i>
+                                    <span data-mc-element-id="33708">1.3 miles</span>
+                                </div>
+                            </div>
+                            <p class="card-description" data-mc-element-id="33833">High-intensity functional fitness for all levels. Certified trainers, supportive community, proven results.</p>
+                            <div class="card-actions" data-mc-element-id="34001">
+                                <a href="#" class="btn-sm btn-primary-sm" data-mc-element-id="34060">
+                                    <i class="fas fa-user-plus" data-mc-element-id="34139"></i>
+                                    Free Trial
+                                </a>
+                                <a href="#" class="btn-sm btn-secondary-sm" data-mc-element-id="34288">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="business-card" data-mc-element-id="34461">
+                        <img src="https://storage.googleapis.com/forge-sites/31084d4dfcce67c3fd870e1ec09e9e92ec721df2cb666de7f942308ba3a44245.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=1360694e1a8d89a2b7dd40d381edd85ef25f108e1a5e6be0ee467970debb37693eebbda2842afd828a9f8737f3073e8338ed88c67e3b45321b9e79f081f691f9b4cd3fde905203d130bc0a9bf3498b5837af5aa94a8be891e68f99ad8875eda6cc1c3774f075c54712a9a1796773c97326906e0e8dda728bcfb2a96c4894245d9699d74c8762d2e234e9782a973bf5804300af80b92f120179bb366d8c64667fdb5493579ea0470516c1e1a16aec7b4163d9ed0c3c14cf9470ea6187c549bc824b567770045b046027fa65cbf4633f6edb8aabf7e77f5fadafb94c98f9d60fbb73730337d84f553aa780860dcb294d659b8721c9d663f9fa2fbf84b2fa0c9380" alt="Luxurious spa interior with calming atmosphere, natural elements, and relaxation spaces" class="card-image" data-mc-element-id="34513">
+                        <div class="card-content" data-mc-element-id="34679">
+                            <div class="card-header" data-mc-element-id="34734">
+                                <div data-mc-element-id="34792">
+                                    <h4 class="business-name" data-mc-element-id="34834">Serenity Day Spa</h4>
+                                    <p class="business-category" data-mc-element-id="34918">Beauty &amp; Wellness</p>
+                                </div>
+                                <div class="trending-badge" data-mc-element-id="35040">
+                                    <i class="fas fa-star" data-mc-element-id="35105"></i>
+                                    Top Rated
+                                </div>
+                            </div>
+                            <div class="card-meta" data-mc-element-id="35281">
+                                <div class="meta-item" data-mc-element-id="35337">
+                                    <div class="rating-stars" data-mc-element-id="35397">
+                                        <i class="fas fa-star" data-mc-element-id="35464"></i>
+                                        <i class="fas fa-star" data-mc-element-id="35532"></i>
+                                        <i class="fas fa-star" data-mc-element-id="35600"></i>
+                                        <i class="fas fa-star" data-mc-element-id="35668"></i>
+                                        <i class="fas fa-star" data-mc-element-id="35736"></i>
+                                    </div>
+                                    <span data-mc-element-id="35843">5.0 (94)</span>
+                                </div>
+                                <div class="meta-item" data-mc-element-id="35936">
+                                    <i class="fas fa-map-marker-alt" data-mc-element-id="35996"></i>
+                                    <span data-mc-element-id="36070">2.1 miles</span>
+                                </div>
+                            </div>
+                            <p class="card-description" data-mc-element-id="36195">Luxury spa treatments using organic products. Massage therapy, facials, and wellness packages in tranquil setting.</p>
+                            <div class="card-actions" data-mc-element-id="36370">
+                                <a href="#" class="btn-sm btn-primary-sm" data-mc-element-id="36429">
+                                    <i class="fas fa-spa" data-mc-element-id="36508"></i>
+                                    Book Service
+                                </a>
+                                <a href="#" class="btn-sm btn-secondary-sm" data-mc-element-id="36653">View Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-businesses" data-mc-element-id="36863">
+                <div class="new-business-header" data-mc-element-id="36908">
+                    <h3 class="new-business-title" data-mc-element-id="36962">
+                        <i class="fas fa-sparkles" data-mc-element-id="37018"></i>
+                        New to LocalConnect
+                    </h3>
+                    <p class="new-business-subtitle" data-mc-element-id="37140">Welcome our newest verified businesses to the community</p>
+                </div>
+                <div class="new-business-grid" data-mc-element-id="37272">
+                    <div class="new-business-card" data-mc-element-id="37324">
+                        <img src="https://storage.googleapis.com/forge-sites/a715cabfda015a918a8e05d8a80355202b24fadf2284d75a6ff39965956cd9c2.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=6b14ab98d1fb2d5c4e2951f4ef224d8daacade83c5e7992052500c6e85939e36a943e94a38d3e4a3545fcec613a04eb7dae9fb6e7967ce033df032983bf6544f54c828002903fbc451e1678d3f47b618c86944f62d0b35f1a786a2a4e3fcbe0912a815f75a3437bd5269aa289b0aac20a6bafb1dfa0fc02b73190b15274b570e43acac1dbb152d60bcb759407bafa15b727ccf46201ecf902344bbdc3b1d20ce9f8a000f026c2fea4d61adf063d2c93b172321d319f36357209493bee54ba3362a99ab8cafaae98ce031b3c8a70448fa3eb151a03121d3be570941e7fc71fe9591bbaacd6f85b497a7858c852f631b8145c8c1bb589c6973b82635acac47cac5" alt="Cozy new coffee shop with artisanal brews and welcoming atmosphere" class="new-business-logo" data-mc-element-id="37380">
+                        <h4 class="new-business-name" data-mc-element-id="37535">Artisan Coffee Co.</h4>
+                        <p class="new-business-category" data-mc-element-id="37613">Coffee Shop</p>
+                        <span class="new-badge" data-mc-element-id="37686">New This Week</span>
+                    </div>
+                    <div class="new-business-card" data-mc-element-id="37778">
+                        <img src="https://storage.googleapis.com/forge-sites/39e2cd55bf024ce5e8b9581c59de30f7d759ed899a6210dbb03d8bda800e1036.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=31d1bd9d394abc9fc0eca9d6ffff4d8b2c5ba2967268194fa4eba73dc85bd5db3129fb8b89b7e86fe8c9ac83b333958c2a0db0541678a070dd34ef088001be33da2e3c748b6c6a086b8041a29a38f2763dbacd60a0dda0964c45b9895695d700b045d8bb5a13da24e1bedd18c3178c2e9c1922790d12985c6a4e10f3c193d05a2e999feaec819cc5fe6e207235fdd56cc5a18cb07166c4386e5663489b291ae33af132b4d2b64ec70fd891c3ed0e65f295a684eef6dc82e738b88494a03f901fbb47a90ec255c70f4995cbd7ca69bdc468de234e1c9d17d8f07c0cb9ee051baa3e1097f9acf14dd3c497bb4c779635ccd9b6c2885ae34e0a3398f420eed5fd5d" alt="Modern dental clinic with state-of-the-art equipment and professional care" class="new-business-logo" data-mc-element-id="37834">
+                        <h4 class="new-business-name" data-mc-element-id="37999">Bright Smiles Dental</h4>
+                        <p class="new-business-category" data-mc-element-id="38079">Dental Practice</p>
+                        <span class="new-badge" data-mc-element-id="38156">New This Week</span>
+                    </div>
+                    <div class="new-business-card" data-mc-element-id="38248">
+                        <img src="https://storage.googleapis.com/forge-sites/e903f111cc52e43097563616a375cb68ec4abcedffbc0823a58957923c8a663f.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=3af33f749bc52aed24a808b8c8167256ac3bbede38204878d5d2af3a055aae92b57905d57cd7150d444c59df9cdfedafede229fa07b0652291512d60e8566bfa7c0504a185e550ee41c488fd8366cc48ea2532d5fa07e1d6f5dd0f0d3aa969610f8d51c185c6b998eb64294dffd172ee83590eeb07c2a4958018f4e614df7fcecbe6b59aaca142674bcecf71d1a9141f86b0a0fafa85e9e571381aeae29ba3b53ef0781192c7bc69025cd54e5ccabbaf58abc9ced82a0cbfc4bc5719ba182a0b11a7352d36db24679a2482466ae5471370293017845ea93d14b66466f195ab5d2336d731058abc4b3f9579870d029b4e13b927f936de4204277a9ca0546b80bc" alt="Trendy fashion boutique with curated clothing selection and modern retail space" class="new-business-logo" data-mc-element-id="38304">
+                        <h4 class="new-business-name" data-mc-element-id="38469">Style Collective</h4>
+                        <p class="new-business-category" data-mc-element-id="38545">Fashion Boutique</p>
+                        <span class="new-badge" data-mc-element-id="38623">New This Week</span>
+                    </div>
+                    <div class="new-business-card" data-mc-element-id="38715">
+                        <img src="https://storage.googleapis.com/forge-sites/d26347c29671c6aeb4004638fd4755b802195949623ba9548f34b39dae334282.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=10661d330cca06bedb7846d57f11e9b590abd87b37ea00f96659c173105236e641fa7000dd8327bffa8a7574ab030959bf756f30e118702cc13bca5f345d5aaf5382f57e8ff86222f4af685dcc7eaefd5122ba45198f50c75abbe2ace47d7c60704d039c61de9133b476e08adb3f62e87e8097627c864b235ca60a4b3610e54efecb1e7806128200594dbbba45a71d02f8ae118670d9bfaa3f98584461f34a21f1cfdff047eae3cc65cff6077816b6d6cd38ea49acc870afde1506b684a636d8877e7c8f6f04df8ea4a4e1d4016c60f4ee5f1ce9f068f6c662c74efdad1dc3b88d5147f0bd2585689687da1aa127cff1c3d74d13045d6cf9aa0cab108c097b8d" alt="Professional automotive repair shop with certified mechanics and quality service" class="new-business-logo" data-mc-element-id="38771">
+                        <h4 class="new-business-name" data-mc-element-id="38938">Precision Auto Care</h4>
+                        <p class="new-business-category" data-mc-element-id="39017">Auto Repair</p>
+                        <span class="new-badge" data-mc-element-id="39090">New This Week</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verified-section" data-mc-element-id="39217">
+                <div class="verified-header" data-mc-element-id="39264">
+                    <div data-mc-element-id="39314">
+                        <h3 class="verified-title" data-mc-element-id="39344">
+                            <i class="fas fa-shield-check" data-mc-element-id="39400"></i>
+                            Recently Verified
+                        </h3>
+                        <p class="trending-subtitle" data-mc-element-id="39536">Businesses that have completed our verification process</p>
+                    </div>
+                    <div class="carousel-controls" data-mc-element-id="39672">
+                        <button class="carousel-btn" data-mc-element-id="39728">
+                            <i class="fas fa-chevron-left" data-mc-element-id="39786"></i>
+                        </button>
+                        <button class="carousel-btn" data-mc-element-id="39880">
+                            <i class="fas fa-chevron-right" data-mc-element-id="39938"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="verified-carousel" data-mc-element-id="40076">
+                    <div class="verified-card" data-mc-element-id="40128">
+                        <div class="verified-business-header" data-mc-element-id="40180">
+                            <img src="https://storage.googleapis.com/forge-sites/e4285c986f21f8fdfdbac50597b80b7cbf6c0610564c4f0d1bdcf686e975faa6.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=cba963a14289c277b74ae607b1c5701e4f9a5b30579d1feb77bd317b44a338806e32bc254e573a4ef9562fbaaa120f07945653a04abd12d097720c934ffaf03405ade24d557dab15696cceee3f3583c7b8c5cdddb13a45dffa5a7d7cd732bc14e1a98f64f32e7f6b9fe53d712fcfa9176c35ae6bddf68a45f97b61427f44b624f379fb09f852fcde928e6191dc82c19412f94631f63be93ce77b1af8ada1524354e0141333b5fcb33fc8b9088e9c7aae774f7031b0cfcb738b9b39b181c5661a44f5ba901e564c242fe543fdae46431906541a38863e160624f24570f08af4935685c9614f48a45d1fd0a7ec7b485e5fa438dcb9c25e65e959989412e0d07e00" alt="Professional law firm office with legal expertise and client service focus" class="verified-logo" data-mc-element-id="40247">
+                            <div class="verified-info" data-mc-element-id="40412">
+                                <h4 data-mc-element-id="40472">Miller &amp; Associates Law</h4>
+                                <p class="category" data-mc-element-id="40537">Legal Services</p>
+                            </div>
+                        </div>
+                        <div class="verified-badge" data-mc-element-id="40666">
+                            <i class="fas fa-shield-check" data-mc-element-id="40723"></i>
+                            Verified March 19
+                        </div>
+                        <div class="verified-meta" data-mc-element-id="40860">
+                            <span data-mc-element-id="40916">4.9 ★ (76 reviews)</span>
+                            <span data-mc-element-id="40976">1.1 mi</span>
+                        </div>
+                    </div>
+
+                    <div class="verified-card" data-mc-element-id="41075">
+                        <div class="verified-business-header" data-mc-element-id="41127">
+                            <img src="https://storage.googleapis.com/forge-sites/47e7171c513b55118636f2d6d7be203f90d70121918052746a45c7863d4e4bdd.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b899c2f2ff4ba5f81534ce85c0dd23bcbc110a56fbcf1968c365973bc1624e72aaa70c214bac667ebec6d64f13204e169c7081349738f5480c765d1f9abdbcecaabd08cfc8d277fda4f0358504810a259682fe9ee8497c21a343b00c2976d05dbedd113682ec42d8b5b26c24aea390ff36ed478ef9319c3a05581f871db46cfc57077f6cfe8bad7f95a786c7923a89b7d2aeb9f9be00ec188e5c003cd6197381a2577ce8338dd639c29334a1d287d56c7d79b7077a06240482089e2a6fe89052143eacce48e51ecfef9b56151d687e40b5b25da9f01cb68584829cde0980e6d429b38600adcc9b8199c0cf8bba0b894994c1011a2fdb1a472b1e61dc9de15ce9" alt="Reliable plumbing service with professional tools and quality workmanship" class="verified-logo" data-mc-element-id="41194">
+                            <div class="verified-info" data-mc-element-id="41358">
+                                <h4 data-mc-element-id="41418">FlowRight Plumbing</h4>
+                                <p class="category" data-mc-element-id="41478">Home Services</p>
+                            </div>
+                        </div>
+                        <div class="verified-badge" data-mc-element-id="41606">
+                            <i class="fas fa-shield-check" data-mc-element-id="41663"></i>
+                            Verified March 18
+                        </div>
+                        <div class="verified-meta" data-mc-element-id="41800">
+                            <span data-mc-element-id="41856">4.8 ★ (142 reviews)</span>
+                            <span data-mc-element-id="41917">2.3 mi</span>
+                        </div>
+                    </div>
+
+                    <div class="verified-card" data-mc-element-id="42016">
+                        <div class="verified-business-header" data-mc-element-id="42068">
+                            <img src="https://storage.googleapis.com/forge-sites/40e0ea12ceedda3d677cbedf74f99fc40e0b957cb26a7503b132741cd16226f5.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4cfa56bff88d03659821748cbc9cd61c3fa03f022e0177c09132a52b63b0c63fe7887de0a546a2824e64f1d36f32a21aa8cbc7c7c8a426d141515c142d6e91394ad76d052af82b3944b96eca4763975b3672d107084997bc1e934500696cfb2d39916cf0cdf33bbfd5f806f34a3ce6efbb3194e7934a04a0fdc28703a8dee5ffd84eeb3f66602effab894e9ae555ecb40d4ac5608bae690f5142929d54ece75a621e8e984a9965561007b5119741fdaa49f7e891586aba09128ab4e7e746d62367fb0669e7f4d98995a798b40323efd4b7e088ab96cce7f3ae70fb8b45a2c2d5e980bbe68fe07d9d06d894af48b5f0d7b79b4f6853f5d15a35ab615d715d9090" alt="Artisanal bakery with fresh-baked goods and traditional baking methods" class="verified-logo" data-mc-element-id="42135">
+                            <div class="verified-info" data-mc-element-id="42294">
+                                <h4 data-mc-element-id="42354">Golden Crust Bakery</h4>
+                                <p class="category" data-mc-element-id="42415">Food &amp; Dining</p>
+                            </div>
+                        </div>
+                        <div class="verified-badge" data-mc-element-id="42543">
+                            <i class="fas fa-shield-check" data-mc-element-id="42600"></i>
+                            Verified March 17
+                        </div>
+                        <div class="verified-meta" data-mc-element-id="42737">
+                            <span data-mc-element-id="42793">4.9 ★ (203 reviews)</span>
+                            <span data-mc-element-id="42854">0.7 mi</span>
+                        </div>
+                    </div>
+
+                    <div class="verified-card" data-mc-element-id="42953">
+                        <div class="verified-business-header" data-mc-element-id="43005">
+                            <img src="https://storage.googleapis.com/forge-sites/1461b2ac70229da549cadd795850630fd293cd8124a9901caf01b8901f4ffe0e.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=3382b1eb0b47d5cbd22d9dac736c5dac58728f9831a1e417fbb81673b47b7f7d9fa19135520c26319e73209d778c0e16175f2d0f1eda2ca17730e8e3a74eda8bc55daf26c5e8edffb25ed0e30e4d43e8a08c3a16079641c48c450278a7d01a9c51c3570af4da505bc32cd891ec3a3ba5f646f583e61ba3b74e2bbc983df0e3ed5710bab22c0862f7b627b41320f7b3a8c2a59f496a1bf7a7be0d9918a934accdc350bba609c763ca1695a73761c9ece5d30b3b594959c185111628ebb67a8a239da2d972543222723a4dd72b423548ac08ff773d4567f1b538e6a472682557d37480901fe0241274f5747ab49e232637eae27a239c10fa632952bdcbbefa5638" alt="Modern medical clinic with compassionate healthcare professionals and quality care" class="verified-logo" data-mc-element-id="43072">
+                            <div class="verified-info" data-mc-element-id="43243">
+                                <h4 data-mc-element-id="43303">WellCare Family Medicine</h4>
+                                <p class="category" data-mc-element-id="43369">Healthcare</p>
+                            </div>
+                        </div>
+                        <div class="verified-badge" data-mc-element-id="43494">
+                            <i class="fas fa-shield-check" data-mc-element-id="43551"></i>
+                            Verified March 16
+                        </div>
+                        <div class="verified-meta" data-mc-element-id="43688">
+                            <span data-mc-element-id="43744">4.7 ★ (98 reviews)</span>
+                            <span data-mc-element-id="43804">1.8 mi</span>
+                        </div>
+                    </div>
+
+                    <div class="verified-card" data-mc-element-id="43903">
+                        <div class="verified-business-header" data-mc-element-id="43955">
+                            <img src="https://storage.googleapis.com/forge-sites/fb4d270de2272a00cac0c3a7c00dd7321cf55b53b697c11627082a888406a138.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235515Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0f4f4affb75d8a3955bbf34f156732dc2d470369c4af33c8fb56a7b5830d30df4b0ac709ca92962ce1d355f545a8333417bc30e0dba265d77a7f6a4f1c0ac5cec11cc8fd2bc07e1a558218f1ce95360844be71a76c82edaf3150fb1fe400e0db9074093028e8be7e3577b04325a9e12fed081fc38fee29e09f0a4606f9e35fbefbdcf007e8898a597f133c3d97dbeea9f82f8a009a11f2a98ce943f405f37dfeaa0f85b29b681508d84e8685ab3c7e47164463503d57cd17ad4b527f222a92605b4bf5a99e6b11f4a868289eb7cfef6acf8be98ceffc902a897667a24fc4a0d0eb40e63e916ae1729bbe20d14190329895187a8527e140dfc42711e699b53140" alt="Beautiful flower shop with fresh arrangements and creative floral designs" class="verified-logo" data-mc-element-id="44022">
+                            <div class="verified-info" data-mc-element-id="44185">
+                                <h4 data-mc-element-id="44245">Bloom &amp; Blossom</h4>
+                                <p class="category" data-mc-element-id="44302">Retail</p>
+                            </div>
+                        </div>
+                        <div class="verified-badge" data-mc-element-id="44423">
+                            <i class="fas fa-shield-check" data-mc-element-id="44480"></i>
+                            Verified March 15
+                        </div>
+                        <div class="verified-meta" data-mc-element-id="44617">
+                            <span data-mc-element-id="44673">5.0 ★ (67 reviews)</span>
+                            <span data-mc-element-id="44733">1.4 mi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script>__MC_SITE_ID__ = "45a272ec2754bc322fd187c4e3f8e412fee7d3bed7da203073a3b8e167bb9d91"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send e-Transfer Component</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #f6f8fc; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl px-6 py-8">
+    <h2 class="text-center text-neutral-700 text-xl font-semibold mb-7 tracking-tight">Send e-Transfer</h2>
+
+    <!-- Recipient -->
+    <div>
+      <div class="text-xs uppercase font-medium text-slate-400">Recipient</div>
+      <div class="flex items-center gap-3 py-3 border-b border-slate-100">
+        <div class="flex items-center justify-center w-10 h-10 bg-slate-100 rounded-full">
+          <svg width="20" height="20" fill="none" class="stroke-sky-500" viewBox="0 0 24 24">
+            <circle cx="12" cy="10" r="4" stroke-width="1.6"/>
+            <path d="M3.5 20c1.5-4 15.5-4 17 0" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-medium text-slate-700 truncate">William Chung</div>
+          <div class="text-xs text-slate-400 truncate">443-345-5462</div>
+        </div>
+      </div>
+    </div>
+    <!-- Schedule -->
+    <div class="mt-5">
+      <div class="text-xs uppercase font-medium text-slate-400">Schedule</div>
+      <div class="flex items-center gap-3 py-3 border-b border-slate-100">
+        <div class="flex items-center justify-center w-10 h-10 bg-slate-100 rounded-full">
+          <svg width="20" height="20" fill="none" class="stroke-indigo-400" viewBox="0 0 24 24">
+            <rect x="4" y="7" width="16" height="10" rx="3" stroke-width="1.3"/>
+            <rect x="8" y="11.5" width="8" height="4" rx="1.4" stroke-width="1"/>
+            <line x1="12" y1="3.7" x2="12" y2="7" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-medium text-slate-700">Today, Apr 23, 2025</div>
+        </div>
+      </div>
+    </div>
+    <!-- Source Account -->
+    <div class="mt-5">
+      <div class="text-xs uppercase font-medium text-slate-400">Source Account</div>
+      <div class="flex items-center gap-3 py-3 border-b border-slate-100">
+        <div class="flex items-center justify-center w-10 h-10 bg-slate-100 rounded-full">
+          <svg width="20" height="20" fill="none" class="stroke-indigo-500" viewBox="0 0 24 24">
+            <rect x="4" y="8" width="16" height="8" rx="2.5" stroke-width="1.2"/>
+            <rect x="8" y="13" width="8" height="2" rx="1" fill="#6366f1" fill-opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-medium text-slate-700">RBC - Savings</div>
+          <div class="text-xs text-slate-400 truncate">Daily interest regular savings</div>
+        </div>
+      </div>
+    </div>
+    <!-- Confirm Button: immediately after -->
+    <button class="mt-7 w-full py-3 rounded-xl text-white font-semibold text-base bg-gradient-to-r from-sky-500 to-indigo-500 hover:brightness-105 shadow transition">
+      Confirm Payment
+    </button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,850 @@
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Websites - WebCatalog</title>
+<!-- Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<!-- Lucide -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+body{font-family:'Inter',sans-serif}
+/* Custom scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:9999px}
+::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.2)}
+/* Custom checkbox */
+.checkbox:checked + .checkbox-indicator{background:#6366f1;border-color:#6366f1;transform:scale(1)}
+.checkbox:checked + .checkbox-indicator svg{opacity:1;transform:scale(1)}
+.checkbox-indicator{transition:all 0.2s cubic-bezier(0.4,0,0.2,1)}
+.checkbox-indicator svg{opacity:0;transform:scale(0.8);transition:all 0.15s cubic-bezier(0.4,0,0.2,1)}
+/* Animations */
+@keyframes fadeSlideIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes scaleIn{0%{opacity:0;transform:scale(0.95)}100%{opacity:1;transform:scale(1)}}
+.animate-fade-in{animation:fadeIn 0.6s cubic-bezier(0.4,0,0.2,1) forwards}
+.animate-slide-in{animation:fadeSlideIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards}
+.animate-scale-in{animation:scaleIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards}
+/* Hover effects */
+.card-hover{transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04)}
+/* Mobile menu */
+.mobile-menu{transform:translateX(-100%);transition:transform 0.3s ease}
+.mobile-menu.open{transform:translateX(0)}
+/* Custom range slider */
+.range-slider{-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:#e5e7eb;outline:none}
+.range-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;height:16px;width:16px;border-radius:50%;background:#6366f1;cursor:pointer;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+.range-slider::-moz-range-thumb{height:16px;width:16px;border-radius:50%;background:#6366f1;cursor:pointer;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style></head>
+
+<body class="min-h-screen antialiased text-gray-900 bg-gray-50">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-white/80 border-gray-200 border-b backdrop-blur-md">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        
+        <!-- Logo & Mobile Menu -->
+        <div class="flex items-center gap-4">
+          <button id="mobileMenuBtn" class="rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu h-5 w-5"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg>
+          </button>
+          
+          <div class="flex items-center gap-3">
+            
+            <div class="">
+              <span class="text-lg font-bold tracking-tight text-gray-900 font-sans">WebCatalog</span>
+              <div class="hidden text-xs text-gray-500 sm:block font-sans">Discover Amazing Websites</div>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden items-center gap-6 ml-8 lg:flex">
+            <a href="#" class="text-sm font-medium text-indigo-600 font-sans">Explore</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition font-sans">Categories</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition font-sans">Collections</a>
+            <a href="#" class="text-sm text-gray-600 hover:text-gray-900 transition font-sans">Submit Site</a>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="hidden flex-1 max-w-lg mx-8 md:block">
+          <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+            <input type="text" placeholder="Search websites, keywords, categories..." class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm transition focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-100">
+            <div class="absolute right-3 top-1/2 -translate-y-1/2">
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- User Actions -->
+        <div class="flex items-center gap-3">
+          <button class="hidden rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 sm:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-5 w-5"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+          </button>
+          <button class="hidden rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:text-gray-900 sm:block font-sans">
+            Sign in
+          </button>
+          <button class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-sans">
+            Submit Website
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 z-40 hidden bg-black/20 backdrop-blur-sm md:hidden"></div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed left-0 top-0 z-50 h-full w-80 bg-white shadow-xl md:hidden">
+    <div class="flex h-16 items-center justify-between border-b px-4">
+      <span class="font-semibold font-sans">Menu</span>
+      <button id="closeMobileMenu" class="rounded-md p-2 text-gray-600 hover:bg-gray-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x h-5 w-5"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+    </div>
+    <div class="p-4 space-y-4">
+      <a href="#" class="block py-2 text-indigo-600 font-medium font-sans">Explore</a>
+      <a href="#" class="block py-2 text-gray-600 font-sans">Categories</a>
+      <a href="#" class="block py-2 text-gray-600 font-sans">Collections</a>
+      <a href="#" class="block py-2 text-gray-600 font-sans">Submit Site</a>
+      <hr class="my-4">
+      <a href="#" class="block py-2 text-gray-600 font-sans">Sign in</a>
+      <button class="w-full rounded-lg bg-indigo-600 py-2 text-sm font-medium text-white font-sans">Submit Website</button>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="max-w-7xl sm:px-6 lg:px-8 mr-auto ml-auto pt-8 pr-0 pb-8 pl-0">
+    <div class="flex gap-8">
+      
+      <!-- SIDEBAR -->
+      <aside class="sticky top-24 hidden h-fit w-72 shrink-0 lg:block bg-gray-100 border-neutral-950/10 border rounded-xl pt-3 pr-3 pb-3 pl-3">
+        
+        <!-- Filter Header -->
+        <div class="flex mb-6 items-center justify-between">
+          <h3 class="font-semibold text-gray-900 font-sans">Filters</h3>
+          <button class="text-sm text-indigo-600 hover:text-indigo-500 transition font-sans">Clear all</button>
+        </div>
+
+        <div class="space-y-8">
+          
+          <!-- FEATURED COLLECTIONS -->
+          <section class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+            <h4 class="mb-3 text-sm font-semibold text-gray-900 font-sans">Featured Collections</h4>
+            <div class="space-y-2">
+              <button class="flex w-full items-center gap-3 rounded-lg p-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition font-sans">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" class="lucide lucide-trending-up h-4 w-4 text-green-500"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>
+                Trending This Week
+              </button>
+              <button class="flex w-full items-center gap-3 rounded-lg p-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition font-sans">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="award" class="lucide lucide-award h-4 w-4 text-yellow-500"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+                Award Winners
+              </button>
+              <button class="flex w-full items-center gap-3 rounded-lg p-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition font-sans">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap h-4 w-4 text-purple-500"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                Recently Launched
+              </button>
+            </div>
+          </section>
+
+          <!-- CATEGORIES -->
+          <section class="">
+            <div class="mb-4 flex items-center justify-between">
+              <h4 class="text-sm font-semibold text-gray-900 font-sans">Categories</h4>
+              <button class="text-gray-400 hover:text-gray-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" class="lucide lucide-chevron-up h-4 w-4"><path d="m18 15-6-6-6 6"></path></svg>
+              </button>
+            </div>
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="checkbox sr-only">
+                <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300 group-hover:border-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm text-gray-700 font-sans">E-commerce</span>
+                  <span class="text-xs text-gray-500 font-sans">247</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="checkbox sr-only">
+                <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300 group-hover:border-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm text-gray-700 font-sans">Portfolio</span>
+                  <span class="text-xs text-gray-500 font-sans">192</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="checkbox sr-only">
+                <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300 group-hover:border-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm text-gray-700 font-sans">SaaS</span>
+                  <span class="text-xs text-gray-500 font-sans">134</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="checkbox sr-only">
+                <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300 group-hover:border-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm text-gray-700 font-sans">Agency</span>
+                  <span class="text-xs text-gray-500 font-sans">98</span>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" class="checkbox sr-only">
+                <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300 group-hover:border-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm text-gray-700 font-sans">Blog</span>
+                  <span class="text-xs text-gray-500 font-sans">156</span>
+                </div>
+              </label>
+            </div>
+          </section>
+
+          <!-- TECHNOLOGY STACK -->
+          <section class="">
+            <div class="mb-4 flex items-center justify-between">
+              <h4 class="text-sm font-semibold text-gray-900 font-sans">Technology</h4>
+              <button class="text-gray-400 hover:text-gray-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" class="lucide lucide-chevron-up h-4 w-4"><path d="m18 15-6-6-6 6"></path></svg>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 gap-2">
+              <button class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm text-gray-700 hover:border-indigo-200 hover:bg-indigo-50 transition">
+                <span class="font-sans">React</span>
+                <span class="text-xs text-gray-500 font-sans">89</span>
+              </button>
+              <button class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm text-gray-700 hover:border-indigo-200 hover:bg-indigo-50 transition">
+                <span class="font-sans">WordPress</span>
+                <span class="text-xs text-gray-500 font-sans">167</span>
+              </button>
+              <button class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm text-gray-700 hover:border-indigo-200 hover:bg-indigo-50 transition">
+                <span class="font-sans">Shopify</span>
+                <span class="text-xs text-gray-500 font-sans">78</span>
+              </button>
+              <button class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm text-gray-700 hover:border-indigo-200 hover:bg-indigo-50 transition">
+                <span class="font-sans">Next.js</span>
+                <span class="text-xs text-gray-500 font-sans">43</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- DESIGN STYLE -->
+          <section>
+            <div class="mb-4 flex items-center justify-between">
+              <h4 class="text-sm font-semibold text-gray-900 font-sans">Design Style</h4>
+              <button class="text-gray-400 hover:text-gray-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-up" class="lucide lucide-chevron-up h-4 w-4"><path d="m18 15-6-6-6 6"></path></svg>
+              </button>
+            </div>
+            <div class="space-y-3">
+              <label class="flex items-center justify-between cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" class="checkbox sr-only">
+                  <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </span>
+                  <span class="text-sm text-gray-700 font-sans">Minimalist</span>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">234</span>
+              </label>
+              <label class="flex items-center justify-between cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" class="checkbox sr-only">
+                  <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </span>
+                  <span class="text-sm text-gray-700 font-sans">Bold &amp; Colorful</span>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">89</span>
+              </label>
+              <label class="flex items-center justify-between cursor-pointer">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" class="checkbox sr-only">
+                  <span class="checkbox-indicator flex h-4 w-4 items-center justify-center rounded border border-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check h-3 w-3 text-white"><path d="M20 6 9 17l-5-5"></path></svg>
+                  </span>
+                  <span class="text-sm text-gray-700 font-sans">Dark Theme</span>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">156</span>
+              </label>
+            </div>
+          </section>
+
+          <!-- TRAFFIC RANGE -->
+          <section>
+            <div class="mb-4 flex items-center justify-between">
+              <h4 class="text-sm font-semibold text-gray-900 font-sans">Monthly Traffic</h4>
+            </div>
+            <div class="space-y-4">
+              <div class="px-2">
+                <input type="range" min="0" max="1000000" value="500000" class="range-slider w-full">
+                <div class="mt-2 flex justify-between text-xs text-gray-500">
+                  <span class="font-sans">0</span>
+                  <span class="font-sans">1M+</span>
+                </div>
+              </div>
+              <div class="text-center">
+                <span class="rounded-full bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-700 font-sans">Up to 500K visits</span>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1">
+        
+        <!-- Header Section -->
+        <div class="mb-8">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="">
+              <h1 class="text-2xl tracking-tight text-gray-900 sm:text-3xl font-manrope font-medium">
+                Explore Websites
+              </h1>
+              <p class="mt-1 text-gray-600 font-sans">
+                Discover 1,247+ beautifully designed websites for inspiration
+              </p>
+            </div>
+            
+            <!-- View Toggle -->
+            <div class="flex items-center gap-2">
+              <div class="flex rounded-lg border border-gray-200 bg-white p-1">
+                <button id="gridViewBtn" class="rounded-md bg-indigo-50 px-3 py-1.5 text-indigo-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="grid-3x3" class="lucide lucide-grid-3x3 h-4 w-4"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18"></path><path d="M3 15h18"></path><path d="M9 3v18"></path><path d="M15 3v18"></path></svg>
+                </button>
+                <button id="listViewBtn" class="rounded-md px-3 py-1.5 text-gray-500 hover:text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="list" class="lucide lucide-list h-4 w-4"><path d="M3 12h.01"></path><path d="M3 18h.01"></path><path d="M3 6h.01"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M8 6h13"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <button class="rounded-full bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-700 transition hover:bg-indigo-200 font-sans">
+              All Websites
+            </button>
+            <button class="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 font-sans">
+              E-commerce
+            </button>
+            <button class="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 font-sans">
+              Portfolio
+            </button>
+            <button class="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 font-sans">
+              SaaS
+            </button>
+            <button class="hidden rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50 sm:block font-sans">
+              Agency
+            </button>
+          </div>
+
+          <!-- Sort & Filter Mobile -->
+          <div class="flex items-center gap-2">
+            <button class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sliders-horizontal" class="lucide lucide-sliders-horizontal h-4 w-4"><line x1="21" x2="14" y1="4" y2="4"></line><line x1="10" x2="3" y1="4" y2="4"></line><line x1="21" x2="12" y1="12" y2="12"></line><line x1="8" x2="3" y1="12" y2="12"></line><line x1="21" x2="16" y1="20" y2="20"></line><line x1="12" x2="3" y1="20" y2="20"></line><line x1="14" x2="14" y1="2" y2="6"></line><line x1="8" x2="8" y1="10" y2="14"></line><line x1="16" x2="16" y1="18" y2="22"></line></svg>
+            </button>
+            
+            <div class="relative">
+              <button id="sortBtn" class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm transition hover:bg-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-down" class="lucide lucide-arrow-up-down h-4 w-4"><path d="m21 16-4 4-4-4"></path><path d="M17 20V4"></path><path d="m3 8 4-4 4 4"></path><path d="M7 4v16"></path></svg>
+                <span class="hidden sm:inline font-sans">Sort:</span>
+                <span class="font-sans">Popular</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down h-4 w-4"><path d="m6 9 6 6 6-6"></path></svg>
+              </button>
+
+              <!-- Sort Dropdown -->
+              <div id="sortDropdown" class="absolute right-0 top-12 z-20 hidden w-48 animate-scale-in rounded-lg border border-gray-200 bg-white shadow-lg">
+                <div class="p-1">
+                  <button class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 font-sans">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trending-up" class="lucide lucide-trending-up h-4 w-4"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>
+                    Most Popular
+                  </button>
+                  <button class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 font-sans">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock h-4 w-4"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                    Recently Added
+                  </button>
+                  <button class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 font-sans">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-4 w-4"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    Highest Rated
+                  </button>
+                  <button class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 font-sans">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap h-4 w-4"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+                    Most Traffic
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Count -->
+        <div class="mb-6 flex items-center justify-between text-sm text-gray-600">
+          <span class="font-sans">Showing <span class="font-medium text-gray-900 font-sans">1,247</span> websites</span>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
+              <span class="font-sans">Show traffic data</span>
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only" id="trafficToggle">
+                <div class="toggle-bg relative h-4 w-7 rounded-full bg-gray-200">
+                  <div class="toggle-dot absolute left-0.5 top-0.5 h-3 w-3 rounded-full bg-white shadow transition-transform"></div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Website Grid -->
+        <div id="websiteGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/172fe927-753d-4059-8905-e9db2c3fb02f_800w.jpg" alt="Stripe Dashboard" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">2.4M visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 font-sans">SaaS</span>
+                <span class="rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700 font-sans">React</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                Stripe Dashboard
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Online payment processing platform with beautiful, minimal design and exceptional UX.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">847</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.9</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">stripe.com</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4" style="opacity: 1; transform: translateY(0px);">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/75ddcad6-763d-443a-837b-e6aec9a8f152_800w.jpg" alt="Shopify Store" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" class=""></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">890K visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-purple-100 px-2 py-1 text-xs font-medium text-purple-700 font-sans">E-commerce</span>
+                <span class="rounded-full bg-orange-100 px-2 py-1 text-xs font-medium text-orange-700 font-sans">Shopify</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                Allbirds Store
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Sustainable footwear company with clean, eco-friendly design and seamless shopping experience.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">523</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.7</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">allbirds.com</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4" style="opacity: 1; transform: translateY(0px);">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dc49801c-a307-4486-b26f-f853f4ed6dc1_800w.jpg" alt="Design Portfolio" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">45K visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-pink-100 px-2 py-1 text-xs font-medium text-pink-700 font-sans">Portfolio</span>
+                <span class="rounded-full bg-teal-100 px-2 py-1 text-xs font-medium text-teal-700 font-sans">Vue.js</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                Sarah Chen Design
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Creative portfolio showcasing innovative UI/UX design work with stunning visual storytelling.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">234</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.8</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">sarahchen.co</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4" style="opacity: 1; transform: translateY(0px);">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d2c6a72c-709a-4f76-8af7-ceead407c973_800w.jpg" alt="Analytics Dashboard" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">1.2M visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700 font-sans">SaaS</span>
+                <span class="rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-700 font-sans">Angular</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                DataFlow Analytics
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Business intelligence platform with intuitive dashboards and powerful data visualization tools.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">672</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.6</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">dataflow.io</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4" style="opacity: 1; transform: translateY(0px);">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a0bcf765-e8d8-40ef-8ed1-54f947ee8820_800w.jpg" alt="Marketing Agency" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">156K visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-indigo-100 px-2 py-1 text-xs font-medium text-indigo-700 font-sans">Agency</span>
+                <span class="rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700 font-sans">Gatsby</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                Velocity Digital
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Full-service digital marketing agency with bold branding and compelling case studies.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">389</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.5</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">velocitydigital.com</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Website Card -->
+          <article class="card-hover group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm opacity-0 translate-y-4" style="opacity: 1; transform: translateY(0px);">
+            <div class="relative">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6f627dda-22f9-4cd4-bde1-95bafd0aca99_800w.jpg" alt="Tech Blog" class="h-48 w-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+              <div class="absolute right-3 top-3 flex gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-indigo-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bookmark" class="lucide lucide-bookmark h-4 w-4"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+                <button class="rounded-full bg-white/90 p-2 text-gray-600 shadow-sm backdrop-blur hover:bg-white hover:text-blue-600 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="external-link" class="lucide lucide-external-link h-4 w-4"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                </button>
+              </div>
+              <div class="absolute bottom-3 left-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <div class="flex items-center gap-2 text-white text-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="eye" class="lucide lucide-eye h-4 w-4"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span class="font-sans">234K visits/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="rounded-full bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-700 font-sans">Blog</span>
+                <span class="rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-700 font-sans">WordPress</span>
+              </div>
+              <h3 class="mb-2 font-semibold text-gray-900 group-hover:text-indigo-600 transition font-sans">
+                Code &amp; Coffee
+              </h3>
+              <p class="mb-4 text-sm text-gray-600 font-sans">
+                Developer blog featuring tutorials, industry insights, and tech trends with clean typography.
+              </p>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4 text-xs text-gray-500">
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="heart" class="lucide lucide-heart h-3 w-3"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+                    <span class="font-sans">445</span>
+                  </div>
+                  <div class="flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star h-3 w-3 fill-yellow-400 text-yellow-400"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    <span class="font-sans">4.4</span>
+                  </div>
+                </div>
+                <span class="text-xs text-gray-500 font-sans">codeandcoffee.dev</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Load More -->
+        <div class="mt-12 text-center">
+          <button class="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50 hover:border-gray-400 font-sans">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" class="lucide lucide-refresh-cw mr-2 h-4 w-4"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+            Load More Websites
+          </button>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      mobileMenuOverlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenuHandler() {
+      mobileMenu.classList.remove('open');
+      mobileMenuOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn?.addEventListener('click', openMobileMenu);
+    closeMobileMenu?.addEventListener('click', closeMobileMenuHandler);
+    mobileMenuOverlay?.addEventListener('click', closeMobileMenuHandler);
+
+    // Sort dropdown functionality
+    const sortBtn = document.getElementById('sortBtn');
+    const sortDropdown = document.getElementById('sortDropdown');
+
+    sortBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sortDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', () => {
+      sortDropdown?.classList.add('hidden');
+    });
+
+    // View toggle functionality
+    const gridViewBtn = document.getElementById('gridViewBtn');
+    const listViewBtn = document.getElementById('listViewBtn');
+    const websiteGrid = document.getElementById('websiteGrid');
+
+    gridViewBtn?.addEventListener('click', () => {
+      gridViewBtn.classList.add('bg-indigo-50', 'text-indigo-600');
+      gridViewBtn.classList.remove('text-gray-500');
+      listViewBtn?.classList.remove('bg-indigo-50', 'text-indigo-600');
+      listViewBtn?.classList.add('text-gray-500');
+      websiteGrid?.classList.remove('grid-cols-1');
+      websiteGrid?.classList.add('sm:grid-cols-2', 'lg:grid-cols-3');
+    });
+
+    listViewBtn?.addEventListener('click', () => {
+      listViewBtn.classList.add('bg-indigo-50', 'text-indigo-600');
+      listViewBtn.classList.remove('text-gray-500');
+      gridViewBtn?.classList.remove('bg-indigo-50', 'text-indigo-600');
+      gridViewBtn?.classList.add('text-gray-500');
+      websiteGrid?.classList.add('grid-cols-1');
+      websiteGrid?.classList.remove('sm:grid-cols-2', 'lg:grid-cols-3');
+    });
+
+    // Traffic toggle functionality
+    const trafficToggle = document.getElementById('trafficToggle');
+    
+    trafficToggle?.addEventListener('change', function() {
+      const toggleDot = this.nextElementSibling.querySelector('.toggle-dot');
+      const toggleBg = this.nextElementSibling;
+      
+      if (this.checked) {
+        toggleDot.style.transform = 'translateX(12px)';
+        toggleBg.style.backgroundColor = '#6366f1';
+      } else {
+        toggleDot.style.transform = 'translateX(0)';
+        toggleBg.style.backgroundColor = '#e5e7eb';
+      }
+    });
+
+    // Animate cards on load
+    window.addEventListener('load', () => {
+      const cards = document.querySelectorAll('.card-hover');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    });
+
+    // Search functionality (placeholder)
+    const searchInput = document.querySelector('input[placeholder*="Search"]');
+    searchInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+
+    // Filter checkboxes functionality
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const indicator = this.nextElementSibling;
+        if (this.checked) {
+          indicator.style.transform = 'scale(1)';
+        } else {
+          indicator.style.transform = 'scale(1)';
+        }
+      });
+    });
+
+    // Range slider functionality
+    const rangeSlider = document.querySelector('.range-slider');
+    const trafficLabel = document.querySelector('.rounded-full.bg-indigo-100 span');
+    
+    rangeSlider?.addEventListener('input', function() {
+      const value = parseInt(this.value);
+      let label = '';
+      
+      if (value === 0) {
+        label = 'Any traffic';
+      } else if (value < 10000) {
+        label = `Up to ${Math.round(value/1000)}K visits`;
+      } else if (value < 1000000) {
+        label = `Up to ${Math.round(value/1000)}K visits`;
+      } else {
+        label = 'Up to 1M+ visits';
+      }
+      
+      if (trafficLabel) {
+        trafficLabel.textContent = label;
+      }
+    });
+  </script>
+
+
+</body></html>

@@ -1,0 +1,1283 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">CommunityHub - Explore Local Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #f3f4f6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #059669;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 28px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-center a:hover,
+        .nav-center a.active {
+            color: #059669;
+        }
+
+        .nav-center a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #059669;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #6b7280;
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            background: #f9fafb;
+            color: #059669;
+            border-color: #e5e7eb;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            box-shadow: 0 4px 12px 0 rgba(5, 150, 105, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(5, 150, 105, 0.35);
+        }
+
+        /* Main Container */
+        .main-container {
+            height: calc(100vh - 80px);
+            display: flex;
+            position: relative;
+        }
+
+        /* Search & Filter Bar */
+        .search-filter-bar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 420px;
+            z-index: 50;
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-container {
+            flex: 1;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .search-container:focus-within {
+            border-color: #10b981;
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15), 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 16px 20px;
+            font-size: 15px;
+            outline: none;
+            background: transparent;
+            border-radius: 16px 0 0 16px;
+        }
+
+        .location-input {
+            min-width: 180px;
+            border: none;
+            padding: 16px 20px;
+            font-size: 15px;
+            outline: none;
+            border-left: 1px solid #f3f4f6;
+            background: transparent;
+        }
+
+        .search-btn {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            border: none;
+            border-radius: 0 16px 16px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+        }
+
+        .filter-toggle-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: #374151;
+            transition: all 0.3s;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .filter-toggle-btn:hover {
+            border-color: #10b981;
+            color: #059669;
+            background: #f0fdf4;
+        }
+
+        .filter-toggle-btn.active {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+
+        /* Map Section */
+        .map-section {
+            flex: 1;
+            position: relative;
+            background: #f8fafc;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 18px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(90deg, #10b981 1px, transparent 1px),
+                linear-gradient(180deg, #10b981 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Map Markers */
+        .map-marker {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            border: 3px solid white;
+        }
+
+        .map-marker:hover {
+            transform: scale(1.3);
+            z-index: 20;
+        }
+
+        .marker-restaurant { background: #059669; top: 25%; left: 20%; }
+        .marker-cafe { background: #f59e0b; top: 40%; left: 35%; }
+        .marker-shop { background: #3b82f6; top: 30%; left: 65%; }
+        .marker-service { background: #8b5cf6; top: 55%; left: 25%; }
+        .marker-health { background: #ef4444; top: 70%; left: 50%; }
+        .marker-retail { background: #06b6d4; top: 45%; left: 75%; }
+        .marker-food { background: #059669; top: 60%; left: 70%; }
+        .marker-wellness { background: #ef4444; top: 35%; left: 45%; }
+
+        /* Business List Panel */
+        .business-panel {
+            width: 400px;
+            background: #fafafa;
+            border-left: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .panel-header {
+            background: white;
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .sort-dropdown {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .business-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+
+        /* Business Cards */
+        .business-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #059669, #10b981);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .business-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .business-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            border-color: #d1fae5;
+        }
+
+        .business-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .business-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 2px solid #d1fae5;
+        }
+
+        .business-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .business-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .business-category {
+            color: #059669;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .business-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .rating-count {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .business-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .distance-badge {
+            background: #f0fdf4;
+            color: #065f46;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #d1fae5;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .status-open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-closed {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        /* Filter Panel */
+        .filter-panel {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            z-index: 60;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            border: 2px solid #e5e7eb;
+        }
+
+        .filter-panel.active {
+            transform: translateX(0);
+        }
+
+        .filter-header {
+            padding: 24px;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9fafb;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .filter-close {
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-close:hover {
+            background: #fecaca;
+            color: #dc2626;
+        }
+
+        .filter-content {
+            padding: 24px;
+        }
+
+        .filter-section {
+            margin-bottom: 28px;
+        }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-section h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .filter-chip:hover {
+            border-color: #10b981;
+            background: #f0fdf4;
+            color: #059669;
+        }
+
+        .filter-chip.active {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            border-color: #059669;
+        }
+
+        .rating-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rating-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .rating-option:hover {
+            background: #f9fafb;
+        }
+
+        .rating-option input {
+            accent-color: #10b981;
+        }
+
+        .rating-option .stars {
+            margin-left: 8px;
+        }
+
+        /* Quick View Modal */
+        .quick-view-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .quick-view-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            position: relative;
+            height: 240px;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            color: #6b7280;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: white;
+            color: #dc2626;
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-business-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .modal-business-category {
+            color: #059669;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .modal-rating {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .info-details h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .info-details p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            padding-top: 24px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #059669;
+            border: 2px solid #059669;
+        }
+
+        .btn-outline:hover {
+            background: #059669;
+            color: white;
+        }
+
+        /* Search Suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            max-height: 320px;
+            overflow-y: auto;
+            display: none;
+            z-index: 10;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.2s;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: #f0fdf4;
+        }
+
+        .suggestion-icon {
+            width: 36px;
+            height: 36px;
+            background: #f0fdf4;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #059669;
+            font-size: 14px;
+        }
+
+        .suggestion-content {
+            flex: 1;
+        }
+
+        .suggestion-name {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 2px;
+        }
+
+        .suggestion-type {
+            font-size: 12px;
+            color: #6b7280;
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" data-mc-element-id="21094">
+        <nav class="nav" data-mc-element-id="21126">
+            <a href="#" class="logo" data-mc-element-id="21156">
+                <i class="fas fa-compass" data-mc-element-id="21198"></i>
+                CommunityHub
+            </a>
+            
+            <ul class="nav-center" data-mc-element-id="21300">
+                <li data-mc-element-id="21340"><a href="#" class="active" data-mc-element-id="21344">Discover</a></li>
+                <li data-mc-element-id="21405"><a href="#" data-mc-element-id="21409">Categories</a></li>
+                <li data-mc-element-id="21457"><a href="#" data-mc-element-id="21461">Map View</a></li>
+                <li data-mc-element-id="21507"><a href="#" data-mc-element-id="21511">About</a></li>
+            </ul>
+            
+            <div class="nav-actions" data-mc-element-id="21581">
+                <a href="#" class="btn btn-ghost" data-mc-element-id="21623">Sign In</a>
+                <a href="#" class="btn btn-primary" data-mc-element-id="21685">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container" data-mc-element-id="21818">
+        <!-- Search & Filter Bar -->
+        <div class="search-filter-bar" data-mc-element-id="21892">
+            <div class="search-container" data-mc-element-id="21936">
+                <input type="text" class="search-input" placeholder="Find restaurants, cafes, shops..." value="Coffee shops" data-mc-element-id="21983">
+                <input type="text" class="location-input" placeholder="Near you" value="Downtown" data-mc-element-id="22109">
+                <button class="search-btn" data-mc-element-id="22208">
+                    <i class="fas fa-search" data-mc-element-id="22256"></i>
+                </button>
+                
+                <!-- Search Suggestions -->
+                <div class="search-suggestions" data-mc-element-id="22389">
+                    <div class="suggestion-item" data-mc-element-id="22442">
+                        <div class="suggestion-icon" data-mc-element-id="22496">
+                            <i class="fas fa-coffee" data-mc-element-id="22554"></i>
+                        </div>
+                        <div class="suggestion-content" data-mc-element-id="22639">
+                            <div class="suggestion-name" data-mc-element-id="22700">Corner Coffee House</div>
+                            <span class="suggestion-type" data-mc-element-id="22783">Coffee Shop</span>
+                        </div>
+                    </div>
+                    <div class="suggestion-item" data-mc-element-id="22910">
+                        <div class="suggestion-icon" data-mc-element-id="22964">
+                            <i class="fas fa-coffee" data-mc-element-id="23022"></i>
+                        </div>
+                        <div class="suggestion-content" data-mc-element-id="23107">
+                            <div class="suggestion-name" data-mc-element-id="23168">Roasted Bean Café</div>
+                            <span class="suggestion-type" data-mc-element-id="23249">Coffee Shop</span>
+                        </div>
+                    </div>
+                    <div class="suggestion-item" data-mc-element-id="23376">
+                        <div class="suggestion-icon" data-mc-element-id="23430">
+                            <i class="fas fa-utensils" data-mc-element-id="23488"></i>
+                        </div>
+                        <div class="suggestion-content" data-mc-element-id="23575">
+                            <div class="suggestion-name" data-mc-element-id="23636">Morning Brew &amp; Bistro</div>
+                            <span class="suggestion-type" data-mc-element-id="23721">Café &amp; Restaurant</span>
+                        </div>
+                    </div>
+                    <div class="suggestion-item" data-mc-element-id="23854">
+                        <div class="suggestion-icon" data-mc-element-id="23908">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="23966"></i>
+                        </div>
+                        <div class="suggestion-content" data-mc-element-id="24059">
+                            <div class="suggestion-name" data-mc-element-id="24120">Downtown District</div>
+                            <span class="suggestion-type" data-mc-element-id="24201">Location</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="filter-toggle-btn" onclick="toggleFilters()" data-mc-element-id="24372">
+                <i class="fas fa-sliders-h" data-mc-element-id="24449"></i>
+                Filters
+            </button>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section" data-mc-element-id="24581">
+            <div class="map-container" data-mc-element-id="24619">
+                <div class="map-bg-pattern" data-mc-element-id="24663"></div>
+                <div style="position: relative; z-index: 2; opacity: 0.6; text-align: center;" data-mc-element-id="24714">
+                    <i class="fas fa-compass" style="font-size: 48px; color: #10b981; margin-bottom: 16px; display: block;" data-mc-element-id="24814"></i>
+                    Interactive Community Map
+                </div>
+                
+                <!-- Map Markers -->
+                <div class="map-marker marker-restaurant" onclick="showQuickView('The Garden Café', 'restaurant')" data-mc-element-id="25062">
+                    <i class="fas fa-utensils" data-mc-element-id="25182"></i>
+                </div>
+                <div class="map-marker marker-cafe" onclick="showQuickView('Corner Coffee House', 'cafe')" data-mc-element-id="25253">
+                    <i class="fas fa-coffee" data-mc-element-id="25365"></i>
+                </div>
+                <div class="map-marker marker-shop" onclick="showQuickView('Urban Bookstore', 'shop')" data-mc-element-id="25434">
+                    <i class="fas fa-book" data-mc-element-id="25542"></i>
+                </div>
+                <div class="map-marker marker-service" onclick="showQuickView('TechFix Pro', 'service')" data-mc-element-id="25609">
+                    <i class="fas fa-wrench" data-mc-element-id="25719"></i>
+                </div>
+                <div class="map-marker marker-health" onclick="showQuickView('Wellness Center', 'health')" data-mc-element-id="25788">
+                    <i class="fas fa-heartbeat" data-mc-element-id="25900"></i>
+                </div>
+                <div class="map-marker marker-retail" onclick="showQuickView('Fashion Forward', 'retail')" data-mc-element-id="25972">
+                    <i class="fas fa-shopping-bag" data-mc-element-id="26084"></i>
+                </div>
+                <div class="map-marker marker-food" onclick="showQuickView('Farm Fresh Market', 'food')" data-mc-element-id="26159">
+                    <i class="fas fa-apple-alt" data-mc-element-id="26269"></i>
+                </div>
+                <div class="map-marker marker-wellness" onclick="showQuickView('Yoga Studio', 'wellness')" data-mc-element-id="26341">
+                    <i class="fas fa-spa" data-mc-element-id="26453"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Panel -->
+        <div class="filter-panel" id="filterPanel" data-mc-element-id="26576">
+            <div class="filter-header" data-mc-element-id="26632">
+                <h3 class="filter-title" data-mc-element-id="26676">Filter Results</h3>
+                <button class="filter-close" onclick="toggleFilters()" data-mc-element-id="26737">
+                    <i class="fas fa-times" data-mc-element-id="26813"></i>
+                </button>
+            </div>
+            
+            <div class="filter-content" data-mc-element-id="26912">
+                <div class="filter-section" data-mc-element-id="26957">
+                    <h4 data-mc-element-id="27006">Categories</h4>
+                    <div class="filter-chips" data-mc-element-id="27046">
+                        <div class="filter-chip active" data-mc-element-id="27097">Coffee Shops</div>
+                        <div class="filter-chip" data-mc-element-id="27172">Restaurants</div>
+                        <div class="filter-chip" data-mc-element-id="27239">Shopping</div>
+                        <div class="filter-chip" data-mc-element-id="27303">Services</div>
+                        <div class="filter-chip" data-mc-element-id="27367">Health</div>
+                        <div class="filter-chip" data-mc-element-id="27429">Wellness</div>
+                        <div class="filter-chip" data-mc-element-id="27493">Entertainment</div>
+                    </div>
+                </div>
+                
+                <div class="filter-section" data-mc-element-id="27621">
+                    <h4 data-mc-element-id="27670">Rating</h4>
+                    <div class="rating-filters" data-mc-element-id="27706">
+                        <label class="rating-option" data-mc-element-id="27759">
+                            <input type="radio" name="rating" value="5" data-mc-element-id="27817">
+                            <span class="stars" data-mc-element-id="27890">★★★★★</span>
+                            <span data-mc-element-id="27951">Perfect (5 stars)</span>
+                        </label>
+                        <label class="rating-option" data-mc-element-id="28039">
+                            <input type="radio" name="rating" value="4" data-mc-element-id="28097">
+                            <span class="stars" data-mc-element-id="28170">★★★★</span>
+                            <span data-mc-element-id="28230">Excellent (4+ stars)</span>
+                        </label>
+                        <label class="rating-option" data-mc-element-id="28321">
+                            <input type="radio" name="rating" value="3" data-mc-element-id="28379">
+                            <span class="stars" data-mc-element-id="28452">★★★</span>
+                            <span data-mc-element-id="28511">Good (3+ stars)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-section" data-mc-element-id="28656">
+                    <h4 data-mc-element-id="28705">Hours</h4>
+                    <div class="filter-chips" data-mc-element-id="28740">
+                        <div class="filter-chip" data-mc-element-id="28791">Open Now</div>
+                        <div class="filter-chip" data-mc-element-id="28855">Open 24/7</div>
+                        <div class="filter-chip" data-mc-element-id="28920">Weekend Hours</div>
+                    </div>
+                </div>
+                
+                <div class="filter-section" data-mc-element-id="29048">
+                    <h4 data-mc-element-id="29097">Features</h4>
+                    <div class="filter-chips" data-mc-element-id="29135">
+                        <div class="filter-chip" data-mc-element-id="29186">Delivery</div>
+                        <div class="filter-chip" data-mc-element-id="29250">Takeout</div>
+                        <div class="filter-chip" data-mc-element-id="29313">WiFi</div>
+                        <div class="filter-chip" data-mc-element-id="29373">Parking</div>
+                        <div class="filter-chip" data-mc-element-id="29436">Pet Friendly</div>
+                        <div class="filter-chip" data-mc-element-id="29504">Wheelchair Access</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Business Panel -->
+        <div class="business-panel" data-mc-element-id="29678">
+            <div class="panel-header" data-mc-element-id="29719">
+                <h2 class="panel-title" data-mc-element-id="29762">Coffee Shops Nearby</h2>
+                <div class="results-info" data-mc-element-id="29827">
+                    <span data-mc-element-id="29874">18 results found</span>
+                    <select class="sort-dropdown" data-mc-element-id="29924">
+                        <option data-mc-element-id="29979">Sort by Distance</option>
+                        <option data-mc-element-id="30037">Sort by Rating</option>
+                        <option data-mc-element-id="30093">Sort by Name</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="business-list" data-mc-element-id="30220">
+                <!-- Business Card 1 -->
+                <div class="business-card" onclick="showQuickView('Corner Coffee House', 'cafe')" data-mc-element-id="30305">
+                    <div class="business-header" data-mc-element-id="30408">
+                        <div class="business-image" data-mc-element-id="30462">
+                            <img src="https://storage.googleapis.com/forge-sites/c0a74096bf6b2ce1f79c915f501d461b27b959363ed7e7dabca07922ce87d564.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001308Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=705c0d48308697015c7fe2c8945e2b8a0ae22abb77134950f192625986cecc7489621651e8e71e8940f953cf95152b4be3d5ee4928c3ecfce2420c781825bb2ccedb8b13d556b0d09f9665c327a3c3e27f928d9a9ba8be5a5059d66a719440c753f7628753c25cfa8f138737e7885928a9afcbf84a1d70d4849f2220f6540a8820bfd714a70235021632f2c94654939d46e613ae2d8c0b0286b47df9e4dc58275ca7c86bcb04748f0c49c52ba047ac876d13b172d20f2429c7c9760a12c9910e760cb8db76e8e06285e3ce4913f3f47bd1eb26d90056046024c6778cbb5e56f932f1ccf6a017ebdf1e7156069608e704e06b4e505761208b5b7cb8b87f9d0060" alt="Corner Coffee House interior with exposed brick walls, comfortable seating, warm lighting, and coffee brewing equipment" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="30519">
+                        </div>
+                        <div class="business-details" data-mc-element-id="30790">
+                            <h3 class="business-name" data-mc-element-id="30849">Corner Coffee House</h3>
+                            <p class="business-category" data-mc-element-id="30928">Coffee Shop</p>
+                            <div class="business-rating" data-mc-element-id="31001">
+                                <span class="stars" data-mc-element-id="31063">★★★★★</span>
+                                <span data-mc-element-id="31128">4.9</span>
+                                <span class="rating-count" data-mc-element-id="31177">(247 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-meta" data-mc-element-id="31338">
+                        <span class="distance-badge" data-mc-element-id="31390">0.2 mi</span>
+                        <span class="status-badge status-open" data-mc-element-id="31457">Open</span>
+                    </div>
+                </div>
+
+                <!-- Business Card 2 -->
+                <div class="business-card" onclick="showQuickView('Roasted Bean Café', 'cafe')" data-mc-element-id="31616">
+                    <div class="business-header" data-mc-element-id="31717">
+                        <div class="business-image" data-mc-element-id="31771">
+                            <img src="https://storage.googleapis.com/forge-sites/d41658d7a02d2034c0831d71044c45f0f476fd5f83f716affd1c0475e037fb7b.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001308Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0fc5b6eb3fa428406493bff6c8b3103d38f99e43f5fcb732b4a7315c3c865a07837e9f2e531b9cc3f358b0607af0d0aba14b717accd6e5c8f91b98ff79c6348158a71ff3d93b951f5371e35c21a21d1defaf8ac3071d471d7aa8dc9dd97dbff5b51c57ba43bf384892503ac7f78624ba3c7dc87c1578d153af6c4f1213673054b34537572ac5367a7e42b55a34fb2141567d7ecfe14b12e8c116f9f9d09f5c232b66eebdaba31946f6ca63e4c17071c5c6f622e865effe721d49f2a4b5f9c4cf2ebaad1c7d81b8685f6465953d601c0e53b08144b9fa421564821b698ef4fb6d47b4b8c53fd1780d65acf5cdd2ba9e7f6320e7123ebb8cf03e655bc0a4a50ccc" alt="Roasted Bean Café with modern minimalist design, large windows, wooden tables, and professional coffee roasting equipment" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="31828">
+                        </div>
+                        <div class="business-details" data-mc-element-id="32099">
+                            <h3 class="business-name" data-mc-element-id="32158">Roasted Bean Café</h3>
+                            <p class="business-category" data-mc-element-id="32235">Coffee Roastery</p>
+                            <div class="business-rating" data-mc-element-id="32312">
+                                <span class="stars" data-mc-element-id="32374">★★★★☆</span>
+                                <span data-mc-element-id="32439">4.6</span>
+                                <span class="rating-count" data-mc-element-id="32488">(128 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-meta" data-mc-element-id="32649">
+                        <span class="distance-badge" data-mc-element-id="32701">0.4 mi</span>
+                        <span class="status-badge status-open" data-mc-element-id="32768">Open</span>
+                    </div>
+                </div>
+
+                <!-- Business Card 3 -->
+                <div class="business-card" onclick="showQuickView('Morning Brew &amp; Bistro', 'restaurant')" data-mc-element-id="32927">
+                    <div class="business-header" data-mc-element-id="33038">
+                        <div class="business-image" data-mc-element-id="33092">
+                            <img src="https://storage.googleapis.com/forge-sites/8e94e9263018dfeb3aa3239078292f0b4cb3191ebff3ea4d7e4f3900ea952e75.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001308Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=44c01f79c453e38919799daa75d0ae3b05a6eb117c23222378cce67a605d0d943d9f4c6b3a33b51fcede3131848dfb2af92b24fef75a8f3a5db5fe92f700ec130dbab67cb82432f0aa3ac3f1ce0532134c1964206be16917d896c1236a15775cdb1db763a9d74f201e1561e8c9698ed05c760b50118e0c8baed501d0acbba4ab6f1538520e91e256bc38f140efd7e7a90f807ee580f99244ef7ec46d4697c1e341c0f9be20999ec271d3294b340958ab7d68bca22eeec1d92c41076a1fcb6b0242903c0d0f052c220654995f1903114b7d1c7ab1823899c68a767a2a4255345b0f0722ca21f57eb8004488a4c02f8cb0beb772512d307655b6d099e83c18fe4c" alt="Morning Brew &amp; Bistro combining coffee bar with casual dining area, featuring both coffee counter and restaurant seating" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="33149">
+                        </div>
+                        <div class="business-details" data-mc-element-id="33421">
+                            <h3 class="business-name" data-mc-element-id="33480">Morning Brew &amp; Bistro</h3>
+                            <p class="business-category" data-mc-element-id="33561">Café &amp; Bistro</p>
+                            <div class="business-rating" data-mc-element-id="33636">
+                                <span class="stars" data-mc-element-id="33698">★★★★★</span>
+                                <span data-mc-element-id="33763">4.8</span>
+                                <span class="rating-count" data-mc-element-id="33812">(195 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-meta" data-mc-element-id="33973">
+                        <span class="distance-badge" data-mc-element-id="34025">0.6 mi</span>
+                        <span class="status-badge status-open" data-mc-element-id="34092">Open</span>
+                    </div>
+                </div>
+
+                <!-- Business Card 4 -->
+                <div class="business-card" onclick="showQuickView('Artisan Coffee Co.', 'cafe')" data-mc-element-id="34251">
+                    <div class="business-header" data-mc-element-id="34353">
+                        <div class="business-image" data-mc-element-id="34407">
+                            <img src="https://storage.googleapis.com/forge-sites/6b6bd8107c402d032128e7e6bc4e6b0a1f27da16ad21c9157516af1511578cd5.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001308Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=3cbabecce1cc0ffa0711cc28f01296a5394437bf1d346612b2c7b43c145d02b6f9a2b4b93833de85947e02ac8d26524844158ddd26f39c5c9b7607cd6221b70e7680932f8fd198219a2178659963c01fbdeb658577bac4af507b7d0422d92a9de841625c4e91fb8271e28e6c8ef5072b76fa59d43f079ca25f0ffd8b63163229c6573ee1591e005d3a794ca703a44282d8367c076c0ded62df687eca2b803a61da1404addcfc8d6793540c425904531ec209e1a8c22092b4c8b95ef6e2182cc48dbb3d7fc202ad4cc25feb0c109acbb633b3e3ee60260d7b9d1f44a13b2e0a9c5460be2169b4133b0c3c048d527f877046a679f7493e6020e3fa40e023dc1eb5" alt="Artisan Coffee Co. featuring handcrafted coffee preparation, vintage espresso machines, and artisanal coffee presentation" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="34464">
+                        </div>
+                        <div class="business-details" data-mc-element-id="34735">
+                            <h3 class="business-name" data-mc-element-id="34794">Artisan Coffee Co.</h3>
+                            <p class="business-category" data-mc-element-id="34872">Specialty Coffee</p>
+                            <div class="business-rating" data-mc-element-id="34950">
+                                <span class="stars" data-mc-element-id="35012">★★★★☆</span>
+                                <span data-mc-element-id="35077">4.7</span>
+                                <span class="rating-count" data-mc-element-id="35126">(86 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-meta" data-mc-element-id="35286">
+                        <span class="distance-badge" data-mc-element-id="35338">0.8 mi</span>
+                        <span class="status-badge status-closed" data-mc-element-id="35405">Closed</span>
+                    </div>
+                </div>
+
+                <!-- Business Card 5 -->
+                <div class="business-card" onclick="showQuickView('Campus Grind', 'cafe')" data-mc-element-id="35568">
+                    <div class="business-header" data-mc-element-id="35664">
+                        <div class="business-image" data-mc-element-id="35718">
+                            <img src="https://storage.googleapis.com/forge-sites/e4d695729766912ac1471b915d12efe93c902147f31691b1b1eb8207e29ca9a4.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001308Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=76ae8b3b15384d59b6e157cee17b5eeed478ea82431e729accd7f90808c33f924802c18bad05ebe40dfd4ef46ae3d588a3c7f321f4fff3738cf2659f346ee3deb7b6fd59055450c3768a24f9f1bb673ae70b541c2aeac07db33492b13e9bfc8a27cfd3a54750dd04bbc3b87a731c745ef616b582408daf5de224955df98dc356af8f68729da68bba872da1580c40abc9bfe4d8f162e14ff13d811aa483615f5bbd5f96716d3bfb1558e1f5995500113dfa955f392332deb1a9b84252937e7e4fe778e0eeadc6a99f8d1664256261789f1336ed7f1fcb1069ed3466ce05ca7b72d8d0d00f163509af41f5446e49c4665141e64a08e323c6111efbeea57df62a6a" alt="Campus Grind coffee shop with study-friendly atmosphere, plenty of seating, power outlets, and a quiet environment for students and remote workers" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="35775">
+                        </div>
+                        <div class="business-details" data-mc-element-id="36066">
+                            <h3 class="business-name" data-mc-element-id="36125">Campus Grind</h3>
+                            <p class="business-category" data-mc-element-id="36197">Study Café</p>
+                            <div class="business-rating" data-mc-element-id="36269">
+                                <span class="stars" data-mc-element-id="36331">★★★★☆</span>
+                                <span data-mc-element-id="36396">4.3</span>
+                                <span class="rating-count" data-mc-element-id="36445">(312 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="business-meta" data-mc-element-id="36606">
+                        <span class="distance-badge" data-mc-element-id="36658">1.1 mi</span>
+                        <span class="status-badge status-open" data-mc-element-id="36725">Open 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal" data-mc-element-id="36911">
+        <div class="modal-content" data-mc-element-id="36970">
+            <div class="modal-header" data-mc-element-id="37010">
+                <img src="https://storage.googleapis.com/forge-sites/3d01466b03699fe9430327606afbef53bedd361e2c96121b0182c1db8be625ff.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T001309Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=23b6067a6ec31ff2ada4abf2b3c6512acf2cd88d2ab30885527e2471e7762ab5161ec9deeeeaa1249f3728dd879d79b3b9b7feef9b5e11ab1dc9caabb92e0d1b4930f3659e9bc24918673ac87752b816710250cbcd689f263b660d9c3ad5311ac721737f7f4a3e9b82b0c13cda9f40c94b6db9decc2a2a4b0576d3f1111a5755babb45b016250f82ae6e3af03973e44a22038dcd7c93d5dbe3e6e61b303012b2934e906b8770a1da12ec0edff7d93cafa5838474c0a2a198cceacbeb2bf87e29dec64d5339a36f82431d3cf4e98a7a66357e613aa2c0d8fa62c777b10b5b8bc7b451feac51c6039d173c9c6369dd052e259ca2152c80e7906b9a85c4c34fcf13" alt="Corner Coffee House detailed interior view showing the coffee bar, seating areas, and warm atmosphere with customers enjoying their drinks" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="37053">
+                <button class="modal-close" onclick="closeQuickView()" data-mc-element-id="37305">
+                    <i class="fas fa-times" data-mc-element-id="37381"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body" data-mc-element-id="37480">
+                <h2 class="modal-business-name" data-mc-element-id="37521">Corner Coffee House</h2>
+                <p class="modal-business-category" data-mc-element-id="37594">Coffee Shop</p>
+                
+                <div class="modal-rating" data-mc-element-id="37678">
+                    <span class="stars" data-mc-element-id="37725">★★★★★</span>
+                    <span data-mc-element-id="37778">4.9 (247 reviews)</span>
+                </div>
+                
+                <div class="modal-info-grid" data-mc-element-id="37865">
+                    <div class="info-card" data-mc-element-id="37915">
+                        <div class="info-icon" data-mc-element-id="37963">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="38015"></i>
+                        </div>
+                        <div class="info-details" data-mc-element-id="38108">
+                            <h5 data-mc-element-id="38163">Address</h5>
+                            <p data-mc-element-id="38208">456 Community St, Downtown</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" data-mc-element-id="38341">
+                        <div class="info-icon" data-mc-element-id="38389">
+                            <i class="fas fa-phone" data-mc-element-id="38441"></i>
+                        </div>
+                        <div class="info-details" data-mc-element-id="38525">
+                            <h5 data-mc-element-id="38580">Phone</h5>
+                            <p data-mc-element-id="38623">(555) 987-6543</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" data-mc-element-id="38744">
+                        <div class="info-icon" data-mc-element-id="38792">
+                            <i class="fas fa-clock" data-mc-element-id="38844"></i>
+                        </div>
+                        <div class="info-details" data-mc-element-id="38928">
+                            <h5 data-mc-element-id="38983">Hours</h5>
+                            <p data-mc-element-id="39026">Open until 9:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card" data-mc-element-id="39151">
+                        <div class="info-icon" data-mc-element-id="39199">
+                            <i class="fas fa-route" data-mc-element-id="39251"></i>
+                        </div>
+                        <div class="info-details" data-mc-element-id="39335">
+                            <h5 data-mc-element-id="39390">Distance</h5>
+                            <p data-mc-element-id="39436">0.2 miles away</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions" data-mc-element-id="39572">
+                    <button class="btn btn-outline" data-mc-element-id="39620">
+                        <i class="fas fa-directions" data-mc-element-id="39677"></i>
+                        Directions
+                    </button>
+                    <button class="btn btn-primary" data-mc-element-id="39796">
+                        <i class="fas fa-phone" data-mc-element-id="39853"></i>
+                        Call Now
+                    </button>
+                    <button class="btn btn-outline" data-mc-element-id="39965">
+                        <i class="fas fa-heart" data-mc-element-id="40022"></i>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFilters() {
+            const filterPanel = document.getElementById('filterPanel');
+            const toggleBtn = document.querySelector('.filter-toggle-btn');
+            
+            filterPanel.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+        }
+
+        function showQuickView(businessName, category) {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('quickViewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQuickView();
+            }
+        });
+
+        // Filter chip interactions
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        // Search suggestions
+        const searchInput = document.querySelector('.search-input');
+        const suggestions = document.querySelector('.search-suggestions');
+
+        searchInput.addEventListener('focus', function() {
+            suggestions.classList.add('active');
+        });
+
+        searchInput.addEventListener('blur', function() {
+            setTimeout(() => {
+                suggestions.classList.remove('active');
+            }, 200);
+        });
+
+        document.querySelectorAll('.suggestion-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const businessName = this.querySelector('.suggestion-name').textContent;
+                searchInput.value = businessName;
+                suggestions.classList.remove('active');
+            });
+        });
+
+        // Escape key to close modal and filters
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeQuickView();
+                document.getElementById('filterPanel').classList.remove('active');
+                document.querySelector('.filter-toggle-btn').classList.remove('active');
+            }
+        });
+    </script>
+
+<script>__MC_SITE_ID__ = "a3fdf63f94d6ebb3525fa8beaaaf4411b31291428d6fb40cc4c4b4cb1347ecd3"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

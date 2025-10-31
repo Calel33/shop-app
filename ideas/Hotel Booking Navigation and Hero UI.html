@@ -1,0 +1,256 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serenity Suites - Luxury Hotel Experience</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    /* Fonts & basic utilities */
+    .font-header{font-family:'Poppins',sans-serif}
+    .font-body{font-family:'Inter',sans-serif}
+    .gradient-overlay{background:linear-gradient(135deg,rgba(30,64,175,.8)0%,rgba(59,130,246,.6)100%)}
+
+    /* Reveal animation */
+    @keyframes reveal{
+      from{opacity:0;transform:translateY(32px);filter:blur(6px)}
+      to{opacity:1;transform:translateY(0);filter:blur(0)}
+    }
+    [data-animate]{opacity:0;transform:translateY(32px);filter:blur(6px)}
+    .animate-reveal{animation:reveal .85s cubic-bezier(.22,1,.36,1) forwards}
+
+    /* Fancy underline for nav links */
+    .nav-link{position:relative;transition:color .25s}
+    .nav-link::after{
+      content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;
+      background:currentColor;border-radius:9999px;transition:width .25s
+    }
+    .nav-link:hover::after,.nav-link:focus-visible::after{width:100%}
+
+    /* Accessible focus ring */
+    .focus-ring:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+      /* Custom font utilities */
+      .font-poppins { font-family: 'Poppins', sans-serif !important; }
+    </style>
+</head>
+<body class="font-body bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-gray-100/50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center space-x-3">
+          <div>
+            <h1 class="font-header text-xl font-semibold text-gray-900">Serenity Suites</h1>
+            <p class="text-xs text-gray-500 font-medium">Luxury Redefined</p>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="#home" class="nav-link text-gray-700 hover:text-blue-800 focus-ring font-medium text-sm">Home</a>
+          <a href="#rooms" class="nav-link text-gray-700 hover:text-blue-800 focus-ring font-medium text-sm">Rooms</a>
+          <a href="#amenities" class="nav-link text-gray-700 hover:text-blue-800 focus-ring font-medium text-sm">Amenities</a>
+          <a href="#dining" class="nav-link text-gray-700 hover:text-blue-800 focus-ring font-medium text-sm">Dining</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-blue-800 focus-ring font-medium text-sm">Contact</a>
+        </div>
+
+        <div class="hidden lg:flex items-center space-x-4">
+          <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-800 transition-colors focus-ring">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span class="text-sm font-medium">+1&nbsp;(555)&nbsp;123-4567</span>
+          </button>
+          <button class="bg-gradient-to-r from-blue-800 to-blue-500 text-white px-6 py-3 rounded-full hover:shadow-xl transform hover:scale-[1.03] transition-all font-medium text-sm focus-ring">
+            Reserve Now
+          </button>
+        </div>
+
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-50 focus-ring">
+          <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden hidden bg-white/95 backdrop-blur-lg border-t border-gray-100">
+      <div class="px-6 py-6 space-y-6">
+        <a href="#home" class="block nav-link text-gray-700 hover:text-blue-800 font-medium">Home</a>
+        <a href="#rooms" class="block nav-link text-gray-700 hover:text-blue-800 font-medium">Rooms</a>
+        <a href="#amenities" class="block nav-link text-gray-700 hover:text-blue-800 font-medium">Amenities</a>
+        <a href="#dining" class="block nav-link text-gray-700 hover:text-blue-800 font-medium">Dining</a>
+        <a href="#contact" class="block nav-link text-gray-700 hover:text-blue-800 font-medium">Contact</a>
+        <div class="pt-4 border-t border-gray-100">
+          <button class="w-full bg-gradient-to-r from-blue-800 to-blue-500 text-white px-6 py-3 rounded-full font-medium focus-ring">Reserve Now</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&amp;fit=crop&amp;w=1920&amp;q=80" alt="Luxury Hotel Lobby" class="w-full h-full object-cover">
+      <div class="absolute inset-0 gradient-overlay"></div>
+    </div>
+
+    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-16">
+      <h1 class="font-header text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-6" data-animate>
+        Where Luxury Meets&nbsp;<span class="bg-gradient-to-r from-sky-300 to-blue-300 bg-clip-text text-transparent">Serenity</span>
+      </h1>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed" data-animate>
+        Immerse yourself in unparalleled elegance at Serenity Suites, where every moment is crafted to perfection in the heart of Manhattan's most prestigious district.
+      </p>
+
+      <!-- Booking Card -->
+      <div class="w-full max-w-5xl mx-auto" data-animate>
+        <div class="bg-white/95 rounded-2xl pt-6 pr-6 pb-6 pl-6 drop-shadow backdrop-blur-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+            <div class="space-y-2">
+              <label class="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                <i data-lucide="calendar" class="w-4 h-4 text-blue-800"></i><span>Check-in</span>
+              </label>
+              <input type="date" class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus-ring focus-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                <i data-lucide="calendar" class="w-4 h-4 text-blue-800"></i><span>Check-out</span>
+              </label>
+              <input type="date" class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus-ring">
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                <i data-lucide="user" class="w-4 h-4 text-blue-800"></i><span>Guests</span>
+              </label>
+              <div class="relative">
+                <select class="appearance-none w-full p-3 pr-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus-ring">
+                  <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+                  <option>4 Guests</option><option>5+ Guests</option>
+                </select>
+                <i data-lucide="chevron-down" class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                <i data-lucide="bed" class="w-4 h-4 text-blue-800"></i><span>Room&nbsp;Type</span>
+              </label>
+              <div class="relative">
+                <select class="appearance-none w-full p-3 pr-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus-ring">
+                  <option>Deluxe Suite</option><option>Executive Suite</option>
+                  <option>Presidential Suite</option><option>Penthouse</option>
+                </select>
+                <i data-lucide="chevron-down" class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+              </div>
+            </div>
+
+            <button class="self-end h-[48px] hover:shadow-lg transform hover:-translate-y-0.5 transition-all flex font-semibold text-white bg-gradient-to-r from-blue-800 to-blue-500 rounded-lg pr-6 pl-6 items-center justify-center focus-ring">
+              Search&nbsp;Suites
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOMMODATIONS -->
+  <section id="rooms" class="bg-white pt-0 pb-20">
+    <div class="max-w-7xl sm:px-6 lg:px-8 mr-auto ml-auto pt-8 pr-4 pl-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100" data-animate>
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Manhattan Deluxe Suite" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+              <i data-lucide="star" class="w-3.5 h-3.5"></i><span>Most Popular</span>
+            </div>
+          </div>
+          <div class="p-6 pb-24">
+            <h3 class="font-header text-2xl font-semibold text-gray-900 mb-2">Manhattan Deluxe Suite</h3>
+            <p class="text-gray-600 mb-4">Spacious 750&nbsp;sq&nbsp;ft suite with panoramic city views, marble bathroom, and premium amenities.</p>
+          </div>
+          <div class="absolute bottom-5 left-6 right-6 flex items-center justify-between">
+            <div>
+              <div class="text-2xl font-semibold text-blue-800">$450</div>
+              <div class="text-sm text-gray-500">per night</div>
+            </div>
+            <button class="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium focus-ring">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100" data-animate>
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Executive Premium Suite" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-4 left-4 bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+              <i data-lucide="crown" class="w-3.5 h-3.5"></i><span>Luxury</span>
+            </div>
+          </div>
+          <div class="p-6 pb-24">
+            <h3 class="font-header text-2xl font-semibold text-gray-900 mb-2">Executive Premium Suite</h3>
+            <p class="text-gray-600 mb-4">Elegantly appointed 900&nbsp;sq&nbsp;ft suite featuring a private balcony, dedicated workspace, and personalized concierge service.</p>
+          </div>
+          <div class="absolute bottom-5 left-6 right-6 flex items-center justify-between">
+            <div>
+              <div class="text-2xl font-semibold text-blue-800">$620</div>
+              <div class="text-sm text-gray-500">per night</div>
+            </div>
+            <button class="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium focus-ring">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100" data-animate>
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Presidential Penthouse" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-4 left-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-1">
+              <i data-lucide="badge-check" class="w-3.5 h-3.5"></i><span>Top Choice</span>
+            </div>
+          </div>
+          <div class="p-6 pb-24">
+            <h3 class="font-header text-2xl font-semibold text-gray-900 mb-2">Presidential Penthouse</h3>
+            <p class="text-gray-600 mb-4">An opulent 2,000&nbsp;sq&nbsp;ft penthouse boasting 360° skyline vistas, private terrace, and exclusive butler service.</p>
+          </div>
+          <div class="absolute bottom-5 left-6 right-6 flex items-center justify-between">
+            <div>
+              <div class="text-2xl font-semibold text-blue-800">$2,300</div>
+              <div class="text-sm text-gray-500">per night</div>
+            </div>
+            <button class="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium focus-ring">Book Now</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      /* Mobile menu */
+      document.getElementById('mobile-menu-btn')
+        .addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
+      /* Sequential reveal */
+      const revealEls=[...document.querySelectorAll('[data-animate]')];
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const el=entry.target;
+            el.classList.add('animate-reveal');
+            observer.unobserve(el);
+          }
+        });
+      },{threshold:.2});
+
+      revealEls.forEach((el,i)=>{
+        el.style.animationDelay=`${i*0.12}s`;
+        observer.observe(el);
+      });
+    });
+  </script>
+</body></html>

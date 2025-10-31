@@ -1,0 +1,663 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Bella Vista Bistro - Local Business Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 48px;
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-gallery {
+            position: relative;
+            height: 400px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .main-image {
+            grid-row: 1 / 3;
+            background: url('https://storage.googleapis.com/forge-sites/49108dd688aef3063714ff2c787b4cd3b604714527c1e07b3c30835650b2cc93.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20251010T002158Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&X-Goog-Signature=6e97bbed2d9bfc877f77cbeac1f08c849796c88d847ae8e4ae8e28718fd9f5f700008844e87e949955117646af0f5296385b4accfb3d941adfeab41c5d0e661076989760707e6d2af3ca950fd36a530a0a0908ef981e7eb493f1aaa6cfe474580fd2140941f2d6ad8a7bf8fdd52e9db24d88297febdaa81139268bf021707971621572228180daed575e6370add8852e2937d61857bd2d603128ce3ac45e84dff43b26dba3549a8e2f5ebd0f8d5f3d674e27575a27cfe5b64d523fae4ee58b30193bffba7550f774c84adf279e7f93d2ebcae44ef3b0a30c04a7a4c1dbb23bf5ae5a380c8af7c11d6c724251ca4b3c7d349f54bfc3c7da92693fb442d5ccb5ce') center/cover;
+            position: relative;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-thumbnails {
+            display: grid;
+            gap: 2px;
+        }
+
+        .thumbnail {
+            background: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:last-child {
+            position: relative;
+        }
+
+        .more-photos-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .business-header {
+            padding: 32px;
+        }
+
+        .business-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .business-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .verification-badge {
+            background: #059669;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .business-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            color: #64748b;
+        }
+
+        .category {
+            font-weight: 500;
+            color: #f59e0b;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars {
+            color: #f59e0b;
+        }
+
+        .business-description {
+            color: #475569;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .social-proof {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2563eb;
+            padding: 14px 28px;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-icon {
+            color: #2563eb;
+            width: 20px;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #64748b;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .hours-day {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .day-name {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .day-hours {
+            color: #64748b;
+        }
+
+        .open-now {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .certifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cert-badge {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: #64748b;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .review-preview {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .review-header {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+
+        .review-stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .avg-rating {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .rating-breakdown {
+            flex: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .bar-fill {
+            flex: 1;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .bar-fill-inner {
+            height: 100%;
+            background: #f59e0b;
+            border-radius: 3px;
+        }
+
+        .bar-count {
+            font-size: 12px;
+            color: #64748b;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" data-mc-element-id="9766">
+        <div class="header-content" data-mc-element-id="9798">
+            <div class="logo" data-mc-element-id="9839">LocalConnect</div>
+            <nav class="nav-links" data-mc-element-id="9888">
+                <a href="#" data-mc-element-id="9928">Directory</a>
+                <a href="#" data-mc-element-id="9970">Categories</a>
+                <a href="#" data-mc-element-id="10013">Add Business</a>
+                <a href="#" data-mc-element-id="10058">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container" data-mc-element-id="10133">
+        <div class="content-area" data-mc-element-id="10171">
+            <div class="hero-section" data-mc-element-id="10210">
+                <div class="image-gallery" data-mc-element-id="10253">
+                    <div class="main-image" data-mc-element-id="10301">
+                        <img src="https://storage.googleapis.com/forge-sites/f468962a88b61c5621892d429821065d22411b1bea6b96166add1ce5749064d5.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002157Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=c1b0a0e6eeca933d6c64d48ca11804f64d8ffb27fca7d9b4cccf8bb83926b83f59e2186a3985255df86f548d15057171c347ede4d0545ed32aedc68b985a3dc7cd5fae1474fb94d3e3cd9acd38a9c14572d1697c7955108d77815b52a9cd1ffd25ad19de66b8b4aa12b539c0252235e6e4893c5406db1c9555f90f70a42ce2c6ddaeecf74586f1537fe8369a01dc4f6fef83c98bd1d24526496b8bb8dedc884dac597d6763f22c2b0806805a9fd82e80af7f545eb00e9da00ecd3c47ef8702bb178aacdbf2862a63a22940f81715694aae0aaa07f986a57265ab04362cbdcd0488ac1c2e9612a1ecdf497c8b70bedb620959b19209b57b15e829bb7291679f42" alt="Elegant dining room at Bella Vista Bistro with warm lighting, exposed brick walls, and cozy booth seating" data-mc-element-id="10350">
+                    </div>
+                    <div class="gallery-thumbnails" data-mc-element-id="10551">
+                        <div class="thumbnail" data-mc-element-id="10608">
+                            <img src="https://storage.googleapis.com/forge-sites/d044dda14efca97128a4d858128a0e24eea27394494eb5dacf7ea741859caa20.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002157Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=2bd2955ba6cd412bbced158e6a6da237a7f856734530cfa17451c02617a538f09b8f49d805df89bde828aeae0ac9aca33bb0d2fcbe03ac01a83e638ec04047e643502ff2d1067f8ec4ab12e4b144332bcf3cd4d0d727fdb6efb1606994110c1b12fceb375e2f2c0e7c077c1fc49ae5c6cc0105124f39049c7effbbce82dd081a8fda8ae9acbe4ad90adc77da0082726f2fe4c7a9bd99cab9c97f41c5415de9df7b15593c0f35cffd58beae70ccf91a9aa8e0a566d0f8b8f15c5005ef58364f3b52918a6b02bd9e9fbde4128e0e196cb31c1b033d5798c4995bc79317a140d7f7f380aa5653dd2873b18e6523bbf282a34915ca9b4c530b5905d8349662a272ae" alt="Professional kitchen with chefs preparing fresh dishes" data-mc-element-id="10660">
+                        </div>
+                        <div class="thumbnail" data-mc-element-id="10811">
+                            <img src="https://storage.googleapis.com/forge-sites/b10196052e8ca35bc78a153142290e0082e3c0afc20fb43261316efcb9ca17ee.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002157Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=47a2b88e6c46aff005c3df80467e25ebb24842c70d9eeb650faa3d6f480b1ed9270521059aca2a927570e68d059e080d4fec9ff7f76a3eb91d71d64a7aec3a6cfb7afce05f79a0919b6e4a9834bb2aa727e8c050648274dddf1374083253fbbd361a429617e765301d08b8bf2e8d3756576580fcf7c3c5ecf524c631eb41d349df44a68181fa59c16a8105e1e14d0f47b5d3c625722142bdb907152815e498f8586f192da93d304f766e4433985fc226a0db4c4ed1a027bb396999840aabd198c63f339141ccbbe6a05f191025af733f012c2b05130d7bbda008ccecf47a79e75c26378dcb3ae0d79539037c24a3e7764dae33ab593f8730060227ae581ea836" alt="Outdoor patio dining area with string lights and garden views" data-mc-element-id="10863">
+                            <div class="more-photos-overlay" data-mc-element-id="10992">
+                                +3 Photos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="business-header" data-mc-element-id="11201">
+                    <div class="business-title" data-mc-element-id="11251">
+                        <h1 class="business-name" data-mc-element-id="11304">Bella Vista Bistro</h1>
+                        <div class="verification-badge" data-mc-element-id="11378">
+                            <i class="fas fa-check-circle" data-mc-element-id="11439"></i>
+                            Verified
+                        </div>
+                    </div>
+
+                    <div class="business-meta" data-mc-element-id="11591">
+                        <span class="category" data-mc-element-id="11643">Italian Restaurant</span>
+                        <div class="rating" data-mc-element-id="11716">
+                            <div class="stars" data-mc-element-id="11765">
+                                <i class="fas fa-star" data-mc-element-id="11817"></i>
+                                <i class="fas fa-star" data-mc-element-id="11877"></i>
+                                <i class="fas fa-star" data-mc-element-id="11937"></i>
+                                <i class="fas fa-star" data-mc-element-id="11997"></i>
+                                <i class="fas fa-star-half-alt" data-mc-element-id="12057"></i>
+                            </div>
+                            <span data-mc-element-id="12157">4.7 (324 reviews)</span>
+                        </div>
+                        <span data-mc-element-id="12243">$$ • 0.3 miles away</span>
+                    </div>
+
+                    <p class="business-description" data-mc-element-id="12324">
+                        Family-owned Italian bistro serving authentic Northern Italian cuisine made with locally-sourced ingredients. Our handmade pasta and wood-fired pizzas have been delighting the community for over 15 years. Join us for an intimate dining experience in our cozy, rustic atmosphere.
+                    </p>
+
+                    <div class="social-proof" data-mc-element-id="12706">
+                        <div class="proof-item" data-mc-element-id="12757">
+                            <div class="proof-number" data-mc-element-id="12810">15</div>
+                            <div class="proof-label" data-mc-element-id="12873">Years in Business</div>
+                        </div>
+                        <div class="proof-item" data-mc-element-id="12977">
+                            <div class="proof-number" data-mc-element-id="13030">324</div>
+                            <div class="proof-label" data-mc-element-id="13094">Customer Reviews</div>
+                        </div>
+                        <div class="proof-item" data-mc-element-id="13197">
+                            <div class="proof-number" data-mc-element-id="13250">4.7</div>
+                            <div class="proof-label" data-mc-element-id="13314">Average Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons" data-mc-element-id="13439">
+                        <a href="#" class="btn-primary" data-mc-element-id="13492">
+                            <i class="fas fa-directions" data-mc-element-id="13553"></i>
+                            Get Directions
+                        </a>
+                        <a href="#" class="btn-secondary" data-mc-element-id="13683">
+                            <i class="fas fa-phone" data-mc-element-id="13746"></i>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-preview" data-mc-element-id="13923">
+                <div class="review-header" data-mc-element-id="13968">Customer Reviews</div>
+                <div class="review-stats" data-mc-element-id="14034">
+                    <div class="avg-rating" data-mc-element-id="14081">4.7</div>
+                    <div class="rating-breakdown" data-mc-element-id="14135">
+                        <div class="rating-bar" data-mc-element-id="14190">
+                            <span class="bar-count" data-mc-element-id="14243">5★</span>
+                            <div class="bar-fill" data-mc-element-id="14305">
+                                <div class="bar-fill-inner" style="width: 78%" data-mc-element-id="14360"></div>
+                            </div>
+                            <span class="bar-count" data-mc-element-id="14477">253</span>
+                        </div>
+                        <div class="rating-bar" data-mc-element-id="14567">
+                            <span class="bar-count" data-mc-element-id="14620">4★</span>
+                            <div class="bar-fill" data-mc-element-id="14682">
+                                <div class="bar-fill-inner" style="width: 15%" data-mc-element-id="14737"></div>
+                            </div>
+                            <span class="bar-count" data-mc-element-id="14854">49</span>
+                        </div>
+                        <div class="rating-bar" data-mc-element-id="14943">
+                            <span class="bar-count" data-mc-element-id="14996">3★</span>
+                            <div class="bar-fill" data-mc-element-id="15058">
+                                <div class="bar-fill-inner" style="width: 5%" data-mc-element-id="15113"></div>
+                            </div>
+                            <span class="bar-count" data-mc-element-id="15229">16</span>
+                        </div>
+                        <div class="rating-bar" data-mc-element-id="15318">
+                            <span class="bar-count" data-mc-element-id="15371">2★</span>
+                            <div class="bar-fill" data-mc-element-id="15433">
+                                <div class="bar-fill-inner" style="width: 2%" data-mc-element-id="15488"></div>
+                            </div>
+                            <span class="bar-count" data-mc-element-id="15604">6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar" data-mc-element-id="15761">
+            <div class="info-card" data-mc-element-id="15795">
+                <h3 class="card-title" data-mc-element-id="15835">Contact Information</h3>
+                
+                <div class="info-item" data-mc-element-id="15916">
+                    <i class="fas fa-map-marker-alt info-icon" data-mc-element-id="15960"></i>
+                    <div class="info-content" data-mc-element-id="16028">
+                        <div class="info-label" data-mc-element-id="16079">Address</div>
+                        <div class="info-value" data-mc-element-id="16141">123 Main Street, Downtown<br data-mc-element-id="16190">Springfield, IL 62701</div>
+                    </div>
+                </div>
+
+                <div class="info-item" data-mc-element-id="16289">
+                    <i class="fas fa-phone info-icon" data-mc-element-id="16333"></i>
+                    <div class="info-content" data-mc-element-id="16392">
+                        <div class="info-label" data-mc-element-id="16443">Phone</div>
+                        <div class="info-value" data-mc-element-id="16503">(217) 555-0123</div>
+                    </div>
+                </div>
+
+                <div class="info-item" data-mc-element-id="16615">
+                    <i class="fas fa-globe info-icon" data-mc-element-id="16659"></i>
+                    <div class="info-content" data-mc-element-id="16718">
+                        <div class="info-label" data-mc-element-id="16769">Website</div>
+                        <div class="info-value" data-mc-element-id="16831">bellavistabistro.com</div>
+                    </div>
+                </div>
+
+                <div class="info-item" data-mc-element-id="16949">
+                    <i class="fas fa-envelope info-icon" data-mc-element-id="16993"></i>
+                    <div class="info-content" data-mc-element-id="17055">
+                        <div class="info-label" data-mc-element-id="17106">Email</div>
+                        <div class="info-value" data-mc-element-id="17166">info@bellavistabistro.com</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" data-mc-element-id="17304">
+                <h3 class="card-title" data-mc-element-id="17344">Hours</h3>
+                <div class="hours-grid" data-mc-element-id="17394">
+                    <div class="hours-day" data-mc-element-id="17439">
+                        <span class="day-name" data-mc-element-id="17487">Monday</span>
+                        <span class="day-hours" data-mc-element-id="17548">5:00 PM - 10:00 PM</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="17645">
+                        <span class="day-name" data-mc-element-id="17693">Tuesday</span>
+                        <span class="day-hours open-now" data-mc-element-id="17755">5:00 PM - 10:00 PM • Open Now</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="17872">
+                        <span class="day-name" data-mc-element-id="17920">Wednesday</span>
+                        <span class="day-hours" data-mc-element-id="17984">5:00 PM - 10:00 PM</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="18081">
+                        <span class="day-name" data-mc-element-id="18129">Thursday</span>
+                        <span class="day-hours" data-mc-element-id="18192">5:00 PM - 10:00 PM</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="18289">
+                        <span class="day-name" data-mc-element-id="18337">Friday</span>
+                        <span class="day-hours" data-mc-element-id="18398">5:00 PM - 11:00 PM</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="18495">
+                        <span class="day-name" data-mc-element-id="18543">Saturday</span>
+                        <span class="day-hours" data-mc-element-id="18606">4:00 PM - 11:00 PM</span>
+                    </div>
+                    <div class="hours-day" data-mc-element-id="18703">
+                        <span class="day-name" data-mc-element-id="18751">Sunday</span>
+                        <span class="day-hours" data-mc-element-id="18812">4:00 PM - 9:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card" data-mc-element-id="18943">
+                <h3 class="card-title" data-mc-element-id="18983">Certifications &amp; Features</h3>
+                <div class="certifications" data-mc-element-id="19053">
+                    <div class="cert-badge" data-mc-element-id="19102">
+                        <i class="fas fa-leaf" data-mc-element-id="19151"></i>
+                        Farm-to-Table
+                    </div>
+                    <div class="cert-badge" data-mc-element-id="19264">
+                        <i class="fas fa-wine-glass" data-mc-element-id="19313"></i>
+                        Wine Spectator Award
+                    </div>
+                    <div class="cert-badge" data-mc-element-id="19439">
+                        <i class="fas fa-wheelchair" data-mc-element-id="19488"></i>
+                        Wheelchair Accessible
+                    </div>
+                    <div class="cert-badge" data-mc-element-id="19615">
+                        <i class="fas fa-parking" data-mc-element-id="19664"></i>
+                        Valet Parking
+                    </div>
+                    <div class="cert-badge" data-mc-element-id="19780">
+                        <i class="fas fa-utensils" data-mc-element-id="19829"></i>
+                        Private Dining
+                    </div>
+                </div>
+
+                <div class="last-updated" data-mc-element-id="19967">
+                    Last updated by owner on March 15, 2024
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script>__MC_SITE_ID__ = "af1314dc70d73302ac661a956aa2080d8f9edde1bbb269c51caa8b556512866f"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

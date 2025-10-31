@@ -1,31 +1,49 @@
 # Project Context
 
 ## Purpose
-[Describe your project's purpose and goals]
+Production-ready SaaS starter built with Next.js 15, integrating Clerk for authentication and billing, and Convex for a real-time backend. Provides a polished landing, protected dashboard, and payment-gated content with minimal setup.
 
 ## Tech Stack
-- [List your primary technologies]
-- [e.g., TypeScript, React, Node.js]
+- Frontend: Next.js 15 (App Router, React 19), TypeScript, TailwindCSS v4, shadcn/ui (Radix), Framer Motion/Motion, Recharts
+- Backend/Services: Convex (DB + functions), Clerk (Auth), Clerk Billing (Payments), Svix (webhooks)
+- Tooling: Turbopack, ESLint (next lint), TypeScript
 
 ## Project Conventions
 
 ### Code Style
-[Describe your code style preferences, formatting rules, and naming conventions]
+- TypeScript-first, strict types where practical
+- Utility classes via Tailwind v4; prefer design tokens over hard-coded values
+- Components are small, composable, and colocate logic by vertical slice
+- Follow existing import/order patterns and naming as in codebase
 
 ### Architecture Patterns
-[Document your architectural decisions and patterns]
+- App Router with server and client components as appropriate
+- Route protection via `middleware.ts` and Clerk
+- Real-time data with Convex hooks (`useQuery`, `useMutation`)
+- Webhook-driven sync for Clerk users and billing events (handled in Convex `http.ts`)
 
 ### Testing Strategy
-[Explain your testing approach and requirements]
+- Unit/integration where applicable for Convex functions and critical UI logic
+- Linting via `npm run lint`; CI should at minimum run build + lint
+- Add tests alongside features (vertical slice) when adding non-trivial logic
 
 ### Git Workflow
-[Describe your branching strategy and commit conventions]
+- Default branch: `main`
+- Feature branches from `main`; open PRs with concise scope
+- Commit messages: imperative, focus on why; avoid committing secrets
 
 ## Domain Context
-[Add domain-specific knowledge that AI assistants need to understand]
+- Authentication and user provisioning handled by Clerk; Clerk user ID maps to `users.externalId` in Convex
+- Subscription access controlled via Clerk Billing; payment-gated routes live under `app/dashboard/payment-gated`
+- Pricing UI in `components/custom-clerk-pricing.tsx`
 
 ## Important Constraints
-[List any technical, business, or regulatory constraints]
+- Do not hard-code secrets; use env vars
+- Keep files focused (≤500 lines, single responsibility)
+- Maintain backwards compatibility of public routes and Convex schema
+- Use design tokens/utilities; avoid inline arbitrary styles
 
 ## External Dependencies
-[Document key external services, APIs, or systems]
+- Clerk (auth, billing): requires `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`, redirect URLs, `NEXT_PUBLIC_CLERK_FRONTEND_API_URL`
+- Convex: `CONVEX_DEPLOYMENT`, `NEXT_PUBLIC_CONVEX_URL`; webhook secret `CLERK_WEBHOOK_SECRET` in Convex dashboard
+- Webhooks: Configure Clerk events (`user.*`, `paymentAttempt.updated`) to `/api/clerk-users-webhook`

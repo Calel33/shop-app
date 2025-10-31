@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Admin Hub - Local Business Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #fafbfc;
+            color: #2d3748;
+            line-height: 1.5;
+        }
+
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Enhanced Sidebar */
+        .sidebar {
+            background: linear-gradient(180deg, #2d3748 0%, #1a202c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+        }
+
+        .sidebar-brand {
+            padding: 32px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .brand-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #805ad5, #d53f8c);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
+        }
+
+        .brand-text {
+            color: white;
+        }
+
+        .brand-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-nav {
+            padding: 24px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 32px;
+        }
+
+        .nav-section-title {
+            color: #a0aec0;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 24px 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border-left-color: #805ad5;
+        }
+
+        .nav-link.active {
+            background: rgba(128, 90, 213, 0.15);
+            color: white;
+            border-left-color: #805ad5;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            right: 24px;
+            width: 6px;
+            height: 6px;
+            background: #805ad5;
+            border-radius: 50%;
+        }
+
+        .nav-icon {
+            width: 20px;
+            margin-right: 16px;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: #e53e3e;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Main Content Area */
+        .main-area {
+            display: flex;
+            flex-direction: column;
+            background: #fafbfc;
+        }
+
+        /* Header Bar */
+        .header-bar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-left h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .header-breadcrumb {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 280px;
+            padding: 10px 16px 10px 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #f7fafc;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #805ad5;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-button.primary {
+            background: linear-gradient(135deg, #805ad5, #d53f8c);
+            color: white;
+            box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
+        }
+
+        .action-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+        }
+
+        .action-button.secondary {
+            background: white;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .action-button.secondary:hover {
+            border-color: #cbd5e0;
+            background: #f7fafc;
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            padding: 32px;
+            flex: 1;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-areas: 
+                "metrics metrics metrics"
+                "approvals approvals sidebar"
+                "approvals approvals sidebar";
+            grid-template-columns: 1fr 1fr 400px;
+            grid-template-rows: auto 1fr 1fr;
+            gap: 24px;
+            height: calc(100vh - 180px);
+        }
+
+        /* Metrics Cards */
+        .metrics-section {
+            grid-area: metrics;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .metric-card.pending { --gradient: linear-gradient(90deg, #f6ad55, #ed8936); }
+        .metric-card.total { --gradient: linear-gradient(90deg, #4299e1, #3182ce); }
+        .metric-card.signups { --gradient: linear-gradient(90deg, #48bb78, #38a169); }
+        .metric-card.flagged { --gradient: linear-gradient(90deg, #f56565, #e53e3e); }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: var(--bg);
+            color: var(--color);
+        }
+
+        .metric-card.pending .metric-icon { --bg: #fef5e7; --color: #d69e2e; }
+        .metric-card.total .metric-icon { --bg: #ebf8ff; --color: #3182ce; }
+        .metric-card.signups .metric-icon { --bg: #f0fff4; --color: #38a169; }
+        .metric-card.flagged .metric-icon { --bg: #fed7d7; --color: #e53e3e; }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .metric-trend.positive {
+            background: #f0fff4;
+            color: #38a169;
+        }
+
+        .metric-trend.negative {
+            background: #fed7d7;
+            color: #e53e3e;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a202c;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            color: #718096;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Approvals Section */
+        .approvals-section {
+            grid-area: approvals;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(90deg, #f8f9fa, #ffffff);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .section-controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .control-chip {
+            padding: 6px 12px;
+            background: #edf2f7;
+            color: #4a5568;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .control-chip:hover {
+            background: #805ad5;
+            color: white;
+        }
+
+        .control-chip.active {
+            background: #805ad5;
+            color: white;
+        }
+
+        /* Business List */
+        .business-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .business-item {
+            padding: 20px 28px;
+            border-bottom: 1px solid #f7fafc;
+            transition: all 0.2s;
+        }
+
+        .business-item:hover {
+            background: #f8f9fa;
+        }
+
+        .business-content {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .business-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            object-fit: cover;
+            background: #edf2f7;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .business-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 6px;
+        }
+
+        .business-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .business-tag {
+            padding: 4px 8px;
+            background: #edf2f7;
+            color: #4a5568;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .business-tag.category {
+            background: #e6fffa;
+            color: #319795;
+        }
+
+        .business-location {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .business-time {
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        .business-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .decision-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 80px;
+        }
+
+        .decision-btn.approve {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+        }
+
+        .decision-btn.approve:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+        }
+
+        .decision-btn.reject {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+            box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3);
+        }
+
+        .decision-btn.reject:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+        }
+
+        .decision-btn.details {
+            background: white;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .decision-btn.details:hover {
+            border-color: #cbd5e0;
+            background: #f7fafc;
+        }
+
+        /* Sidebar Panel */
+        .sidebar-panel {
+            grid-area: sidebar;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #f0f0f0;
+            background: linear-gradient(90deg, #f8f9fa, #ffffff);
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        /* Activity Feed */
+        .activity-list {
+            padding: 16px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 12px 24px;
+            transition: background-color 0.2s;
+        }
+
+        .activity-item:hover {
+            background: #f8f9fa;
+        }
+
+        .activity-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .activity-dot.success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .activity-dot.info {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+        }
+
+        .activity-dot.warning {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            color: #2d3748;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .activity-meta {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        /* System Status */
+        .status-list {
+            padding: 20px 24px;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f7fafc;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--status-color);
+            box-shadow: 0 0 0 3px var(--status-glow);
+        }
+
+        .status-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-item.online {
+            --status-color: #38a169;
+            --status-glow: rgba(56, 161, 105, 0.2);
+        }
+
+        .status-item.online .status-badge {
+            background: #f0fff4;
+            color: #38a169;
+        }
+
+        .status-item.warning {
+            --status-color: #ed8936;
+            --status-glow: rgba(237, 137, 54, 0.2);
+        }
+
+        .status-item.warning .status-badge {
+            background: #fffaf0;
+            color: #ed8936;
+        }
+
+        /* Scrollbar Styling */
+        .business-list::-webkit-scrollbar,
+        .activity-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .business-list::-webkit-scrollbar-track,
+        .activity-list::-webkit-scrollbar-track {
+            background: #f7fafc;
+        }
+
+        .business-list::-webkit-scrollbar-thumb,
+        .activity-list::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        .business-list::-webkit-scrollbar-thumb:hover,
+        .activity-list::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout" data-mc-element-id="18832">
+        <!-- Enhanced Sidebar -->
+        <aside class="sidebar" data-mc-element-id="18901">
+            <div class="sidebar-brand" data-mc-element-id="18937">
+                <div class="brand-content" data-mc-element-id="18981">
+                    <div class="brand-logo" data-mc-element-id="19029">
+                        <i class="fas fa-gem" data-mc-element-id="19078"></i>
+                    </div>
+                    <div class="brand-text" data-mc-element-id="19152">
+                        <div class="brand-title" data-mc-element-id="19201">LocalBiz</div>
+                        <div class="brand-subtitle" data-mc-element-id="19265">Admin Hub</div>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav" data-mc-element-id="19390">
+                <div class="nav-section" data-mc-element-id="19432">
+                    <div class="nav-section-title" data-mc-element-id="19478">Management</div>
+                    <a href="#" class="nav-link active" data-mc-element-id="19546">
+                        <i class="fas fa-chart-pie nav-icon" data-mc-element-id="19607"></i>
+                        Overview
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="19727">
+                        <i class="fas fa-clock nav-icon" data-mc-element-id="19781"></i>
+                        Pending Reviews
+                        <span class="nav-badge" data-mc-element-id="19883">23</span>
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="19962">
+                        <i class="fas fa-building nav-icon" data-mc-element-id="20016"></i>
+                        All Businesses
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="20141">
+                        <i class="fas fa-users nav-icon" data-mc-element-id="20195"></i>
+                        User Accounts
+                    </a>
+                </div>
+                <div class="nav-section" data-mc-element-id="20335">
+                    <div class="nav-section-title" data-mc-element-id="20381">Moderation</div>
+                    <a href="#" class="nav-link" data-mc-element-id="20449">
+                        <i class="fas fa-flag nav-icon" data-mc-element-id="20503"></i>
+                        Flagged Items
+                        <span class="nav-badge" data-mc-element-id="20602">3</span>
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="20680">
+                        <i class="fas fa-comments nav-icon" data-mc-element-id="20734"></i>
+                        Reviews
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="20852">
+                        <i class="fas fa-shield-alt nav-icon" data-mc-element-id="20906"></i>
+                        Security Logs
+                    </a>
+                </div>
+                <div class="nav-section" data-mc-element-id="21051">
+                    <div class="nav-section-title" data-mc-element-id="21097">Insights</div>
+                    <a href="#" class="nav-link" data-mc-element-id="21163">
+                        <i class="fas fa-chart-line nav-icon" data-mc-element-id="21217"></i>
+                        Analytics
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="21339">
+                        <i class="fas fa-download nav-icon" data-mc-element-id="21393"></i>
+                        Reports
+                    </a>
+                    <a href="#" class="nav-link" data-mc-element-id="21511">
+                        <i class="fas fa-cog nav-icon" data-mc-element-id="21565"></i>
+                        Settings
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-area" data-mc-element-id="21762">
+            <!-- Header Bar -->
+            <header class="header-bar" data-mc-element-id="21831">
+                <div class="header-left" data-mc-element-id="21875">
+                    <h1 data-mc-element-id="21921">Dashboard Overview</h1>
+                    <div class="header-breadcrumb" data-mc-element-id="21969">Admin Hub › Dashboard › Overview</div>
+                </div>
+                <div class="header-right" data-mc-element-id="22078">
+                    <div class="search-box" data-mc-element-id="22125">
+                        <i class="fas fa-search search-icon" data-mc-element-id="22174"></i>
+                        <input type="text" class="search-input" placeholder="Search businesses, users, or reports..." data-mc-element-id="22240">
+                    </div>
+                    <div class="header-actions" data-mc-element-id="22382">
+                        <button class="action-button secondary" data-mc-element-id="22435">
+                            <i class="fas fa-bell" data-mc-element-id="22504"></i>
+                            Alerts
+                        </button>
+                        <button class="action-button primary" data-mc-element-id="22625">
+                            <i class="fas fa-plus" data-mc-element-id="22692"></i>
+                            Add Business
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Wrapper -->
+            <div class="content-wrapper" data-mc-element-id="22917">
+                <div class="dashboard-grid" data-mc-element-id="22963">
+                    <!-- Metrics Section -->
+                    <section class="metrics-section" data-mc-element-id="23057">
+                        <div class="metric-card pending" data-mc-element-id="23115">
+                            <div class="metric-header" data-mc-element-id="23177">
+                                <div class="metric-icon" data-mc-element-id="23237">
+                                    <i class="fas fa-hourglass-half" data-mc-element-id="23299"></i>
+                                </div>
+                                <div class="metric-trend positive" data-mc-element-id="23408">
+                                    <i class="fas fa-arrow-up" data-mc-element-id="23480"></i>
+                                    +15%
+                                </div>
+                            </div>
+                            <div class="metric-value" data-mc-element-id="23655">23</div>
+                            <div class="metric-label" data-mc-element-id="23718">Pending Approvals</div>
+                        </div>
+
+                        <div class="metric-card total" data-mc-element-id="23824">
+                            <div class="metric-header" data-mc-element-id="23884">
+                                <div class="metric-icon" data-mc-element-id="23944">
+                                    <i class="fas fa-store" data-mc-element-id="24006"></i>
+                                </div>
+                                <div class="metric-trend positive" data-mc-element-id="24106">
+                                    <i class="fas fa-arrow-up" data-mc-element-id="24178"></i>
+                                    +4.2%
+                                </div>
+                            </div>
+                            <div class="metric-value" data-mc-element-id="24354">1,247</div>
+                            <div class="metric-label" data-mc-element-id="24420">Active Businesses</div>
+                        </div>
+
+                        <div class="metric-card signups" data-mc-element-id="24526">
+                            <div class="metric-header" data-mc-element-id="24588">
+                                <div class="metric-icon" data-mc-element-id="24648">
+                                    <i class="fas fa-user-plus" data-mc-element-id="24710"></i>
+                                </div>
+                                <div class="metric-trend positive" data-mc-element-id="24814">
+                                    <i class="fas fa-arrow-up" data-mc-element-id="24886"></i>
+                                    +22%
+                                </div>
+                            </div>
+                            <div class="metric-value" data-mc-element-id="25061">89</div>
+                            <div class="metric-label" data-mc-element-id="25124">New This Week</div>
+                        </div>
+
+                        <div class="metric-card flagged" data-mc-element-id="25226">
+                            <div class="metric-header" data-mc-element-id="25288">
+                                <div class="metric-icon" data-mc-element-id="25348">
+                                    <i class="fas fa-exclamation-triangle" data-mc-element-id="25410"></i>
+                                </div>
+                                <div class="metric-trend negative" data-mc-element-id="25525">
+                                    <i class="fas fa-arrow-down" data-mc-element-id="25597"></i>
+                                    -30%
+                                </div>
+                            </div>
+                            <div class="metric-value" data-mc-element-id="25774">3</div>
+                            <div class="metric-label" data-mc-element-id="25836">Issues Reported</div>
+                        </div>
+                    </section>
+
+                    <!-- Approvals Section -->
+                    <section class="approvals-section" data-mc-element-id="26014">
+                        <div class="section-header" data-mc-element-id="26074">
+                            <h2 class="section-title" data-mc-element-id="26131">Business Review Queue</h2>
+                            <p class="section-subtitle" data-mc-element-id="26212">Review and approve new business submissions</p>
+                            <div class="section-controls" data-mc-element-id="26316">
+                                <span class="control-chip active" data-mc-element-id="26379">All (23)</span>
+                                <span class="control-chip" data-mc-element-id="26461">Restaurants (8)</span>
+                                <span class="control-chip" data-mc-element-id="26543">Services (12)</span>
+                                <span class="control-chip" data-mc-element-id="26623">Retail (3)</span>
+                            </div>
+                        </div>
+                        <div class="business-list" data-mc-element-id="26758">
+                            <div class="business-item" data-mc-element-id="26814">
+                                <div class="business-content" data-mc-element-id="26874">
+                                    <img src="https://storage.googleapis.com/forge-sites/5131c0ec13597883ee96d06fdded6afe6dadb618bd8927ca1e42f623bf1aa9bb.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002324Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=88e9fe9c212b4f0e65303225b70af021ff5bcd88343a8ac554cdd21afe42f348a610798e6866c74da4add0c75cee0798a3bbcdd4e4ac2d2a5f5d5b04d8666e7d829870f595828304e12ed084ccd79973e5e079db56c81eb84de05a1323363e35bb9b5af9aa1f8dc92afc2acb976ba6aeac01220514168170082125f728b67ff3073b0d05f1d59dcb4de0a770d7ac3a5f9dd44256791e7e17a24084e55fd9104cdf09b6b91e64c43e19e881ecb68c132faf227715126b36d22402550b23b6293ce822de57c0a8c27433fadca104e21f5605a25eeacf90cf1821a2cc1b9741580f8b94c2509118d930f6f28692bf0268a9b6096192a15f3834b1cd7c6a789328bf" alt="Rustic artisan cafe with exposed wood beams and vintage coffee equipment" class="business-avatar" data-mc-element-id="26941">
+                                    <div class="business-info" data-mc-element-id="27109">
+                                        <h3 data-mc-element-id="27177">The Roasted Bean</h3>
+                                        <div class="business-tags" data-mc-element-id="27243">
+                                            <span class="business-tag category" data-mc-element-id="27315">Cafe</span>
+                                            <span class="business-tag" data-mc-element-id="27407">Verified Owner</span>
+                                        </div>
+                                        <div class="business-location" data-mc-element-id="27543">348 Coffee Street, Arts District</div>
+                                        <div class="business-time" data-mc-element-id="27653">Submitted 1 hour ago by owner@roastedbean.com</div>
+                                    </div>
+                                    <div class="business-actions" data-mc-element-id="27811">
+                                        <button class="decision-btn approve" data-mc-element-id="27882">Approve</button>
+                                        <button class="decision-btn reject" data-mc-element-id="27976">Reject</button>
+                                        <button class="decision-btn details" data-mc-element-id="28068">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="business-item" data-mc-element-id="28268">
+                                <div class="business-content" data-mc-element-id="28328">
+                                    <img src="https://storage.googleapis.com/forge-sites/8efd9749ad97170203955f0ea23eb5d8b1b895b43eb0fdbf4711304333c0a4a9.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002325Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=3002394d4f267723b52561a56a8a098134aa327096ab197bec1a5ebba1ced4436c01aaef1fbc0a4964e568da064826223a4fe5f8a5da71748d6e1f7c291b1d17c016642c8ca2fd5600000d41df4db0af7ec4ad91755a98d08e0296dc27e3d2301d00cdefd70df8f9b52eae24a8ef2e538e78862c1c00b7136b4ac1629983c508fc97b1466c2bcfe549b106d50def57444a6a08f5622e470c25c9ab62c8f10a37386f2bdc3cb1085b51358d80b87ec34095b42e570ba0779d27fce2b14f2bab4f8608a32c294521582335a167ad89feeaa552e4325aac9286da93d1a8ab989bf281825fa9b9314f3a23598d84d4fc5af2b48143f74be46138c31377999bcbd31b" alt="Clean modern dental office with state-of-the-art equipment and comfortable patient areas" class="business-avatar" data-mc-element-id="28395">
+                                    <div class="business-info" data-mc-element-id="28581">
+                                        <h3 data-mc-element-id="28649">Bright Smile Dental</h3>
+                                        <div class="business-tags" data-mc-element-id="28718">
+                                            <span class="business-tag category" data-mc-element-id="28790">Healthcare</span>
+                                            <span class="business-tag" data-mc-element-id="28888">Licensed</span>
+                                        </div>
+                                        <div class="business-location" data-mc-element-id="29018">1567 Medical Plaza, Uptown</div>
+                                        <div class="business-time" data-mc-element-id="29122">Submitted 3 hours ago by dr.smith@brightsmile.com</div>
+                                    </div>
+                                    <div class="business-actions" data-mc-element-id="29284">
+                                        <button class="decision-btn approve" data-mc-element-id="29355">Approve</button>
+                                        <button class="decision-btn reject" data-mc-element-id="29449">Reject</button>
+                                        <button class="decision-btn details" data-mc-element-id="29541">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="business-item" data-mc-element-id="29741">
+                                <div class="business-content" data-mc-element-id="29801">
+                                    <img src="https://storage.googleapis.com/forge-sites/4e8ba3a4253f365cd216a3e48155853f11af3073bd14bd7b01a6e236103f8e50.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002325Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=12d54e8693741ad4dc1987980c975ef73895d641dc03b5f3acc6ce1f551f8b63d93c9a7296c24e6363ec6e70149ee150d5ffc00f4d8ce83742c57bf50618ffde4aae80b4333f6001ea72c957e4142fcf978649ce6e32581dc3d624e9efc43ea55a2da66724079e683f0d578205bf4823b022fb208a7c98887c900dfd7a18e4bdfa3377cb8f2bfefb776bd4b622bf3b1a101992ea00ff904b900aa2d3625bef4656a01027a1c8ab6187ccbe56910474123823f034fcfd7d05017b59941394c21d449193d3d51c55fd5a038a2091b150bbdb536a1d7fa6fa5a4296028ce045088297c4708047aa1d71b1fc7ca21c6b8a6cb9bb2343f93e33b3d2ddfad1778e2d97" alt="Trendy boutique clothing store with curated fashion displays and modern interior design" class="business-avatar" data-mc-element-id="29868">
+                                    <div class="business-info" data-mc-element-id="30052">
+                                        <h3 data-mc-element-id="30120">Style &amp; Grace Boutique</h3>
+                                        <div class="business-tags" data-mc-element-id="30192">
+                                            <span class="business-tag category" data-mc-element-id="30264">Fashion</span>
+                                            <span class="business-tag" data-mc-element-id="30359">New Business</span>
+                                        </div>
+                                        <div class="business-location" data-mc-element-id="30493">789 Fashion Avenue, Shopping District</div>
+                                        <div class="business-time" data-mc-element-id="30608">Submitted 5 hours ago by info@styleandgrace.com</div>
+                                    </div>
+                                    <div class="business-actions" data-mc-element-id="30768">
+                                        <button class="decision-btn approve" data-mc-element-id="30839">Approve</button>
+                                        <button class="decision-btn reject" data-mc-element-id="30933">Reject</button>
+                                        <button class="decision-btn details" data-mc-element-id="31025">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="business-item" data-mc-element-id="31225">
+                                <div class="business-content" data-mc-element-id="31285">
+                                    <img src="https://storage.googleapis.com/forge-sites/5bb868d742a79352a87107b7b34eedcd11bdc0dedeaa1dfc15d0e3a9b4d30258.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002325Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=5623768355653c45b3f33027c4e59994824380c1e1a3e015b6e1e627705af60b4f08c6381f591fd01a63d3f3f737fb4cd0e30115f7047cad59d8f81b96519c9468b01b2649b6a4649c7119e4fbbc36d11627ee8adbbb049f95832ad210e3085bac82cd5e18f07f13e15cb2c55eaf0e2597989260bed53615e1891c3ca565f37e3d6add07170b4038122bd1170b822797dc38979f91ba677a03856576f8fd96a4863fe8f4162d2626c2bd7a9b8b0bd0a7707cb2a0e7cbdcf22ed02c357c6cf25371a38759c0d651b24fd4e4e7d1cd02a2527d9b2a1ac0be54f19e54cc6a53a08594bcd4d534c5584595c4c3f98d8bc40b09301af5fe40e08d2e86c5b66400ec1e" alt="Professional home repair service truck and equipment showcasing quality workmanship" class="business-avatar" data-mc-element-id="31352">
+                                    <div class="business-info" data-mc-element-id="31532">
+                                        <h3 data-mc-element-id="31600">Pro Home Solutions</h3>
+                                        <div class="business-tags" data-mc-element-id="31668">
+                                            <span class="business-tag category" data-mc-element-id="31740">Home Services</span>
+                                            <span class="business-tag" data-mc-element-id="31841">Insured</span>
+                                        </div>
+                                        <div class="business-location" data-mc-element-id="31970">Service Area: Metro Region</div>
+                                        <div class="business-time" data-mc-element-id="32074">Submitted 6 hours ago by contact@prohomesolutions.com</div>
+                                    </div>
+                                    <div class="business-actions" data-mc-element-id="32240">
+                                        <button class="decision-btn approve" data-mc-element-id="32311">Approve</button>
+                                        <button class="decision-btn reject" data-mc-element-id="32405">Reject</button>
+                                        <button class="decision-btn details" data-mc-element-id="32497">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="business-item" data-mc-element-id="32697">
+                                <div class="business-content" data-mc-element-id="32757">
+                                    <img src="https://storage.googleapis.com/forge-sites/ae7ab0abbbd00d2873e127f35c02a9a1b15ece949172bc64c76d07f20ab76582.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T002325Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b99abb413324473bc701ae65bd31206d78e150c05935611dfff60e050fde1d0c9189d44f0cfc40ea431037c45fd1c620906cf9b6cc834820ac56879f1da902aa048096eb5d5612eb69518257fe6c2498122f573a32e25197388ee683ca4f34bd5ee4d745f4f3139044b429ee5844c0a4c90b618b754de216aefbe8d06a48ca27b0d67c89b406de6254810b41c1468c887d9fbebc6e6ece295feea520e5ec6026b73a323e2998956f9b7c4e32353b53733cba24e89fc2d1997c8f9ca7a73b211d69d9d6e219b5099218b08886c04c13aac1844357bac99d077146ea8773d9919c40de4c29678900f2d31a17912f74c5404b6cfa095d0ef4585fced0523d79b2e4" alt="Fresh organic produce market with colorful displays of locally sourced fruits and vegetables" class="business-avatar" data-mc-element-id="32824">
+                                    <div class="business-info" data-mc-element-id="33014">
+                                        <h3 data-mc-element-id="33082">Green Valley Market</h3>
+                                        <div class="business-tags" data-mc-element-id="33151">
+                                            <span class="business-tag category" data-mc-element-id="33223">Grocery</span>
+                                            <span class="business-tag" data-mc-element-id="33318">Organic Certified</span>
+                                        </div>
+                                        <div class="business-location" data-mc-element-id="33457">892 Green Street, Eco District</div>
+                                        <div class="business-time" data-mc-element-id="33565">Submitted 8 hours ago by hello@greenvalleymarket.com</div>
+                                    </div>
+                                    <div class="business-actions" data-mc-element-id="33730">
+                                        <button class="decision-btn approve" data-mc-element-id="33801">Approve</button>
+                                        <button class="decision-btn reject" data-mc-element-id="33895">Reject</button>
+                                        <button class="decision-btn details" data-mc-element-id="33987">Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sidebar Panel -->
+                    <aside class="sidebar-panel" data-mc-element-id="34284">
+                        <!-- Activity Feed -->
+                        <div class="panel-card" data-mc-element-id="34385">
+                            <div class="panel-header" data-mc-element-id="34438">
+                                <h3 class="panel-title" data-mc-element-id="34497">Recent Activity</h3>
+                            </div>
+                            <div class="activity-list" data-mc-element-id="34605">
+                                <div class="activity-item" data-mc-element-id="34665">
+                                    <div class="activity-dot success" data-mc-element-id="34729">
+                                        <i class="fas fa-check" data-mc-element-id="34804"></i>
+                                    </div>
+                                    <div class="activity-content" data-mc-element-id="34912">
+                                        <div class="activity-text" data-mc-element-id="34983">Approved "Ocean View Restaurant"</div>
+                                        <div class="activity-meta" data-mc-element-id="35089">5 minutes ago • By Admin</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item" data-mc-element-id="35261">
+                                    <div class="activity-dot info" data-mc-element-id="35325">
+                                        <i class="fas fa-user" data-mc-element-id="35397"></i>
+                                    </div>
+                                    <div class="activity-content" data-mc-element-id="35504">
+                                        <div class="activity-text" data-mc-element-id="35575">New owner account created</div>
+                                        <div class="activity-meta" data-mc-element-id="35674">18 minutes ago • jenny@localcafe.com</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item" data-mc-element-id="35858">
+                                    <div class="activity-dot warning" data-mc-element-id="35922">
+                                        <i class="fas fa-edit" data-mc-element-id="35997"></i>
+                                    </div>
+                                    <div class="activity-content" data-mc-element-id="36104">
+                                        <div class="activity-text" data-mc-element-id="36175">Business hours updated</div>
+                                        <div class="activity-meta" data-mc-element-id="36271">32 minutes ago • Metro Pharmacy</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item" data-mc-element-id="36450">
+                                    <div class="activity-dot success" data-mc-element-id="36514">
+                                        <i class="fas fa-check" data-mc-element-id="36589"></i>
+                                    </div>
+                                    <div class="activity-content" data-mc-element-id="36697">
+                                        <div class="activity-text" data-mc-element-id="36768">Approved "Tech Repair Plus"</div>
+                                        <div class="activity-meta" data-mc-element-id="36869">1 hour ago • By Admin</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item" data-mc-element-id="37038">
+                                    <div class="activity-dot info" data-mc-element-id="37102">
+                                        <i class="fas fa-star" data-mc-element-id="37174"></i>
+                                    </div>
+                                    <div class="activity-content" data-mc-element-id="37281">
+                                        <div class="activity-text" data-mc-element-id="37352">New review posted</div>
+                                        <div class="activity-meta" data-mc-element-id="37443">2 hours ago • Downtown Deli</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Status -->
+                        <div class="panel-card" data-mc-element-id="37724">
+                            <div class="panel-header" data-mc-element-id="37777">
+                                <h3 class="panel-title" data-mc-element-id="37836">System Health</h3>
+                            </div>
+                            <div class="status-list" data-mc-element-id="37942">
+                                <div class="status-item online" data-mc-element-id="38000">
+                                    <div class="status-info" data-mc-element-id="38069">
+                                        <div class="status-indicator" data-mc-element-id="38135"></div>
+                                        <span class="status-name" data-mc-element-id="38212">Database</span>
+                                    </div>
+                                    <span class="status-badge" data-mc-element-id="38333">Online</span>
+                                </div>
+                                <div class="status-item online" data-mc-element-id="38445">
+                                    <div class="status-info" data-mc-element-id="38514">
+                                        <div class="status-indicator" data-mc-element-id="38580"></div>
+                                        <span class="status-name" data-mc-element-id="38657">Maps API</span>
+                                    </div>
+                                    <span class="status-badge" data-mc-element-id="38778">Active</span>
+                                </div>
+                                <div class="status-item online" data-mc-element-id="38890">
+                                    <div class="status-info" data-mc-element-id="38959">
+                                        <div class="status-indicator" data-mc-element-id="39025"></div>
+                                        <span class="status-name" data-mc-element-id="39102">Email Service</span>
+                                    </div>
+                                    <span class="status-badge" data-mc-element-id="39228">Running</span>
+                                </div>
+                                <div class="status-item warning" data-mc-element-id="39341">
+                                    <div class="status-info" data-mc-element-id="39411">
+                                        <div class="status-indicator" data-mc-element-id="39477"></div>
+                                        <span class="status-name" data-mc-element-id="39554">Search Index</span>
+                                    </div>
+                                    <span class="status-badge" data-mc-element-id="39679">Updating</span>
+                                </div>
+                                <div class="status-item online" data-mc-element-id="39793">
+                                    <div class="status-info" data-mc-element-id="39862">
+                                        <div class="status-indicator" data-mc-element-id="39928"></div>
+                                        <span class="status-name" data-mc-element-id="40005">CDN</span>
+                                    </div>
+                                    <span class="status-badge" data-mc-element-id="40121">Optimal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<script>__MC_SITE_ID__ = "5610ea8f0988bb6d6beffdf39113e2dc6375ddd6f6c03237c2731eb4b72e8b2c"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

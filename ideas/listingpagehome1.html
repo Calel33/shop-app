@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Neighborhood - Local Business Discovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #fefefe;
+        }
+
+        .container {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 0 36px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #ec4899;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 15px;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #ec4899;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ec4899, #f97316);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-outline:hover {
+            background: #fef2f2;
+            color: #ec4899;
+            border-color: #ec4899;
+            transform: translateY(-1px);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            color: white;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.35);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fef7ff 0%, #fdf2f8 30%, #fff7ed 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 32px;
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
+
+        .hero-badge i {
+            color: #ec4899;
+            font-size: 14px;
+        }
+
+        .hero-badge span {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-wrapper {
+            background: white;
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 12px;
+            max-width: 700px;
+            margin: 0 auto 48px;
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
+
+        .search-input-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            padding: 16px 16px 16px 48px;
+            font-size: 16px;
+            outline: none;
+            border-radius: 16px;
+            background: #f9fafb;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            background: white;
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+
+        .search-button {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            min-width: 140px;
+        }
+
+        .search-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.35);
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-xl {
+            padding: 18px 36px;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #374151;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Community Stats */
+        .community-stats {
+            background: white;
+            padding: 60px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 80px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .community-badge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, #fef7ff, #fdf2f8);
+            padding: 20px 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(236, 72, 153, 0.1);
+        }
+
+        .badge-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .badge-text h4 {
+            color: #111827;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .badge-text p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 100px 0;
+            background: #fafafa;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 44px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .category-tile {
+            background: white;
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid #f3f4f6;
+        }
+
+        .category-tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.02), rgba(249, 115, 22, 0.02));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-tile:hover::before {
+            opacity: 1;
+        }
+
+        .category-tile:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(236, 72, 153, 0.2);
+        }
+
+        .category-tile.featured {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .category-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .category-symbol {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #fef7ff, #fdf2f8);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #ec4899;
+            border: 2px solid rgba(236, 72, 153, 0.1);
+        }
+
+        .category-details h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .category-badge {
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category-description {
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .category-action {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ec4899;
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .category-tile:hover .category-action {
+            gap: 16px;
+        }
+
+        .category-visual {
+            height: 200px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Discovery Section */
+        .discovery {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discovery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(249, 115, 22, 0.1));
+            transform: skewX(-15deg);
+            transform-origin: top right;
+        }
+
+        .discovery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .discovery-content h2 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .discovery-content p {
+            font-size: 18px;
+            color: #d1d5db;
+            margin-bottom: 40px;
+        }
+
+        .discovery-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .discovery-features li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .feature-bullet {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .discovery-visual {
+            position: relative;
+        }
+
+        .map-container {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .map-display {
+            height: 400px;
+            background: #f9fafb;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(236, 72, 153, 0.9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: #d1d5db;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: #374151;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #ec4899, #f97316);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #f9fafb;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 16px;
+        }
+
+        .footer-column a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-column a:hover {
+            color: #ec4899;
+        }
+
+        .footer-base {
+            border-top: 1px solid #374151;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #9ca3af;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .footer-legal a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: #ec4899;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" data-mc-element-id="18704">
+        <div class="container" data-mc-element-id="18736">
+            <nav class="nav" data-mc-element-id="18772">
+                <a href="#" class="logo" data-mc-element-id="18806">
+                    <div class="logo-icon" data-mc-element-id="18852">
+                        <i class="fas fa-location-dot" data-mc-element-id="18900"></i>
+                    </div>
+                    Neighborhood
+                </a>
+                
+                <ul class="nav-menu" data-mc-element-id="19050">
+                    <li data-mc-element-id="19092"><a href="#" data-mc-element-id="19096">Explore</a></li>
+                    <li data-mc-element-id="19145"><a href="#" data-mc-element-id="19149">Categories</a></li>
+                    <li data-mc-element-id="19201"><a href="#" data-mc-element-id="19205">Map</a></li>
+                    <li data-mc-element-id="19250"><a href="#" data-mc-element-id="19254">Community</a></li>
+                    <li data-mc-element-id="19305"><a href="#" data-mc-element-id="19309">Support</a></li>
+                </ul>
+                
+                <div class="nav-actions" data-mc-element-id="19393">
+                    <a href="#" class="btn btn-outline" data-mc-element-id="19439">Login</a>
+                    <a href="#" class="btn btn-gradient" data-mc-element-id="19505">Join Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" data-mc-element-id="19657">
+        <div class="container" data-mc-element-id="19688">
+            <div class="hero-content" data-mc-element-id="19724">
+                <div class="hero-badge" data-mc-element-id="19767">
+                    <i class="fas fa-sparkles" data-mc-element-id="19812"></i>
+                    <span data-mc-element-id="19864">2,400+ verified local businesses</span>
+                </div>
+                
+                <h1 data-mc-element-id="19966">Your <span class="gradient-text" data-mc-element-id="19975">Neighborhood</span><br data-mc-element-id="20022">Awaits Discovery</h1>
+                <p data-mc-element-id="20064">Find amazing local businesses, connect with your community, and discover hidden gems right around the corner. Every neighborhood has a story.</p>
+                
+                <div class="search-wrapper" data-mc-element-id="20246">
+                    <div class="search-input-group" data-mc-element-id="20295">
+                        <i class="fas fa-search search-icon" data-mc-element-id="20352"></i>
+                        <input type="text" class="search-input" placeholder="What are you looking for?" data-mc-element-id="20418">
+                    </div>
+                    <div class="search-input-group" data-mc-element-id="20546">
+                        <i class="fas fa-map-marker-alt search-icon" data-mc-element-id="20603"></i>
+                        <input type="text" class="search-input" placeholder="Your location" data-mc-element-id="20677">
+                    </div>
+                    <button class="search-button" data-mc-element-id="20793">
+                        Discover
+                    </button>
+                </div>
+                
+                <div class="hero-cta" data-mc-element-id="20943">
+                    <a href="#" class="btn btn-gradient btn-xl" data-mc-element-id="20986">
+                        <i class="fas fa-compass" data-mc-element-id="21055"></i>
+                        Browse Businesses
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-xl" data-mc-element-id="21173">
+                        <i class="fas fa-plus-circle" data-mc-element-id="21243"></i>
+                        Add My Business
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Stats -->
+    <section class="community-stats" data-mc-element-id="21449">
+        <div class="container" data-mc-element-id="21491">
+            <div class="stats-container" data-mc-element-id="21527">
+                <div class="stats-group" data-mc-element-id="21573">
+                    <div class="stat-item" data-mc-element-id="21619">
+                        <span class="stat-number" data-mc-element-id="21667">2,400+</span>
+                        <span class="stat-label" data-mc-element-id="21731">Local Businesses</span>
+                    </div>
+                    <div class="stat-item" data-mc-element-id="21827">
+                        <span class="stat-number" data-mc-element-id="21875">32,580</span>
+                        <span class="stat-label" data-mc-element-id="21939">Community Members</span>
+                    </div>
+                    <div class="stat-item" data-mc-element-id="22036">
+                        <span class="stat-number" data-mc-element-id="22084">4.8★</span>
+                        <span class="stat-label" data-mc-element-id="22146">Average Rating</span>
+                    </div>
+                </div>
+                
+                <div class="community-badge" data-mc-element-id="22276">
+                    <div class="badge-icon" data-mc-element-id="22326">
+                        <i class="fas fa-award" data-mc-element-id="22375"></i>
+                    </div>
+                    <div class="badge-text" data-mc-element-id="22451">
+                        <h4 data-mc-element-id="22500">Trusted Community</h4>
+                        <p data-mc-element-id="22551">Verified reviews &amp; listings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" data-mc-element-id="22722">
+        <div class="container" data-mc-element-id="22759">
+            <div class="section-title" data-mc-element-id="22795">
+                <h2 data-mc-element-id="22839">Discover by Category</h2>
+                <p data-mc-element-id="22885">From morning coffee to evening entertainment, find exactly what you're looking for in your neighborhood.</p>
+            </div>
+            
+            <div class="categories-layout" data-mc-element-id="23041">
+                <div class="category-tile featured" data-mc-element-id="23089">
+                    <div data-mc-element-id="23146">
+                        <div class="category-meta" data-mc-element-id="23176">
+                            <div class="category-symbol" data-mc-element-id="23232">
+                                <i class="fas fa-utensils" data-mc-element-id="23294"></i>
+                            </div>
+                            <div class="category-details" data-mc-element-id="23389">
+                                <h3 data-mc-element-id="23452">Food &amp; Dining</h3>
+                                <span class="category-badge" data-mc-element-id="23507">Most Popular</span>
+                            </div>
+                        </div>
+                        <p class="category-description" data-mc-element-id="23646">Discover local restaurants, cafes, food trucks, and culinary experiences that make your neighborhood delicious.</p>
+                        <a href="#" class="category-action" data-mc-element-id="23818">
+                            Browse 524 restaurants <i class="fas fa-arrow-right" data-mc-element-id="23906"></i>
+                        </a>
+                    </div>
+                    <div class="category-visual" data-mc-element-id="24017">
+                        <img src="https://storage.googleapis.com/forge-sites/7435dfe458a2eb2dd94355f88c50090e9ef0361d8789d95e8beb8c44e0a0dad8.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T234537Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=617df2bea152f2b8c72d30bffa4b8c28033e4a9b2e4f1601ddd69b9cfb76238282c32fc81d4b71b2ce07979ba8fcb5c8bbb0cae47cd7207be2df3a6b456286ff3af45647a9afe594bf28129412d92e11cc5e0e7d2f68c17c7f66995b046c34bcf810c0ff944fcf23432195c4e7182020bb72ac63fec4ea6f48e8d226af3d9ae5614180ee40188bf34f7e3867e247f19c6dd4638d6d6f52a4f456fc2a72a1c4503964e1c9acfe011476d703a00b221bd7621247f6bfb4cf997ca058af1a08bd86f2ffde4652bcf72d98e95c72d4169e6c447fc64b3c78228149b0121a566930760fc69d3a1803ee13ccd96da9712789fbf2e09939f4b83f7e8e2d22023457437d" alt="Collage of diverse local restaurants showing cozy cafe interiors, outdoor dining, and various cuisines representing the neighborhood food scene" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;" data-mc-element-id="24071">
+                    </div>
+                </div>
+                
+                <div class="category-tile" data-mc-element-id="24413">
+                    <div class="category-meta" data-mc-element-id="24461">
+                        <div class="category-symbol" data-mc-element-id="24513">
+                            <i class="fas fa-store" data-mc-element-id="24571"></i>
+                        </div>
+                        <div class="category-details" data-mc-element-id="24655">
+                            <h3 data-mc-element-id="24714">Retail &amp; Shopping</h3>
+                            <span class="category-badge" data-mc-element-id="24769">298 stores</span>
+                        </div>
+                    </div>
+                    <p class="category-description" data-mc-element-id="24894">Unique boutiques, specialty stores, and local shops for all your shopping needs.</p>
+                    <a href="#" class="category-action" data-mc-element-id="25031">
+                        Explore shops <i class="fas fa-arrow-right" data-mc-element-id="25106"></i>
+                    </a>
+                </div>
+                
+                <div class="category-tile" data-mc-element-id="25222">
+                    <div class="category-meta" data-mc-element-id="25270">
+                        <div class="category-symbol" data-mc-element-id="25322">
+                            <i class="fas fa-user-tie" data-mc-element-id="25380"></i>
+                        </div>
+                        <div class="category-details" data-mc-element-id="25467">
+                            <h3 data-mc-element-id="25526">Professional Services</h3>
+                            <span class="category-badge" data-mc-element-id="25585">412 providers</span>
+                        </div>
+                    </div>
+                    <p class="category-description" data-mc-element-id="25713">Trusted local professionals for legal, financial, consulting, and business services.</p>
+                    <a href="#" class="category-action" data-mc-element-id="25854">
+                        Find professionals <i class="fas fa-arrow-right" data-mc-element-id="25934"></i>
+                    </a>
+                </div>
+                
+                <div class="category-tile" data-mc-element-id="26050">
+                    <div class="category-meta" data-mc-element-id="26098">
+                        <div class="category-symbol" data-mc-element-id="26150">
+                            <i class="fas fa-heart" data-mc-element-id="26208"></i>
+                        </div>
+                        <div class="category-details" data-mc-element-id="26292">
+                            <h3 data-mc-element-id="26351">Health &amp; Beauty</h3>
+                            <span class="category-badge" data-mc-element-id="26404">186 services</span>
+                        </div>
+                    </div>
+                    <p class="category-description" data-mc-element-id="26531">Wellness centers, spas, salons, and healthcare providers for your wellbeing.</p>
+                    <a href="#" class="category-action" data-mc-element-id="26664">
+                        Book appointments <i class="fas fa-arrow-right" data-mc-element-id="26743"></i>
+                    </a>
+                </div>
+                
+                <div class="category-tile" data-mc-element-id="26859">
+                    <div class="category-meta" data-mc-element-id="26907">
+                        <div class="category-symbol" data-mc-element-id="26959">
+                            <i class="fas fa-hammer" data-mc-element-id="27017"></i>
+                        </div>
+                        <div class="category-details" data-mc-element-id="27102">
+                            <h3 data-mc-element-id="27161">Home Services</h3>
+                            <span class="category-badge" data-mc-element-id="27212">234 contractors</span>
+                        </div>
+                    </div>
+                    <p class="category-description" data-mc-element-id="27342">Contractors, repairs, maintenance, and home improvement specialists.</p>
+                    <a href="#" class="category-action" data-mc-element-id="27467">
+                        Get quotes <i class="fas fa-arrow-right" data-mc-element-id="27539"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discovery Section -->
+    <section class="discovery" data-mc-element-id="27707">
+        <div class="container" data-mc-element-id="27743">
+            <div class="discovery-grid" data-mc-element-id="27779">
+                <div class="discovery-content" data-mc-element-id="27824">
+                    <h2 data-mc-element-id="27876">Explore Your Area Like Never Before</h2>
+                    <p data-mc-element-id="27941">Our interactive map and smart discovery tools help you uncover the best your neighborhood has to offer, with real-time information and community insights.</p>
+                    
+                    <ul class="discovery-features" data-mc-element-id="28144">
+                        <li data-mc-element-id="28200">
+                            <div class="feature-bullet" data-mc-element-id="28233">
+                                <i class="fas fa-map" data-mc-element-id="28294"></i>
+                            </div>
+                            Interactive neighborhood mapping
+                        </li>
+                        <li data-mc-element-id="28471">
+                            <div class="feature-bullet" data-mc-element-id="28504">
+                                <i class="fas fa-clock" data-mc-element-id="28565"></i>
+                            </div>
+                            Real-time hours and availability
+                        </li>
+                        <li data-mc-element-id="28744">
+                            <div class="feature-bullet" data-mc-element-id="28777">
+                                <i class="fas fa-star" data-mc-element-id="28838"></i>
+                            </div>
+                            Community reviews and ratings
+                        </li>
+                        <li data-mc-element-id="29013">
+                            <div class="feature-bullet" data-mc-element-id="29046">
+                                <i class="fas fa-route" data-mc-element-id="29107"></i>
+                            </div>
+                            Smart directions and transit info
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-gradient btn-xl" data-mc-element-id="29330">
+                        <i class="fas fa-rocket" data-mc-element-id="29399"></i>
+                        Launch Explorer
+                    </a>
+                </div>
+                
+                <div class="discovery-visual" data-mc-element-id="29550">
+                    <div class="map-container" data-mc-element-id="29601">
+                        <div class="map-display" data-mc-element-id="29653">
+                            <img src="https://storage.googleapis.com/forge-sites/2c4fccc153a58ae22bea0d180669d658e8a2c8e20a5c15b47b72117ded3fa398.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T234537Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=56e392a80278a39c0c40a7dd67cbe12767deec52ceee85ade8a2fcbf0a93a7708dee0e72a4b7a983eb1ccba41415aed45708dd9bbeed3c01ce18f5f5476ea222791465fd95621b61a06c103bd01e8099f62daf3e192224e2879719a1627339a95dc7d043734140e22d0cf9a43a16957cd24c89c298feee059c84fad9d3f7c8a396d9aa93eb7a7723c83d7683bd7e912e1e7b7fc5d682adbf27b2d6d9dd01737f4e8033d48d11a7c48f68fed26a1faca2e0f3d65eaaf9f7933734a9059a926c0ae78e0561d6f10853fe2f467efb5f49e8968dd0d065f8ecf4c86aa4dc9d4571a93c6c50144e9c1e791393d5210b2092ba720dc83fbed506c05f3cd99412d15d4a" alt="Interactive neighborhood map interface showing various business locations with colorful pins, street view integration, and real-time business information overlays" style="width: 100%; height: 100%; object-fit: cover;" data-mc-element-id="29707">
+                            <div class="map-indicator" data-mc-element-id="30000">
+                                <i class="fas fa-users" data-mc-element-id="30060"></i> 1.2k nearby
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" data-mc-element-id="30291">
+        <div class="container" data-mc-element-id="30323">
+            <div class="footer-grid" data-mc-element-id="30359">
+                <div class="footer-brand" data-mc-element-id="30401">
+                    <h3 data-mc-element-id="30448">Neighborhood</h3>
+                    <p data-mc-element-id="30490">Connecting communities through local discovery. We believe every neighborhood has unique stories, amazing businesses, and incredible people worth discovering.</p>
+                    <div class="social-row" data-mc-element-id="30676">
+                        <a href="#" class="social-link" data-mc-element-id="30725"><i class="fab fa-facebook-f" data-mc-element-id="30757"></i></a>
+                        <a href="#" class="social-link" data-mc-element-id="30819"><i class="fab fa-twitter" data-mc-element-id="30851"></i></a>
+                        <a href="#" class="social-link" data-mc-element-id="30910"><i class="fab fa-instagram" data-mc-element-id="30942"></i></a>
+                        <a href="#" class="social-link" data-mc-element-id="31003"><i class="fab fa-youtube" data-mc-element-id="31035"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column" data-mc-element-id="31153">
+                    <h4 data-mc-element-id="31201">Discovery</h4>
+                    <ul data-mc-element-id="31240">
+                        <li data-mc-element-id="31269"><a href="#" data-mc-element-id="31273">Browse Businesses</a></li>
+                        <li data-mc-element-id="31336"><a href="#" data-mc-element-id="31340">Category Search</a></li>
+                        <li data-mc-element-id="31401"><a href="#" data-mc-element-id="31405">Map Explorer</a></li>
+                        <li data-mc-element-id="31463"><a href="#" data-mc-element-id="31467">Trending Places</a></li>
+                        <li data-mc-element-id="31528"><a href="#" data-mc-element-id="31532">New Listings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column" data-mc-element-id="31648">
+                    <h4 data-mc-element-id="31696">Business Owners</h4>
+                    <ul data-mc-element-id="31741">
+                        <li data-mc-element-id="31770"><a href="#" data-mc-element-id="31774">List Your Business</a></li>
+                        <li data-mc-element-id="31838"><a href="#" data-mc-element-id="31842">Business Dashboard</a></li>
+                        <li data-mc-element-id="31906"><a href="#" data-mc-element-id="31910">Marketing Tools</a></li>
+                        <li data-mc-element-id="31971"><a href="#" data-mc-element-id="31975">Analytics</a></li>
+                        <li data-mc-element-id="32030"><a href="#" data-mc-element-id="32034">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column" data-mc-element-id="32145">
+                    <h4 data-mc-element-id="32193">Community</h4>
+                    <ul data-mc-element-id="32232">
+                        <li data-mc-element-id="32261"><a href="#" data-mc-element-id="32265">About Us</a></li>
+                        <li data-mc-element-id="32319"><a href="#" data-mc-element-id="32323">Blog</a></li>
+                        <li data-mc-element-id="32373"><a href="#" data-mc-element-id="32377">Events</a></li>
+                        <li data-mc-element-id="32429"><a href="#" data-mc-element-id="32433">Contact</a></li>
+                        <li data-mc-element-id="32486"><a href="#" data-mc-element-id="32490">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-base" data-mc-element-id="32612">
+                <p data-mc-element-id="32654">© 2024 Neighborhood. Building stronger communities.</p>
+                <ul class="footer-legal" data-mc-element-id="32734">
+                    <li data-mc-element-id="32780"><a href="#" data-mc-element-id="32784">Privacy</a></li>
+                    <li data-mc-element-id="32833"><a href="#" data-mc-element-id="32837">Terms</a></li>
+                    <li data-mc-element-id="32884"><a href="#" data-mc-element-id="32888">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+<script>__MC_SITE_ID__ = "622b374fff4fc193ea01645c29c74d6ffd9557c83dba194d6fa9b2a9992ff931"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

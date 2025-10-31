@@ -1,0 +1,1639 @@
+<html lang="en" class="h-full"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forma — Interior Design Excellence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer="" src="https://unpkg.com/lucide@latest"></script>
+<style>
+html { scroll-behavior: smooth; }
+.parallax-element { will-change: transform; }
+.section-nav-indicator { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.glass-morphism { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.text-balance { text-wrap: balance; }
+/* Advanced Animation Classes */
+.fade-in-up {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in-up.animate {
+opacity: 1;
+transform: translateY(0);
+}
+.fade-in-left {
+opacity: 0;
+transform: translateX(-40px);
+transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in-left.animate {
+opacity: 1;
+transform: translateX(0);
+}
+.fade-in-right {
+opacity: 0;
+transform: translateX(40px);
+transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in-right.animate {
+opacity: 1;
+transform: translateX(0);
+}
+.scale-in {
+opacity: 0;
+transform: scale(0.8);
+transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scale-in.animate {
+opacity: 1;
+transform: scale(1);
+}
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+/* Counter Animation */
+@keyframes countUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.counter-animate {
+animation: countUp 0.8s ease-out;
+}
+</style></head>
+  <body class="h-full bg-white text-gray-900 antialiased overflow-x-hidden" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial;">
+
+    <!-- Fixed Navigation with Section Indicators -->
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out">
+      <div class="absolute inset-0 glass-morphism bg-white/80 border-b border-gray-200/50"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Brand -->
+          <a href="#hero" class="flex items-center gap-3 group z-10">
+            <div class="w-9 h-9 rounded-xl bg-gray-900 text-white grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200">
+              <span class="text-sm font-bold tracking-tighter">F</span>
+            </div>
+            <span class="text-xl font-semibold tracking-tight">Forma</span>
+          </a>
+
+          <!-- Section Navigation -->
+          <nav class="hidden lg:flex items-center">
+            <div class="flex items-center gap-1 bg-gray-100/80 rounded-full p-1.5 glass-morphism">
+              <a href="#hero" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="hero">
+                <span class="relative z-10">Home</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+              <a href="#about" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="about">
+                <span class="relative z-10">About</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+              <a href="#expertise" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="expertise">
+                <span class="relative z-10">Services</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+              <a href="#portfolio" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="portfolio">
+                <span class="relative z-10">Portfolio</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+              <a href="#testimonials" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="testimonials">
+                <span class="relative z-10">Reviews</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+              <a href="#contact" class="section-nav px-4 py-2 rounded-full text-sm font-medium transition-all relative overflow-hidden group" data-section="contact">
+                <span class="relative z-10">Contact</span>
+                <div class="absolute inset-0 bg-white shadow-sm rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+              </a>
+            </div>
+          </nav>
+
+          <!-- CTA -->
+          <div class="flex items-center gap-3">
+            <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-900 text-white font-medium text-sm hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4"></i>
+              <span>Book Consultation</span>
+            </a>
+            <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 lg:hidden transform translate-x-full transition-transform duration-300">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div class="absolute right-0 top-0 h-full w-80 bg-white shadow-2xl">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-gray-900 text-white grid place-items-center">
+                <span class="text-sm font-bold tracking-tighter">F</span>
+              </div>
+              <span class="text-xl font-semibold">Forma</span>
+            </div>
+            <button id="closeMobileMenu" class="p-2 rounded-xl hover:bg-gray-100">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+          
+          <nav class="space-y-2">
+            <a href="#hero" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="home" class="w-5 h-5 text-gray-500"></i>
+              Home
+            </a>
+            <a href="#about" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="users" class="w-5 h-5 text-gray-500"></i>
+              About
+            </a>
+            <a href="#expertise" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="compass" class="w-5 h-5 text-gray-500"></i>
+              Services
+            </a>
+            <a href="#portfolio" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="grid-3x3" class="w-5 h-5 text-gray-500"></i>
+              Portfolio
+            </a>
+            <a href="#testimonials" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="star" class="w-5 h-5 text-gray-500"></i>
+              Reviews
+            </a>
+            <a href="#contact" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 font-medium transition-colors">
+              <i data-lucide="mail" class="w-5 h-5 text-gray-500"></i>
+              Contact
+            </a>
+          </nav>
+
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <a href="#contact" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-900 text-white font-medium">
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+              Book Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="relative">
+      <!-- Hero Section with Enhanced Parallax -->
+      <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Advanced Parallax Background Layers -->
+        <div class="absolute inset-0">
+          <!-- Base Layer -->
+          <div id="heroBase" class="parallax-element absolute inset-0 scale-110">
+            <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/aabac76d-ac03-47b1-be1c-fca16fa43e96_3840w.jpg" alt="Luxury interior design" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"></div>
+          </div>
+          
+          <!-- Dynamic Floating Elements -->
+          <div id="heroFloat" class="parallax-element absolute inset-0">
+            <div class="absolute top-20 right-20 w-32 h-32 rounded-3xl bg-white/10 glass-morphism border border-white/20 hidden lg:block transform rotate-12"></div>
+            <div class="absolute bottom-40 left-20 w-24 h-24 rounded-2xl bg-white/5 glass-morphism border border-white/10 hidden lg:block transform -rotate-6"></div>
+            <div class="absolute top-1/3 left-1/4 w-3 h-3 rounded-full bg-white/60 hidden lg:block animate-pulse"></div>
+            <div class="absolute top-2/3 right-1/3 w-2 h-2 rounded-full bg-white/40 hidden lg:block animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-1 h-1 rounded-full bg-white/30 hidden lg:block animate-pulse" style="animation-delay: 2s;"></div>
+          </div>
+        </div>
+
+        <!-- Enhanced Content with Staggered Animations -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <div class="max-w-4xl mx-auto">
+            <!-- Badge -->
+            <div class="fade-in-up stagger-1 inline-flex items-center gap-2 glass-morphism bg-white/10 border border-white/20 rounded-full px-4 py-2 text-white text-sm font-medium mb-8">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>Award-Winning Interior Design Studio</span>
+            </div>
+            
+            <!-- Main Heading -->
+            <h1 class="fade-in-up stagger-2 text-6xl sm:text-7xl lg:text-8xl font-light tracking-tighter text-white leading-[0.9] mb-8">
+              <span class="block">Redefining</span>
+              <span class="block font-semibold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Interior Excellence</span>
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="fade-in-up stagger-3 text-xl sm:text-2xl text-white/90 font-light leading-relaxed mb-12 max-w-3xl mx-auto text-balance">
+              We craft extraordinary living spaces that seamlessly blend luxury, functionality, and timeless design principles.
+            </p>
+            
+            <!-- CTAs -->
+            <div class="fade-in-up stagger-4 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a href="#portfolio" class="inline-flex items-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1">
+                <span>View Our Work</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+              
+              <button class="inline-flex items-center gap-4 text-white font-medium text-lg group">
+                <div class="w-14 h-14 rounded-full glass-morphism bg-white/20 border border-white/30 grid place-items-center group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                </div>
+                <span class="group-hover:text-white/80 transition-colors">Watch Story</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Enhanced Stats with Counter Animation -->
+        <!-- Counters Dock (moved below CTAs to avoid overlap) -->
+        <div class="fade-in-up stagger-5 mt-10 sm:mt-12">
+          <div class="mx-auto w-full max-w-3xl rounded-2xl border border-white/20 bg-white/10 px-6 py-5 backdrop-blur">
+            <dl class="grid grid-cols-3 divide-x divide-white/15 text-center">
+              <div class="px-3">
+                <dd class="counter counter-animate text-3xl font-light leading-tight text-white" data-target="500">0</dd>
+                <dt class="mt-1 text-xs sm:text-sm text-white/70">Projects Completed</dt>
+              </div>
+              <div class="px-3">
+                <dd class="counter counter-animate text-3xl font-light leading-tight text-white" data-target="15">0</dd>
+                <dt class="mt-1 text-xs sm:text-sm text-white/70">Years Experience</dt>
+              </div>
+              <div class="px-3">
+                <dd class="counter counter-animate text-3xl font-light leading-tight text-white" data-target="98">0</dd>
+                <dt class="mt-1 text-xs sm:text-sm text-white/70">Client Satisfaction</dt>
+              </div>
+            </dl>
+          </div>
+        </div>
+        </div>
+        
+          
+        
+      </section>
+
+      <!-- New About Section -->
+      <section id="about" class="relative py-32 bg-white overflow-hidden">
+        <!-- Parallax Background -->
+        <div id="aboutParallax" class="parallax-element absolute inset-0 opacity-20">
+          <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-50 to-indigo-50 blur-3xl"></div>
+          <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-br from-purple-50 to-pink-50 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Content -->
+            <div>
+              <div class="fade-in-left stagger-1 inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 rounded-full px-4 py-2 text-sm font-medium mb-6">
+                <i data-lucide="users" class="w-4 h-4"></i>
+                <span>About Forma</span>
+              </div>
+              <h2 class="fade-in-left stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+                Crafting Dreams into 
+                <span class="font-semibold text-indigo-600">Living Reality</span>
+              </h2>
+              <p class="fade-in-left stagger-3 text-xl text-gray-600 leading-relaxed mb-8 text-balance">
+                For over 15 years, we've been transforming spaces and lives through exceptional interior design. Our passion lies in creating environments that tell your unique story while embodying the highest standards of luxury and functionality.
+              </p>
+
+              <!-- Feature List -->
+              <div class="space-y-4 mb-8">
+                <div class="fade-in-left stagger-4 flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="award" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Award-Winning Excellence</h4>
+                    <p class="text-gray-600">Multiple design awards and industry recognition</p>
+                  </div>
+                </div>
+
+                <div class="fade-in-left stagger-5 flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Expert Team</h4>
+                    <p class="text-gray-600">Certified designers and skilled craftsmen</p>
+                  </div>
+                </div>
+
+                <div class="fade-in-left stagger-6 flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-green-100 text-green-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="check-circle" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Full-Service Solutions</h4>
+                    <p class="text-gray-600">From concept to completion, we handle everything</p>
+                  </div>
+                </div>
+              </div>
+
+              <a href="#portfolio" class="fade-in-left stagger-6 inline-flex items-center gap-3 bg-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <span>Explore Our Work</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+
+            <!-- Visual Content -->
+            <div class="relative">
+              <div class="fade-in-right stagger-2 relative">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/211d2508-6de8-4442-bc3e-3e8bea65298f_800w.jpg" alt="Interior design team" class="w-full h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl">
+                
+                <!-- Floating Stats Card -->
+                <div class="scale-in stagger-4 absolute -bottom-8 -left-8 bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white grid place-items-center">
+                      <i data-lucide="trending-up" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                      <div class="counter text-2xl font-semibold" data-target="500">0</div>
+                      <div class="text-gray-600 text-sm">Happy Clients</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Floating Badge -->
+                <div class="scale-in stagger-3 absolute -top-4 -right-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl px-6 py-3 shadow-lg">
+                  <div class="flex items-center gap-2">
+                    <i data-lucide="star" class="w-4 h-4"></i>
+                    <span class="font-semibold">5.0 Rating</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Services Section -->
+      <section id="expertise" class="relative py-32 bg-gray-50 overflow-hidden">
+        <!-- Complex Parallax Elements -->
+        <div id="expertiseParallax" class="parallax-element absolute inset-0 opacity-30">
+          <div class="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 blur-3xl"></div>
+          <div class="absolute bottom-20 -left-40 w-80 h-80 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 blur-3xl"></div>
+          <div class="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <div class="fade-in-up stagger-1 inline-flex items-center gap-2 bg-blue-100 text-blue-700 rounded-full px-4 py-2 text-sm font-medium mb-6">
+              <i data-lucide="compass" class="w-4 h-4"></i>
+              <span>Our Services</span>
+            </div>
+            <h2 class="fade-in-up stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+              Excellence in 
+              <span class="font-semibold">Every Detail</span>
+            </h2>
+            <p class="fade-in-up stagger-3 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-balance">
+              From conceptual vision to flawless execution, we deliver bespoke interior solutions that reflect your unique lifestyle and aspirations.
+            </p>
+          </div>
+
+          <!-- Enhanced Services Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="scale-in stagger-1 group">
+              <div class="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="lightbulb" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Concept Development</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  Strategic design planning that transforms your vision into a comprehensive design narrative.
+                </p>
+                
+                <ul class="space-y-2 mb-6 text-sm text-gray-600">
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                    <span>Initial consultation &amp; analysis</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                    <span>Mood boards &amp; concept designs</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                    <span>3D visualization</span>
+                  </li>
+                </ul>
+                
+                <a href="#contact" class="inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all">
+                  <span>Learn More</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 2 - Featured -->
+            <div class="scale-in stagger-2 group lg:-mt-4">
+              <div class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 text-white h-full">
+                <div class="absolute top-6 right-6">
+                  <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+                </div>
+                
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="palette" class="w-8 h-8"></i>
+                </div>
+                
+                <div class="inline-flex items-center gap-1 bg-purple-500/20 text-purple-300 rounded-full px-3 py-1 text-xs font-semibold mb-4">
+                  <i data-lucide="star" class="w-3 h-3"></i>
+                  <span>Most Popular</span>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Complete Transformation</h3>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  Full-service interior design from initial concept through final installation and styling.
+                </p>
+                
+                <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-400"></i>
+                    <span>Space planning &amp; design</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-400"></i>
+                    <span>Custom furniture &amp; fixtures</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-400"></i>
+                    <span>Project management</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-purple-400"></i>
+                    <span>Installation &amp; styling</span>
+                  </li>
+                </ul>
+                
+                <a href="#portfolio" class="inline-flex items-center gap-2 text-purple-400 font-semibold group-hover:gap-3 transition-all">
+                  <span>View Projects</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="scale-in stagger-3 group">
+              <div class="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="home" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Luxury Staging</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  Professional staging services to showcase properties at their absolute best potential.
+                </p>
+                
+                <ul class="space-y-2 mb-6 text-sm text-gray-600">
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                    <span>Property assessment</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                    <span>Furniture &amp; decor rental</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                    <span>Professional photography</span>
+                  </li>
+                </ul>
+                
+                <a href="#contact" class="inline-flex items-center gap-2 text-green-600 font-semibold group-hover:gap-3 transition-all">
+                  <span>Get Started</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Additional Service Cards -->
+            <div class="scale-in stagger-4 group">
+              <div class="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="brush" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Color Consultation</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  Expert color selection to create the perfect ambiance and emotional connection with your space.
+                </p>
+                
+                <a href="#contact" class="inline-flex items-center gap-2 text-orange-600 font-semibold group-hover:gap-3 transition-all">
+                  <span>Explore Colors</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="scale-in stagger-5 group">
+              <div class="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="wrench" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Renovation Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  Comprehensive renovation guidance from planning through execution with our trusted contractors.
+                </p>
+                
+                <a href="#contact" class="inline-flex items-center gap-2 text-teal-600 font-semibold group-hover:gap-3 transition-all">
+                  <span>Start Renovation</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="scale-in stagger-6 group">
+              <div class="relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 h-full">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 text-white grid place-items-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <i data-lucide="heart" class="w-8 h-8"></i>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 tracking-tight">Lifestyle Design</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                  Personalized design solutions that reflect your unique personality and lifestyle preferences.
+                </p>
+                
+                <a href="#contact" class="inline-flex items-center gap-2 text-pink-600 font-semibold group-hover:gap-3 transition-all">
+                  <span>Discover Style</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- New Process Section with Timeline -->
+      <section id="process" class="relative py-32 bg-white overflow-hidden">
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <div class="fade-in-up stagger-1 inline-flex items-center gap-2 bg-purple-100 text-purple-700 rounded-full px-4 py-2 text-sm font-medium mb-6">
+              <i data-lucide="layers" class="w-4 h-4"></i>
+              <span>Our Process</span>
+            </div>
+            <h2 class="fade-in-up stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+              From Vision to 
+              <span class="font-semibold">Reality</span>
+            </h2>
+            <p class="fade-in-up stagger-3 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-balance">
+              Our proven methodology ensures seamless project delivery while maintaining the highest standards of design excellence.
+            </p>
+          </div>
+
+          <!-- Enhanced Timeline -->
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-200 via-purple-200 to-green-200 transform -translate-x-1/2 hidden lg:block"></div>
+            
+            <!-- Timeline Steps -->
+            <div class="space-y-16 lg:space-y-24">
+              <!-- Step 1 -->
+              <div class="relative flex flex-col lg:flex-row items-center gap-8">
+                <div class="fade-in-left stagger-1 lg:w-1/2 lg:text-right lg:pr-16">
+                  <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 rounded-full px-4 py-2 text-sm font-medium mb-4">
+                    <span>Phase 1</span>
+                  </div>
+                  <h3 class="text-3xl font-semibold mb-4">Discovery &amp; Consultation</h3>
+                  <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                    We begin with an in-depth consultation to understand your vision, lifestyle, and design preferences. This crucial phase includes space assessment, budget planning, and timeline establishment.
+                  </p>
+                  <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                      <span>Initial consultation (2-3 hours)</span>
+                    </div>
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                      <span>Space measurement &amp; analysis</span>
+                    </div>
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-blue-500"></i>
+                      <span>Budget &amp; timeline planning</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="scale-in stagger-2 relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center shadow-xl">
+                  <i data-lucide="lightbulb" class="w-10 h-10"></i>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-100 text-blue-600 grid place-items-center text-sm font-bold">1</div>
+                </div>
+                
+                <div class="fade-in-right stagger-3 lg:w-1/2 lg:pl-16">
+                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/4c3cdb9e-6cac-4dce-ac9a-d914b04c3458_1600w.jpg" alt="Consultation process" class="w-full h-64 object-cover rounded-2xl shadow-lg">
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="relative flex flex-col lg:flex-row-reverse items-center gap-8">
+                <div class="fade-in-right stagger-1 lg:w-1/2 lg:text-left lg:pl-16">
+                  <div class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 rounded-full px-4 py-2 text-sm font-medium mb-4">
+                    <span>Phase 2</span>
+                  </div>
+                  <h3 class="text-3xl font-semibold mb-4">Design &amp; Development</h3>
+                  <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                    Our team creates detailed design concepts, 3D visualizations, and material specifications. We present multiple options and refine the design based on your feedback.
+                  </p>
+                  <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                      <span>Concept development &amp; mood boards</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                      <span>3D renderings &amp; walkthroughs</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-purple-500"></i>
+                      <span>Material &amp; furniture selection</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="scale-in stagger-2 relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 text-white grid place-items-center shadow-xl">
+                  <i data-lucide="palette" class="w-10 h-10"></i>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-purple-100 text-purple-600 grid place-items-center text-sm font-bold">2</div>
+                </div>
+                
+                <div class="fade-in-left stagger-3 lg:w-1/2 lg:pr-16">
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/79bb5936-f88f-4e8c-95b8-80fa335fc9bc_1600w.jpg" alt="Design development" class="w-full h-64 object-cover rounded-2xl shadow-lg">
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="relative flex flex-col lg:flex-row items-center gap-8">
+                <div class="fade-in-left stagger-1 lg:w-1/2 lg:text-right lg:pr-16">
+                  <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 rounded-full px-4 py-2 text-sm font-medium mb-4">
+                    <span>Phase 3</span>
+                  </div>
+                  <h3 class="text-3xl font-semibold mb-4">Flawless Execution</h3>
+                  <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                    Professional installation and styling to bring your dream space to life with precision. We coordinate all aspects of the implementation process.
+                  </p>
+                  <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                      <span>Project management &amp; coordination</span>
+                    </div>
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                      <span>Professional installation</span>
+                    </div>
+                    <div class="flex items-center gap-2 lg:justify-end">
+                      <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+                      <span>Final styling &amp; reveal</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="scale-in stagger-2 relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white grid place-items-center shadow-xl">
+                  <i data-lucide="check-circle" class="w-10 h-10"></i>
+                  <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-green-100 text-green-600 grid place-items-center text-sm font-bold">3</div>
+                </div>
+                
+                <div class="fade-in-right stagger-3 lg:w-1/2 lg:pl-16">
+                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/e4572439-a6ca-445c-9a06-4bf65269dd10_800w.jpg" alt="Final execution" class="w-full h-64 object-cover rounded-2xl shadow-lg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Portfolio Section -->
+      <section id="portfolio" class="relative py-32 bg-gray-900 text-white overflow-hidden">
+        <!-- Complex Parallax Background -->
+        <div class="absolute inset-0">
+          <div id="portfolioParallax1" class="parallax-element absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+          </div>
+          <div id="portfolioParallax2" class="parallax-element absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <div class="w-full h-full bg-gradient-to-bl from-blue-900/20 to-transparent"></div>
+          </div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <div class="fade-in-up stagger-1 inline-flex items-center gap-2 bg-white/10 glass-morphism border border-white/20 text-white rounded-full px-4 py-2 text-sm font-medium mb-6">
+              <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+              <span>Featured Projects</span>
+            </div>
+            <h2 class="fade-in-up stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+              Signature 
+              <span class="font-semibold">Spaces</span>
+            </h2>
+            <p class="fade-in-up stagger-3 text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed text-balance">
+              Discover our most celebrated projects where innovative design meets exceptional craftsmanship.
+            </p>
+          </div>
+
+          <!-- Enhanced Portfolio Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+            <!-- Large Featured Project -->
+            <div class="scale-in stagger-1 lg:col-span-8 group cursor-pointer">
+              <div class="relative rounded-3xl overflow-hidden bg-white/5 glass-morphism border border-white/10 hover:border-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/68d1afcf-0796-4422-8718-9e98b2a6dfb0_1600w.jpg" alt="Modern Penthouse Living" class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                
+                <div class="absolute top-6 left-6">
+                  <div class="inline-flex items-center gap-2 bg-gold-500 text-white rounded-full px-3 py-1.5 text-xs font-semibold" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+                    <i data-lucide="award" class="w-3 h-3"></i>
+                    <span>Award Winner 2024</span>
+                  </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 right-0 p-8">
+                  <h3 class="text-3xl font-semibold mb-3 tracking-tight">Manhattan Penthouse</h3>
+                  <p class="text-white/80 text-lg leading-relaxed mb-6 max-w-2xl">
+                    A sophisticated urban sanctuary combining minimalist aesthetics with luxurious comfort, featuring floor-to-ceiling windows and curated art collections.
+                  </p>
+                  
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-white/60 text-sm">
+                      <div class="flex items-center gap-1">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <span>New York, NY</span>
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <i data-lucide="home" class="w-4 h-4"></i>
+                        <span>4,200 sq ft</span>
+                      </div>
+                    </div>
+                    <button class="inline-flex items-center gap-2 bg-white/20 glass-morphism border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300">
+                      <span>View Project</span>
+                      <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Smaller Projects -->
+            <div class="lg:col-span-4 space-y-8">
+              <div class="scale-in stagger-2 group cursor-pointer">
+                <div class="relative rounded-3xl overflow-hidden bg-white/5 glass-morphism border border-white/10 hover:border-white/20 transition-all duration-500">
+                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/704e1fb3-a82b-42a1-ad5f-f30d6c0fb05c_800w.jpg" alt="Contemporary Kitchen" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                  
+                  <div class="p-6">
+                    <h4 class="text-xl font-semibold mb-2">Beverly Hills Residence</h4>
+                    <p class="text-white/70 text-sm leading-relaxed">Modern kitchen design with premium appliances and custom cabinetry.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scale-in stagger-3 group cursor-pointer">
+                <div class="relative rounded-3xl overflow-hidden bg-white/5 glass-morphism border border-white/10 hover:border-white/20 transition-all duration-500">
+                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/fad8f488-a92f-419e-a506-95dab967d5f0_800w.jpg" alt="Luxury Bedroom" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                  
+                  <div class="p-6">
+                    <h4 class="text-xl font-semibold mb-2">Malibu Beach House</h4>
+                    <p class="text-white/70 text-sm leading-relaxed">Serene master suite with ocean views and custom furnishings.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Categories -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div class="scale-in stagger-4 text-center">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white grid place-items-center mx-auto mb-4">
+                <i data-lucide="home" class="w-8 h-8"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-2">Residential</h4>
+              <p class="text-white/70">Luxury homes and apartments</p>
+              <div class="counter text-2xl font-light mt-2" data-target="350">0</div>
+              <div class="text-white/60 text-sm">Projects</div>
+            </div>
+
+            <div class="scale-in stagger-5 text-center">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 text-white grid place-items-center mx-auto mb-4">
+                <i data-lucide="building" class="w-8 h-8"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-2">Commercial</h4>
+              <p class="text-white/70">Offices and retail spaces</p>
+              <div class="counter text-2xl font-light mt-2" data-target="120">0</div>
+              <div class="text-white/60 text-sm">Projects</div>
+            </div>
+
+            <div class="scale-in stagger-6 text-center">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 text-white grid place-items-center mx-auto mb-4">
+                <i data-lucide="sparkles" class="w-8 h-8"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-2">Hospitality</h4>
+              <p class="text-white/70">Hotels and restaurants</p>
+              <div class="counter text-2xl font-light mt-2" data-target="75">0</div>
+              <div class="text-white/60 text-sm">Projects</div>
+            </div>
+          </div>
+
+          <!-- View All Projects CTA -->
+          <div class="text-center">
+            <a href="#contact" class="fade-in-up stagger-4 inline-flex items-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl transform hover:-translate-y-1">
+              <span>View All Projects</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- New Testimonials Section -->
+      <section id="testimonials" class="relative py-32 bg-white overflow-hidden">
+        <!-- Parallax Background -->
+        <div id="testimonialsParallax" class="parallax-element absolute inset-0 opacity-20">
+          <div class="absolute top-0 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-pink-100 to-orange-100 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <div class="fade-in-up stagger-1 inline-flex items-center gap-2 bg-pink-100 text-pink-700 rounded-full px-4 py-2 text-sm font-medium mb-6">
+              <i data-lucide="star" class="w-4 h-4"></i>
+              <span>Client Reviews</span>
+            </div>
+            <h2 class="fade-in-up stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+              What Our Clients 
+              <span class="font-semibold">Say</span>
+            </h2>
+            <p class="fade-in-up stagger-3 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-balance">
+              Discover why our clients choose us for their most important interior design projects.
+            </p>
+          </div>
+
+          <!-- Testimonials Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="scale-in stagger-1 bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "Forma transformed our Manhattan apartment into a stunning masterpiece. Their attention to detail and understanding of our lifestyle was exceptional."
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/f7f6feef-fd3e-4901-bce6-7271aa74dc87_320w.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">Sarah Johnson</div>
+                  <div class="text-gray-600 text-sm">Manhattan Penthouse</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="scale-in stagger-2 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8 shadow-lg border border-indigo-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "The team at Forma exceeded every expectation. Our Beverly Hills home is now a perfect blend of luxury and comfort that reflects our family perfectly."
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/f52b9e1e-c3e8-4844-b3c5-28aacdc6b434_320w.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">Michael Chen</div>
+                  <div class="text-gray-600 text-sm">Beverly Hills Residence</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="scale-in stagger-3 bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "Professional, creative, and incredibly organized. Forma delivered our dream beach house on time and within budget. Highly recommended!"
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/3b6e4af7-ac86-4163-b303-578671458c76_320w.jpg" alt="Emma Rodriguez" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">Emma Rodriguez</div>
+                  <div class="text-gray-600 text-sm">Malibu Beach House</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Testimonials -->
+            <div class="scale-in stagger-4 bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "Outstanding creativity and execution. Our office space is now a source of inspiration for our entire team. Forma truly understands commercial design."
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/792a3cac-21ba-4a11-85fe-6cda252b255d_320w.jpg" alt="David Park" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">David Park</div>
+                  <div class="text-gray-600 text-sm">Tech Office Design</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="scale-in stagger-5 bg-gradient-to-br from-pink-50 to-orange-50 rounded-3xl p-8 shadow-lg border border-pink-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "From the first meeting to the final reveal, Forma was exceptional. They listened to our needs and created a space that's both beautiful and functional."
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/05b8d217-cbbf-409b-a1ff-f4515ea6aab3_320w.jpg" alt="Lisa Thompson" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">Lisa Thompson</div>
+                  <div class="text-gray-600 text-sm">Family Home</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="scale-in stagger-6 bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+              <div class="flex items-center gap-1 mb-6">
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+              </div>
+              
+              <p class="text-gray-700 leading-relaxed mb-8 text-lg">
+                "Incredible attention to detail and commitment to quality. Forma transformed our restaurant into an award-winning space that our customers love."
+              </p>
+              
+              <div class="flex items-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/04b430ce-45fe-4c6d-b375-4a4d349051a7_320w.jpg" alt="James Wilson" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                  <div class="font-semibold">James Wilson</div>
+                  <div class="text-gray-600 text-sm">Restaurant Owner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Summary -->
+          <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="scale-in stagger-4 text-center">
+              <div class="counter text-4xl font-light mb-2" data-target="98">0</div>
+              <div class="text-gray-600">% Satisfaction Rate</div>
+            </div>
+            <div class="scale-in stagger-5 text-center">
+              <div class="counter text-4xl font-light mb-2" data-target="500">0</div>
+              <div class="text-gray-600">+ Happy Clients</div>
+            </div>
+            <div class="scale-in stagger-6 text-center">
+              <div class="text-4xl font-light mb-2">4.9</div>
+              <div class="text-gray-600">Average Rating</div>
+            </div>
+            <div class="scale-in stagger-6 text-center">
+              <div class="counter text-4xl font-light mb-2" data-target="95">0</div>
+              <div class="text-gray-600">% Referral Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced Contact Section -->
+      <section id="contact" class="relative py-32 bg-gray-50 overflow-hidden">
+        <!-- Parallax Background -->
+        <div id="contactParallax" class="parallax-element absolute inset-0 opacity-30">
+          <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 blur-3xl"></div>
+          <div class="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-green-100 to-blue-100 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Enhanced Content -->
+            <div>
+              <div class="fade-in-left stagger-1 inline-flex items-center gap-2 bg-green-100 text-green-700 rounded-full px-4 py-2 text-sm font-medium mb-6">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span>Get in Touch</span>
+              </div>
+              <h2 class="fade-in-left stagger-2 text-5xl sm:text-6xl font-light tracking-tighter mb-6 text-balance">
+                Let's Create Your
+                <span class="font-semibold text-green-600">Dream Space</span>
+              </h2>
+              <p class="fade-in-left stagger-3 text-xl text-gray-600 leading-relaxed mb-8 text-balance">
+                Ready to transform your space? Schedule a consultation with our design experts and take the first step toward your dream interior.
+              </p>
+              
+              <!-- Enhanced Contact Methods -->
+              <div class="space-y-6 mb-8">
+                <div class="fade-in-left stagger-4 flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm hover:shadow-md transition-all">
+                  <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="phone" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Call Us</h4>
+                    <div class="text-blue-600 font-medium">+1 (555) 123-4567</div>
+                    <div class="text-gray-600 text-sm">Monday - Friday, 9AM - 6PM PST</div>
+                  </div>
+                </div>
+                
+                <div class="fade-in-left stagger-5 flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm hover:shadow-md transition-all">
+                  <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="mail" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Email Us</h4>
+                    <div class="text-purple-600 font-medium">hello@forma.design</div>
+                    <div class="text-gray-600 text-sm">We'll respond within 24 hours</div>
+                  </div>
+                </div>
+                
+                <div class="fade-in-left stagger-6 flex items-center gap-4 p-4 rounded-2xl bg-white shadow-sm hover:shadow-md transition-all">
+                  <div class="w-14 h-14 rounded-xl bg-green-100 text-green-600 grid place-items-center flex-shrink-0">
+                    <i data-lucide="map-pin" class="w-7 h-7"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Visit Showroom</h4>
+                    <div class="text-green-600 font-medium">Beverly Hills Showroom</div>
+                    <div class="text-gray-600 text-sm">9876 Wilshire Blvd, CA 90210</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Stats -->
+              <div class="fade-in-left stagger-6 grid grid-cols-3 gap-6 p-6 rounded-2xl bg-white shadow-sm">
+                <div class="text-center">
+                  <div class="counter text-2xl font-semibold text-indigo-600" data-target="24">0</div>
+                  <div class="text-gray-600 text-sm">Hour Response</div>
+                </div>
+                <div class="text-center border-l border-r border-gray-200">
+                  <div class="text-2xl font-semibold text-purple-600">Free</div>
+                  <div class="text-gray-600 text-sm">Consultation</div>
+                </div>
+                <div class="text-center">
+                  <div class="counter text-2xl font-semibold text-green-600" data-target="15">0</div>
+                  <div class="text-gray-600 text-sm">Years Experience</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enhanced Contact Form -->
+            <div class="scale-in stagger-2 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+              <div class="mb-8">
+                <h3 class="text-2xl font-semibold mb-2">Start Your Project</h3>
+                <p class="text-gray-600">Tell us about your vision and we'll bring it to life.</p>
+              </div>
+
+              <form class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">First Name *</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all" placeholder="John">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">Last Name *</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all" placeholder="Doe">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address *</label>
+                  <input type="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all" placeholder="john@example.com">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
+                  <input type="tel" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all" placeholder="+1 (555) 123-4567">
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Project Type *</label>
+                  <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all">
+                    <option>Select your project type</option>
+                    <option>Residential - Living Room</option>
+                    <option>Residential - Kitchen</option>
+                    <option>Residential - Bedroom</option>
+                    <option>Residential - Bathroom</option>
+                    <option>Commercial Space</option>
+                    <option>Complete Home Renovation</option>
+                    <option>Consultation Only</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Budget Range</label>
+                  <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all">
+                    <option>Select your budget range</option>
+                    <option>Under $50,000</option>
+                    <option>$50,000 - $100,000</option>
+                    <option>$100,000 - $250,000</option>
+                    <option>$250,000 - $500,000</option>
+                    <option>$500,000+</option>
+                    <option>Consultation First</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Project Details *</label>
+                  <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all resize-none" placeholder="Tell us about your vision, space size, timeline, style preferences, and any specific requirements..."></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                  Schedule Free Consultation
+                </button>
+
+                <p class="text-xs text-gray-500 text-center">
+                  By submitting this form, you agree to our privacy policy. We'll never share your information.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="py-16 grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <!-- Enhanced Brand Section -->
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-xl bg-white text-gray-900 grid place-items-center">
+                <span class="font-bold tracking-tighter">F</span>
+              </div>
+              <div>
+                <span class="text-2xl font-semibold">Forma</span>
+                <p class="text-gray-400 text-sm">Interior Design Excellence</p>
+              </div>
+            </div>
+            <p class="text-gray-400 leading-relaxed mb-6">
+              Creating extraordinary living spaces through innovative design and meticulous craftsmanship since 2009.
+            </p>
+            
+            <!-- Awards Section -->
+            <div class="mb-6">
+              <h5 class="font-semibold text-sm mb-3">Awards &amp; Recognition</h5>
+              <div class="space-y-2 text-sm text-gray-400">
+                <div>Best Interior Design Studio 2024</div>
+                <div>Luxury Lifestyle Award Winner</div>
+                <div>Top 10 Design Firms - CA</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 grid place-items-center transition-colors">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 grid place-items-center transition-colors">
+                <i data-lucide="linkedin" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 grid place-items-center transition-colors">
+                <i data-lucide="twitter" class="w-5 h-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-lg bg-gray-800 hover:bg-gray-700 grid place-items-center transition-colors">
+                <i data-lucide="youtube" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Services -->
+          <div>
+            <h4 class="font-semibold mb-6 text-lg">Services</h4>
+            <div class="space-y-3">
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Interior Design</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Space Planning</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Custom Furniture</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Project Management</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">3D Visualization</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Color Consultation</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Luxury Staging</a>
+            </div>
+          </div>
+          
+          <!-- Company -->
+          <div>
+            <h4 class="font-semibold mb-6 text-lg">Company</h4>
+            <div class="space-y-3">
+              <a href="#about" class="block text-gray-400 hover:text-white transition-colors">About Us</a>
+              <a href="#process" class="block text-gray-400 hover:text-white transition-colors">Our Process</a>
+              <a href="#portfolio" class="block text-gray-400 hover:text-white transition-colors">Portfolio</a>
+              <a href="#testimonials" class="block text-gray-400 hover:text-white transition-colors">Testimonials</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Careers</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Press Kit</a>
+              <a href="#" class="block text-gray-400 hover:text-white transition-colors">Blog</a>
+            </div>
+          </div>
+          
+          <!-- Enhanced Contact -->
+          <div>
+            <h4 class="font-semibold mb-6 text-lg">Get in Touch</h4>
+            <div class="space-y-4 text-gray-400">
+              <div>
+                <h5 class="font-semibold text-white mb-2">Beverly Hills Showroom</h5>
+                <p>9876 Wilshire Blvd</p>
+                <p>Beverly Hills, CA 90210</p>
+              </div>
+              
+              <div>
+                <h5 class="font-semibold text-white mb-2">Manhattan Office</h5>
+                <p>456 Park Avenue</p>
+                <p>New York, NY 10016</p>
+              </div>
+              
+              <div class="pt-4 border-t border-gray-800">
+                <p class="font-medium text-white">+1 (555) 123-4567</p>
+                <p>hello@forma.design</p>
+              </div>
+              
+              <div class="pt-2">
+                <p class="text-sm">Monday - Friday: 9AM - 6PM PST</p>
+                <p class="text-sm">Saturday: 10AM - 4PM PST</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-800 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-gray-400 text-sm">© 2025 Forma Interior Design. All rights reserved.</p>
+          <div class="flex items-center gap-6 text-sm text-gray-400">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Initialize Lucide icons
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) lucide.createIcons();
+      });
+
+      // Enhanced Parallax Controller with Performance Optimization
+      class AdvancedParallaxController {
+        constructor() {
+          this.elements = [
+            { id: 'heroBase', speed: -0.3 },
+            { id: 'heroFloat', speed: -0.1 },
+            { id: 'aboutParallax', speed: 0.2 },
+            { id: 'expertiseParallax', speed: 0.15 },
+            { id: 'portfolioParallax1', speed: -0.1 },
+            { id: 'portfolioParallax2', speed: 0.15 },
+            { id: 'testimonialsParallax', speed: -0.05 },
+            { id: 'contactParallax', speed: 0.1 }
+          ];
+          this.ticking = false;
+          this.init();
+        }
+
+        init() {
+          this.handleScroll();
+          window.addEventListener('scroll', this.onScroll.bind(this), { passive: true });
+        }
+
+        onScroll() {
+          if (!this.ticking) {
+            requestAnimationFrame(this.handleScroll.bind(this));
+            this.ticking = true;
+          }
+        }
+
+        handleScroll() {
+          const scrolled = window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          
+          this.elements.forEach(({ id, speed }) => {
+            const element = document.getElementById(id);
+            if (element) {
+              const elementTop = element.offsetTop;
+              const elementBottom = elementTop + element.offsetHeight;
+              
+              // Only animate if element is in viewport or near it
+              if (scrolled + windowHeight > elementTop - windowHeight && scrolled < elementBottom + windowHeight) {
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+              }
+            }
+          });
+          
+          this.ticking = false;
+        }
+      }
+
+      // Enhanced Scroll Animation Controller
+      class ScrollAnimationController {
+        constructor() {
+          this.animatedElements = new Set();
+          this.init();
+        }
+
+        init() {
+          this.handleScroll();
+          window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), 16), { passive: true });
+        }
+
+        handleScroll() {
+          const elements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+          
+          elements.forEach(element => {
+            if (this.animatedElements.has(element)) return;
+            
+            if (this.isInViewport(element)) {
+              element.classList.add('animate');
+              this.animatedElements.add(element);
+            }
+          });
+        }
+
+        isInViewport(element) {
+          const rect = element.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          
+          return rect.top <= windowHeight * 0.85 && rect.bottom >= 0;
+        }
+
+        throttle(func, delay) {
+          let timeoutId;
+          let lastExecTime = 0;
+          return function (...args) {
+            const currentTime = Date.now();
+            if (currentTime - lastExecTime > delay) {
+              func.apply(this, args);
+              lastExecTime = currentTime;
+            } else {
+              clearTimeout(timeoutId);
+              timeoutId = setTimeout(() => {
+                func.apply(this, args);
+                lastExecTime = Date.now();
+              }, delay - (currentTime - lastExecTime));
+            }
+          };
+        }
+      }
+
+      // Enhanced Counter Animation
+      class CounterAnimationController {
+        constructor() {
+          this.counters = document.querySelectorAll('.counter');
+          this.animatedCounters = new Set();
+          this.init();
+        }
+
+        init() {
+          this.handleScroll();
+          window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), 100), { passive: true });
+        }
+
+        handleScroll() {
+          this.counters.forEach(counter => {
+            if (this.animatedCounters.has(counter)) return;
+            
+            if (this.isInViewport(counter)) {
+              this.animateCounter(counter);
+              this.animatedCounters.add(counter);
+            }
+          });
+        }
+
+        animateCounter(counter) {
+          const target = parseInt(counter.dataset.target);
+          const duration = 2000;
+          const increment = target / (duration / 16);
+          let current = 0;
+
+          counter.classList.add('counter-animate');
+
+          const updateCounter = () => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target;
+              return;
+            }
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          };
+
+          updateCounter();
+        }
+
+        isInViewport(element) {
+          const rect = element.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          
+          return rect.top <= windowHeight * 0.8 && rect.bottom >= 0;
+        }
+
+        throttle(func, delay) {
+          let timeoutId;
+          let lastExecTime = 0;
+          return function (...args) {
+            const currentTime = Date.now();
+            if (currentTime - lastExecTime > delay) {
+              func.apply(this, args);
+              lastExecTime = currentTime;
+            } else {
+              clearTimeout(timeoutId);
+              timeoutId = setTimeout(() => {
+                func.apply(this, args);
+                lastExecTime = Date.now();
+              }, delay - (currentTime - lastExecTime));
+            }
+          };
+        }
+      }
+
+      // Enhanced Navigation Controller
+      class NavigationController {
+        constructor() {
+          this.header = document.getElementById('mainHeader');
+          this.navLinks = document.querySelectorAll('.section-nav');
+          this.sections = ['hero', 'about', 'expertise', 'process', 'portfolio', 'testimonials', 'contact'];
+          this.currentSection = 'hero';
+          this.init();
+        }
+
+        init() {
+          this.handleScroll();
+          this.setupNavigation();
+          window.addEventListener('scroll', this.throttle(this.handleScroll.bind(this), 16), { passive: true });
+        }
+
+        handleScroll() {
+          const scrolled = window.pageYOffset;
+          
+          // Header styling
+          if (this.header) {
+            const opacity = Math.min(scrolled / 100, 1);
+            if (opacity > 0.5) {
+              this.header.classList.add('backdrop-blur-xl');
+            } else {
+              this.header.classList.remove('backdrop-blur-xl');
+            }
+          }
+
+          // Section detection
+          this.updateActiveSection();
+        }
+
+        updateActiveSection() {
+          const scrollPosition = window.scrollY + 200;
+          
+          for (let i = this.sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(this.sections[i]);
+            if (section && scrollPosition >= section.offsetTop) {
+              if (this.currentSection !== this.sections[i]) {
+                this.setActiveNavItem(this.sections[i]);
+                this.currentSection = this.sections[i];
+              }
+              break;
+            }
+          }
+        }
+
+        setActiveNavItem(sectionId) {
+          this.navLinks.forEach(link => {
+            const isActive = link.dataset.section === sectionId;
+            if (isActive) {
+              link.classList.add('text-gray-900');
+              link.classList.remove('text-gray-600');
+              link.querySelector('.absolute').classList.remove('scale-0');
+              link.querySelector('.absolute').classList.add('scale-100');
+            } else {
+              link.classList.remove('text-gray-900');
+              link.classList.add('text-gray-600');
+              link.querySelector('.absolute').classList.add('scale-0');
+              link.querySelector('.absolute').classList.remove('scale-100');
+            }
+          });
+        }
+
+        setupNavigation() {
+          document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const target = document.querySelector(link.getAttribute('href'));
+              if (target) {
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                  top: offsetTop,
+                  behavior: 'smooth'
+                });
+              }
+            });
+          });
+        }
+
+        throttle(func, delay) {
+          let timeoutId;
+          let lastExecTime = 0;
+          return function (...args) {
+            const currentTime = Date.now();
+            if (currentTime - lastExecTime > delay) {
+              func.apply(this, args);
+              lastExecTime = currentTime;
+            } else {
+              clearTimeout(timeoutId);
+              timeoutId = setTimeout(() => {
+                func.apply(this, args);
+                lastExecTime = Date.now();
+              }, delay - (currentTime - lastExecTime));
+            }
+          };
+        }
+      }
+
+      // Mobile Menu Controller
+      class MobileMenuController {
+        constructor() {
+          this.menuBtn = document.getElementById('mobileMenuBtn');
+          this.closeBtn = document.getElementById('closeMobileMenu');
+          this.menu = document.getElementById('mobileMenu');
+          this.navLinks = document.querySelectorAll('.mobile-nav-link');
+          this.init();
+        }
+
+        init() {
+          if (this.menuBtn) {
+            this.menuBtn.addEventListener('click', () => this.openMenu());
+          }
+          
+          if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', () => this.closeMenu());
+          }
+
+          this.navLinks.forEach(link => {
+            link.addEventListener('click', () => this.closeMenu());
+          });
+
+          if (this.menu) {
+            this.menu.addEventListener('click', (e) => {
+              if (e.target === this.menu) {
+                this.closeMenu();
+              }
+            });
+          }
+
+          // Close on escape key
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              this.closeMenu();
+            }
+          });
+        }
+
+        openMenu() {
+          if (this.menu) {
+            this.menu.classList.remove('translate-x-full');
+            document.body.classList.add('overflow-hidden');
+          }
+        }
+
+        closeMenu() {
+          if (this.menu) {
+            this.menu.classList.add('translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+          }
+        }
+      }
+
+      // Initialize all controllers when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        // Small delay to ensure all elements are rendered
+        setTimeout(() => {
+          new AdvancedParallaxController();
+          new ScrollAnimationController();
+          new CounterAnimationController();
+          new NavigationController();
+          new MobileMenuController();
+        }, 100);
+      });
+
+      // Performance optimization
+      let ticking = false;
+      function updateOnScroll() {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', updateOnScroll, { passive: true });
+    </script>
+  
+</body></html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angle - Components</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+  <header class="border-b border-gray-100">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <a href="#" class="text-2xl font-bold text-indigo-600">angle</a>
+          <nav class="hidden ml-10 md:flex space-x-8">
+            <a href="#" class="text-sm font-medium text-gray-700 hover:text-indigo-600">Features</a>
+            <a href="#" class="text-sm font-medium text-indigo-600 border-b-2 border-indigo-600">Components</a>
+            <a href="#" class="text-sm font-medium text-gray-700 hover:text-indigo-600">Pricing</a>
+            <a href="#" class="text-sm font-medium text-gray-700 hover:text-indigo-600">Documentation</a>
+          </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#" class="hidden md:inline-block text-sm font-medium text-gray-700 hover:text-indigo-600">Sign in</a>
+          <a href="#" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700">Get started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl font-bold mb-6">UI Components Library</h1>
+        <p class="text-xl text-gray-600 mb-10">A comprehensive collection of beautifully crafted UI components to build modern interfaces.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-b border-gray-100">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#buttons" class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-full font-medium text-sm hover:bg-indigo-100">Buttons</a>
+        <a href="#forms" class="px-5 py-2 bg-gray-100 text-gray-700 rounded-full font-medium text-sm hover:bg-gray-200">Forms</a>
+        <a href="#cards" class="px-5 py-2 bg-gray-100 text-gray-700 rounded-full font-medium text-sm hover:bg-gray-200">Cards</a>
+        <a href="#navigation" class="px-5 py-2 bg-gray-100 text-gray-700 rounded-full font-medium text-sm hover:bg-gray-200">Navigation</a>
+        <a href="#modals" class="px-5 py-2 bg-gray-100 text-gray-700 rounded-full font-medium text-sm hover:bg-gray-200">Modals</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="buttons" class="py-16">
+    <div class="container mx-auto px-6">
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-2">Buttons</h2>
+        <p class="text-gray-600">Flexible button components with various styles and states.</p>
+      </div>
+      
+      <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+        <h3 class="text-lg font-medium mb-6 pb-4 border-b border-gray-100">Primary Buttons</h3>
+        <div class="flex flex-wrap gap-4 mb-8">
+          <button class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700">Default</button>
+          <button class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium opacity-70 cursor-not-allowed">Disabled</button>
+          <button class="px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 flex items-center gap-2">
+            <i class="fas fa-plus text-xs"></i> With Icon
+          </button>
+          <button class="px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700">Large</button>
+          <button class="px-3 py-1.5 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">Small</button>
+        </div>
+        
+        <h3 class="text-lg font-medium mb-6 pb-4 border-b border-gray-100">Secondary Buttons</h3>
+        <div class="flex flex-wrap gap-4 mb-8">
+          <button class="px-4 py-2 bg-white text-indigo-600 border border-indigo-600 rounded-md font-medium hover:bg-indigo-50">Default</button>
+          <button class="px-4 py-2 bg-white text-gray-400 border border-gray-300 rounded-md font-medium cursor-not-allowed">Disabled</button>
+          <button class="px-4 py-2 bg-white text-indigo-600 border border-indigo-600 rounded-md font-medium hover:bg-indigo-50 flex items-center gap-2">
+            <i class="fas fa-download text-xs"></i> With Icon
+          </button>
+        </div>
+        
+        <h3 class="text-lg font-medium mb-6 pb-4 border-b border-gray-100">Text Buttons</h3>
+        <div class="flex flex-wrap gap-4">
+          <button class="px-4 py-2 text-indigo-600 font-medium hover:bg-indigo-50 rounded-md">Default</button>
+          <button class="px-4 py-2 text-gray-400 font-medium cursor-not-allowed">Disabled</button>
+          <button class="px-4 py-2 text-indigo-600 font-medium hover:bg-indigo-50 rounded-md flex items-center gap-2">
+            <i class="fas fa-arrow-right text-xs"></i> With Icon
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="forms" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-2">Form Elements</h2>
+        <p class="text-gray-600">Essential form components for capturing user input.</p>
+      </div>
+      
+      <div class="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+        <h3 class="text-lg font-medium mb-6 pb-4 border-b border-gray-100">Text Inputs</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Default Input</label>
+            <input type="text" placeholder="Enter your name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Disabled Input</label>
+            <input type="text" placeholder="Disabled input" disabled class="w-full px-4 py-2 border border-gray-300 bg-gray-100 text-gray-500 rounded-md cursor-not-allowed">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Input with Icon</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+              </div>
+              <input type="text" placeholder="Search" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Error Input</label>
+            <input type="text" placeholder="Invalid input" class="w-full px-4 py-2 border border-red-300 rounded-md focus:ring-2 focus:ring-red-600 focus:border-red-600 outline-none">
+            <p class="mt-1 text-sm text-red-600">This field is required</p>
+          </div>
+        </div>
+        
+        <h3 class="text-lg font-medium mb-6 pb-4 border-b border-gray-100">Select & Checkbox</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Select Input</label>
+            <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 outline-none">
+              <option>Select an option</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+              <option>Option 3</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-3">Checkbox Group</label>
+            <div class="space-y-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="checkbox1" class="h-4 w-4 text-indigo-600 rounded focus:ring-indigo-600">
+                <label for="checkbox1" class="ml-2 text-sm text-gray-700">Option 1</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="checkbox2" class="h-4 w-4 text-indigo-600 rounded focus:ring-indigo-600">
+                <label for="checkbox2" class="ml-2 text-sm text-gray-700">Option 2</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cards" class="py-16">
+    <div class="container mx-auto px-6">
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-2">Cards</h2>
+        <p class="text-gray-600">Versatile card components for displaying content.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Card Image" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="font-medium text-lg mb-2">Basic Card</h3>
+            <p class="text-gray-600 mb-4">A simple card with image, title and description.</p>
+            <a href="#" class="text-indigo-600 font-medium text-sm hover:text-indigo-700">Learn more →</a>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="font-medium text-lg mb-1">Feature Card</h3>
+                <p class="text-sm text-gray-500">Without image</p>
+              </div>
+              <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">New</span>
+            </div>
+            <p class="text-gray-600 mb-4">A card variation without an image, ideal for feature highlights.</p>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-indigo-600 font-medium text-sm hover:text-indigo-700">Learn more</a>
+              <button class="p-2 text-gray-400 hover:text-gray-500">
+                <i class="fas fa-bookmark"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-indigo-600 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition">
+          <div class="p-6">
+            <h3 class="font-medium text-lg mb-2 text-white">Colored Card</h3>
+            <p class="text-indigo-100 mb-4">A card with a colored background for emphasis.</p>
+            <a href="#" class="text-white font-medium text-sm hover:text-indigo-100 inline-flex items-center">
+              Get started <i class="fas fa-arrow-right ml-2 text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-indigo-600">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">Ready to build better interfaces?</h2>
+      <p class="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">Get access to all components and start building your next project today.</p>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <a href="#" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-indigo-600 bg-white rounded-md shadow-sm hover:bg-gray-50">
+          Get started
+        </a>
+        <a href="#" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-700 rounded-md shadow-sm hover:bg-indigo-800">
+          View documentation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Product</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Features</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Changelog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Roadmap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Resources</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Documentation</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Tutorials</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">About</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Privacy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Terms</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">License</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400">© 2023 Angle. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

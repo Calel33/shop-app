@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Iron Will CrossFit - Local Business Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #2563eb;
+        }
+
+        .breadcrumb {
+            padding: 24px 0 16px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 48px;
+            padding-bottom: 48px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .image-gallery {
+            position: relative;
+            height: 400px;
+            background: #e2e8f0;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .gallery-dot.active {
+            background: white;
+        }
+
+        .business-header {
+            padding: 32px;
+        }
+
+        .business-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .title-left h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .business-category {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .business-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars {
+            color: #f59e0b;
+        }
+
+        .business-description {
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .fitness-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .highlight-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 20px;
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .highlight-text {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+
+        .btn-secondary:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        /* Trainer Section */
+        .trainers-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .trainer-card {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .trainer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .trainer-info h4 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .trainer-title {
+            color: #ff6b6b;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .trainer-certs {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .trainer-experience {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        /* Membership Section */
+        .membership-section {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .pricing-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5, #fef2f2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-title {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 16px;
+        }
+
+        .pricing-period {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .pricing-features li {
+            padding: 4px 0;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .pricing-features li i {
+            color: #059669;
+            margin-right: 8px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .class-schedule {
+            margin-bottom: 16px;
+        }
+
+        .class-day {
+            margin-bottom: 16px;
+        }
+
+        .day-header {
+            font-weight: 600;
+            color: #0f172a;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 8px;
+        }
+
+        .class-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .class-time {
+            font-weight: 600;
+            color: #ff6b6b;
+            font-size: 14px;
+        }
+
+        .class-name {
+            flex: 1;
+            margin: 0 12px;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .class-spots {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-icon {
+            color: #ff6b6b;
+            width: 20px;
+            margin-top: 2px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            color: #64748b;
+        }
+
+        .info-value a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .hours-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .hour-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .day {
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .time {
+            color: #64748b;
+        }
+
+        .time.open {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .equipment-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .equipment-icon {
+            color: #ff6b6b;
+            font-size: 16px;
+        }
+
+        .level-indicators {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .level-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .level-beginner {
+            background: #dcfce7;
+            color: #059669;
+        }
+
+        .level-intermediate {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .level-advanced {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .last-updated {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr 350px;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .fitness-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .trainers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .business-header {
+                padding: 24px;
+            }
+            
+            .business-title {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" data-mc-element-id="15224">
+        <div class="container" data-mc-element-id="15256">
+            <div class="header-content" data-mc-element-id="15292">
+                <div class="logo" data-mc-element-id="15337">LocalConnect</div>
+                <nav class="nav" data-mc-element-id="15390">
+                    <a href="#" data-mc-element-id="15428">Directory</a>
+                    <a href="#" data-mc-element-id="15474">Categories</a>
+                    <a href="#" data-mc-element-id="15521">Add Business</a>
+                    <a href="#" data-mc-element-id="15570">Sign In</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" data-mc-element-id="15670">
+        <div class="breadcrumb" data-mc-element-id="15702">
+            <a href="#" data-mc-element-id="15739">Home</a> / <a href="#" data-mc-element-id="15762">Fitness &amp; Health</a> / <a href="#" data-mc-element-id="15797">Gyms &amp; Studios</a> / Iron Will CrossFit
+        </div>
+
+        <div class="main-content" data-mc-element-id="15873">
+            <main data-mc-element-id="15912">
+                <div class="hero-section" data-mc-element-id="15935">
+                    <div class="image-gallery" data-mc-element-id="15982">
+                        <img src="https://storage.googleapis.com/forge-sites/40b5b61aac7d36db64250e2ca407caaa0c117e8fbc6590e42f99ec58f11d140d.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251009%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251009T235025Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=0f5bd7d3ef48ca475529571b4610868d835af71f6ec199f9c23e526e056728b62aa69af0dbc93a5c7538fccb95a0165273d8cad7d0aa4de0dbd7187840cb65918587f8e60807d6582639e62134de7c45e832b7b0d3c4e6c38ba4ec0da321e2c5ede9d165512fd44f14d391b98dd0a7b82042be9feb9f8adeb9c8b968b6ec17991251c1544ffc32289c2183ecb979af5fa9999a88ef3f4bab5dd4fc75d1d0d4be050c8df5a99c6c7b3b2473be1c50606342a9a6984427c8dd1f81b074369384e4923262442aa66b78b1c6e2a88dbdc924f52d6255c12465beae5c5f3913b0d9bbd193b45b795d62f7fefa1a1d42c566d12a79fc3ab4158c2645a53213646f2c2c" alt="Modern CrossFit gym with Olympic lifting platforms, rowing machines, pull-up rigs, and athletes training in a spacious, well-lit facility with industrial design elements" class="main-image" data-mc-element-id="16034">
+                        <div class="gallery-nav" data-mc-element-id="16291">
+                            <div class="gallery-dot active" data-mc-element-id="16345"></div>
+                            <div class="gallery-dot" data-mc-element-id="16412"></div>
+                            <div class="gallery-dot" data-mc-element-id="16472"></div>
+                            <div class="gallery-dot" data-mc-element-id="16532"></div>
+                            <div class="gallery-dot" data-mc-element-id="16592"></div>
+                        </div>
+                    </div>
+
+                    <div class="business-header" data-mc-element-id="16703">
+                        <div class="business-title" data-mc-element-id="16757">
+                            <div class="title-left" data-mc-element-id="16814">
+                                <h1 data-mc-element-id="16871">Iron Will CrossFit</h1>
+                                <div class="business-category" data-mc-element-id="16931">CrossFit Gym • Functional Fitness • Personal Training</div>
+                            </div>
+                            <div class="verification-badge" data-mc-element-id="17085">
+                                <i class="fas fa-shield-check" data-mc-element-id="17150"></i>
+                                Certified Affiliate
+                            </div>
+                        </div>
+
+                        <div class="business-meta" data-mc-element-id="17329">
+                            <div class="rating" data-mc-element-id="17385">
+                                <div class="stars" data-mc-element-id="17438">
+                                    <i class="fas fa-star" data-mc-element-id="17494"></i>
+                                    <i class="fas fa-star" data-mc-element-id="17558"></i>
+                                    <i class="fas fa-star" data-mc-element-id="17622"></i>
+                                    <i class="fas fa-star" data-mc-element-id="17686"></i>
+                                    <i class="fas fa-star" data-mc-element-id="17750"></i>
+                                </div>
+                                <span data-mc-element-id="17849">4.9 (89 reviews)</span>
+                            </div>
+                            <div class="meta-item" data-mc-element-id="17942">
+                                <i class="fas fa-map-marker-alt" data-mc-element-id="17998"></i>
+                                <span data-mc-element-id="18068">1.2 miles away</span>
+                            </div>
+                            <div class="meta-item" data-mc-element-id="18159">
+                                <i class="fas fa-clock" data-mc-element-id="18215"></i>
+                                <span class="open" data-mc-element-id="18276">Open until 9:00 PM</span>
+                            </div>
+                            <div class="meta-item" data-mc-element-id="18384">
+                                <i class="fas fa-users" data-mc-element-id="18440"></i>
+                                <span data-mc-element-id="18501">15 spots left today</span>
+                            </div>
+                        </div>
+
+                        <div class="business-description" data-mc-element-id="18625">
+                            Transform your fitness journey at Iron Will CrossFit, where elite coaching meets community spirit. Our certified trainers guide you through constantly varied, high-intensity functional movements that deliver real-world strength and conditioning. Whether you're a complete beginner or seasoned athlete, our scalable workouts and supportive community will help you achieve your fitness goals faster than you ever thought possible.
+                        </div>
+
+                        <div class="fitness-highlights" data-mc-element-id="19173">
+                            <div class="highlight-card" data-mc-element-id="19234">
+                                <div class="highlight-icon" data-mc-element-id="19295">
+                                    <i class="fas fa-dumbbell" data-mc-element-id="19360"></i>
+                                </div>
+                                <div class="highlight-title" data-mc-element-id="19463">Elite Equipment</div>
+                                <div class="highlight-text" data-mc-element-id="19546">Rogue fitness gear, Olympic platforms, endless ropes</div>
+                            </div>
+                            <div class="highlight-card" data-mc-element-id="19696">
+                                <div class="highlight-icon" data-mc-element-id="19757">
+                                    <i class="fas fa-users" data-mc-element-id="19822"></i>
+                                </div>
+                                <div class="highlight-title" data-mc-element-id="19922">Small Classes</div>
+                                <div class="highlight-text" data-mc-element-id="20003">Max 12 athletes per class for personalized attention</div>
+                            </div>
+                            <div class="highlight-card" data-mc-element-id="20153">
+                                <div class="highlight-icon" data-mc-element-id="20214">
+                                    <i class="fas fa-medal" data-mc-element-id="20279"></i>
+                                </div>
+                                <div class="highlight-title" data-mc-element-id="20379">Certified Coaches</div>
+                                <div class="highlight-text" data-mc-element-id="20464">Level 2+ CrossFit trainers with 5+ years experience</div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons" data-mc-element-id="20641">
+                            <a href="#" class="btn btn-primary" data-mc-element-id="20698">
+                                <i class="fas fa-calendar-plus" data-mc-element-id="20767"></i>
+                                Book Free Trial
+                            </a>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="20913">
+                                <i class="fas fa-phone" data-mc-element-id="20984"></i>
+                                Call Now
+                            </a>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="21115">
+                                <i class="fas fa-directions" data-mc-element-id="21186"></i>
+                                Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trainers-section" data-mc-element-id="21398">
+                    <h2 class="section-title" data-mc-element-id="21449">
+                        <i class="fas fa-user-tie" data-mc-element-id="21500"></i>
+                        Meet Our Coaches
+                    </h2>
+                    <div class="trainers-grid" data-mc-element-id="21619">
+                        <div class="trainer-card" data-mc-element-id="21671">
+                            <div class="trainer-avatar" data-mc-element-id="21726">JS</div>
+                            <div class="trainer-info" data-mc-element-id="21791">
+                                <h4 data-mc-element-id="21850">Jake Sullivan</h4>
+                                <div class="trainer-title" data-mc-element-id="21905">Head Coach &amp; Owner</div>
+                                <div class="trainer-certs" data-mc-element-id="21989">CF-L3, USAW, Precision Nutrition</div>
+                                <div class="trainer-experience" data-mc-element-id="22087">8 years CrossFit coaching, former Navy SEAL</div>
+                            </div>
+                        </div>
+                        <div class="trainer-card" data-mc-element-id="22259">
+                            <div class="trainer-avatar" data-mc-element-id="22314">MR</div>
+                            <div class="trainer-info" data-mc-element-id="22379">
+                                <h4 data-mc-element-id="22438">Maria Rodriguez</h4>
+                                <div class="trainer-title" data-mc-element-id="22495">Senior Coach</div>
+                                <div class="trainer-certs" data-mc-element-id="22573">CF-L2, RKC, Mobility Specialist</div>
+                                <div class="trainer-experience" data-mc-element-id="22670">6 years coaching, former competitive gymnast</div>
+                            </div>
+                        </div>
+                        <div class="trainer-card" data-mc-element-id="22843">
+                            <div class="trainer-avatar" data-mc-element-id="22898">TC</div>
+                            <div class="trainer-info" data-mc-element-id="22963">
+                                <h4 data-mc-element-id="23022">Tyler Chen</h4>
+                                <div class="trainer-title" data-mc-element-id="23074">Assistant Coach</div>
+                                <div class="trainer-certs" data-mc-element-id="23155">CF-L2, FMS, Sports Nutrition</div>
+                                <div class="trainer-experience" data-mc-element-id="23249">4 years coaching, powerlifting background</div>
+                            </div>
+                        </div>
+                        <div class="trainer-card" data-mc-element-id="23419">
+                            <div class="trainer-avatar" data-mc-element-id="23474">AL</div>
+                            <div class="trainer-info" data-mc-element-id="23539">
+                                <h4 data-mc-element-id="23598">Alex Liu</h4>
+                                <div class="trainer-title" data-mc-element-id="23648">Coach &amp; PT</div>
+                                <div class="trainer-certs" data-mc-element-id="23724">CF-L2, DPT, Corrective Exercise</div>
+                                <div class="trainer-experience" data-mc-element-id="23821">5 years coaching, Doctor of Physical Therapy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="membership-section" data-mc-element-id="24037">
+                    <h2 class="section-title" data-mc-element-id="24090">
+                        <i class="fas fa-credit-card" data-mc-element-id="24141"></i>
+                        Membership Options
+                    </h2>
+                    <div class="pricing-grid" data-mc-element-id="24265">
+                        <div class="pricing-card" data-mc-element-id="24316">
+                            <div class="pricing-title" data-mc-element-id="24371">Drop-In</div>
+                            <div class="pricing-price" data-mc-element-id="24440">$35<span class="pricing-period" data-mc-element-id="24470">/class</span></div>
+                            <ul class="pricing-features" data-mc-element-id="24547">
+                                <li data-mc-element-id="24609"><i class="fas fa-check" data-mc-element-id="24613"></i> Single class access</li>
+                                <li data-mc-element-id="24699"><i class="fas fa-check" data-mc-element-id="24703"></i> All equipment included</li>
+                                <li data-mc-element-id="24792"><i class="fas fa-check" data-mc-element-id="24796"></i> Beginner friendly</li>
+                                <li data-mc-element-id="24880"><i class="fas fa-check" data-mc-element-id="24884"></i> No commitment</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="24994">Try a Class</a>
+                        </div>
+                        <div class="pricing-card featured" data-mc-element-id="25103">
+                            <div class="pricing-badge" data-mc-element-id="25167">Most Popular</div>
+                            <div class="pricing-title" data-mc-element-id="25241">Unlimited</div>
+                            <div class="pricing-price" data-mc-element-id="25312">$185<span class="pricing-period" data-mc-element-id="25343">/month</span></div>
+                            <ul class="pricing-features" data-mc-element-id="25420">
+                                <li data-mc-element-id="25482"><i class="fas fa-check" data-mc-element-id="25486"></i> Unlimited classes</li>
+                                <li data-mc-element-id="25570"><i class="fas fa-check" data-mc-element-id="25574"></i> Open gym access</li>
+                                <li data-mc-element-id="25656"><i class="fas fa-check" data-mc-element-id="25660"></i> Nutrition coaching</li>
+                                <li data-mc-element-id="25745"><i class="fas fa-check" data-mc-element-id="25749"></i> Member events</li>
+                                <li data-mc-element-id="25829"><i class="fas fa-check" data-mc-element-id="25833"></i> Progress tracking</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary" data-mc-element-id="25947">Start Today</a>
+                        </div>
+                        <div class="pricing-card" data-mc-element-id="26054">
+                            <div class="pricing-title" data-mc-element-id="26109">8 Classes</div>
+                            <div class="pricing-price" data-mc-element-id="26180">$220<span class="pricing-period" data-mc-element-id="26211">/month</span></div>
+                            <ul class="pricing-features" data-mc-element-id="26288">
+                                <li data-mc-element-id="26350"><i class="fas fa-check" data-mc-element-id="26354"></i> 8 classes per month</li>
+                                <li data-mc-element-id="26440"><i class="fas fa-check" data-mc-element-id="26444"></i> Roll over 2 classes</li>
+                                <li data-mc-element-id="26530"><i class="fas fa-check" data-mc-element-id="26534"></i> Open gym 2x/week</li>
+                                <li data-mc-element-id="26617"><i class="fas fa-check" data-mc-element-id="26621"></i> Flexibility focused</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary" data-mc-element-id="26737">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="sidebar" data-mc-element-id="26905">
+                <div class="info-card" data-mc-element-id="26945">
+                    <h3 class="card-title" data-mc-element-id="26989">
+                        <i class="fas fa-calendar-alt" data-mc-element-id="27037"></i>
+                        Today's Classes
+                    </h3>
+                    <div class="class-schedule" data-mc-element-id="27159">
+                        <div class="class-item" data-mc-element-id="27212">
+                            <div class="class-time" data-mc-element-id="27265">6:00 AM</div>
+                            <div class="class-name" data-mc-element-id="27331">Morning Strength</div>
+                            <div class="class-spots" data-mc-element-id="27406">3 spots</div>
+                        </div>
+                        <div class="class-item" data-mc-element-id="27500">
+                            <div class="class-time" data-mc-element-id="27553">7:15 AM</div>
+                            <div class="class-name" data-mc-element-id="27619">CrossFit WOD</div>
+                            <div class="class-spots" data-mc-element-id="27690">Full</div>
+                        </div>
+                        <div class="class-item" data-mc-element-id="27781">
+                            <div class="class-time" data-mc-element-id="27834">9:30 AM</div>
+                            <div class="class-name" data-mc-element-id="27900">Beginner Friendly</div>
+                            <div class="class-spots" data-mc-element-id="27976">7 spots</div>
+                        </div>
+                        <div class="class-item" data-mc-element-id="28070">
+                            <div class="class-time" data-mc-element-id="28123">12:00 PM</div>
+                            <div class="class-name" data-mc-element-id="28190">Lunch WOD</div>
+                            <div class="class-spots" data-mc-element-id="28258">5 spots</div>
+                        </div>
+                        <div class="class-item" data-mc-element-id="28352">
+                            <div class="class-time" data-mc-element-id="28405">5:30 PM</div>
+                            <div class="class-name" data-mc-element-id="28471">CrossFit WOD</div>
+                            <div class="class-spots" data-mc-element-id="28542">2 spots</div>
+                        </div>
+                        <div class="class-item" data-mc-element-id="28636">
+                            <div class="class-time" data-mc-element-id="28689">6:45 PM</div>
+                            <div class="class-name" data-mc-element-id="28755">Competition Team</div>
+                            <div class="class-spots" data-mc-element-id="28830">Invite only</div>
+                        </div>
+                    </div>
+                    <div class="level-indicators" data-mc-element-id="28951">
+                        <div class="level-badge level-beginner" data-mc-element-id="29006">Beginner</div>
+                        <div class="level-badge level-intermediate" data-mc-element-id="29085">Intermediate</div>
+                        <div class="level-badge level-advanced" data-mc-element-id="29172">Advanced</div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="29294">
+                    <h3 class="card-title" data-mc-element-id="29338">
+                        <i class="fas fa-info-circle" data-mc-element-id="29386"></i>
+                        Gym Information
+                    </h3>
+                    <div class="info-item" data-mc-element-id="29507">
+                        <i class="fas fa-map-marker-alt info-icon" data-mc-element-id="29555"></i>
+                        <div class="info-content" data-mc-element-id="29627">
+                            <div class="info-label" data-mc-element-id="29682">Address</div>
+                            <div class="info-value" data-mc-element-id="29748">
+                                2847 Industrial Blvd<br data-mc-element-id="29825">
+                                Springfield, IL 62702
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="29997">
+                        <i class="fas fa-phone info-icon" data-mc-element-id="30045"></i>
+                        <div class="info-content" data-mc-element-id="30108">
+                            <div class="info-label" data-mc-element-id="30163">Phone</div>
+                            <div class="info-value" data-mc-element-id="30227">
+                                <a href="tel:+12175558765" data-mc-element-id="30284">(217) 555-8765</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="30443">
+                        <i class="fas fa-globe info-icon" data-mc-element-id="30491"></i>
+                        <div class="info-content" data-mc-element-id="30554">
+                            <div class="info-label" data-mc-element-id="30609">Website</div>
+                            <div class="info-value" data-mc-element-id="30675">
+                                <a href="#" target="_blank" data-mc-element-id="30732">ironwillcrossfit.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item" data-mc-element-id="30898">
+                        <i class="fas fa-users info-icon" data-mc-element-id="30946"></i>
+                        <div class="info-content" data-mc-element-id="31009">
+                            <div class="info-label" data-mc-element-id="31064">Class Capacity</div>
+                            <div class="info-value" data-mc-element-id="31137">Max 12 athletes per class</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="31291">
+                    <h3 class="card-title" data-mc-element-id="31335">
+                        <i class="fas fa-clock" data-mc-element-id="31383"></i>
+                        Hours
+                    </h3>
+                    <div class="hours-grid" data-mc-element-id="31488">
+                        <div class="hour-row" data-mc-element-id="31537">
+                            <span class="day" data-mc-element-id="31588">Monday</span>
+                            <span class="time" data-mc-element-id="31648">5:30 AM - 9:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="31747">
+                            <span class="day" data-mc-element-id="31798">Tuesday</span>
+                            <span class="time open" data-mc-element-id="31859">5:30 AM - 9:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="31963">
+                            <span class="day" data-mc-element-id="32014">Wednesday</span>
+                            <span class="time" data-mc-element-id="32077">5:30 AM - 9:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="32176">
+                            <span class="day" data-mc-element-id="32227">Thursday</span>
+                            <span class="time" data-mc-element-id="32289">5:30 AM - 9:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="32388">
+                            <span class="day" data-mc-element-id="32439">Friday</span>
+                            <span class="time" data-mc-element-id="32499">5:30 AM - 8:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="32598">
+                            <span class="day" data-mc-element-id="32649">Saturday</span>
+                            <span class="time" data-mc-element-id="32711">8:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="hour-row" data-mc-element-id="32810">
+                            <span class="day" data-mc-element-id="32861">Sunday</span>
+                            <span class="time" data-mc-element-id="32921">9:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" data-mc-element-id="33063">
+                    <h3 class="card-title" data-mc-element-id="33107">
+                        <i class="fas fa-dumbbell" data-mc-element-id="33155"></i>
+                        Equipment &amp; Features
+                    </h3>
+                    <div class="equipment-grid" data-mc-element-id="33278">
+                        <div class="equipment-item" data-mc-element-id="33331">
+                            <i class="fas fa-weight-hanging equipment-icon" data-mc-element-id="33388"></i>
+                            <span data-mc-element-id="33469">Olympic Lifting</span>
+                        </div>
+                        <div class="equipment-item" data-mc-element-id="33553">
+                            <i class="fas fa-running equipment-icon" data-mc-element-id="33610"></i>
+                            <span data-mc-element-id="33684">Cardio Machines</span>
+                        </div>
+                        <div class="equipment-item" data-mc-element-id="33768">
+                            <i class="fas fa-grip-vertical equipment-icon" data-mc-element-id="33825"></i>
+                            <span data-mc-element-id="33905">Pull-up Rigs</span>
+                        </div>
+                        <div class="equipment-item" data-mc-element-id="33986">
+                            <i class="fas fa-circle equipment-icon" data-mc-element-id="34043"></i>
+                            <span data-mc-element-id="34116">Kettlebells</span>
+                        </div>
+                        <div class="equipment-item" data-mc-element-id="34196">
+                            <i class="fas fa-square equipment-icon" data-mc-element-id="34253"></i>
+                            <span data-mc-element-id="34326">Plyometric Boxes</span>
+                        </div>
+                        <div class="equipment-item" data-mc-element-id="34411">
+                            <i class="fas fa-grip-lines equipment-icon" data-mc-element-id="34468"></i>
+                            <span data-mc-element-id="34545">Battle Ropes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="last-updated" data-mc-element-id="34669">
+                    <i class="fas fa-sync" data-mc-element-id="34716"></i>
+                    Last updated by owner on March 18, 2024
+                </div>
+            </aside>
+        </div>
+    </div>
+
+<script>__MC_SITE_ID__ = "a1d8891f3651cc3089d3b50ec5914fc74a4eeeb73f68a645ad4c220f213a692b"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>

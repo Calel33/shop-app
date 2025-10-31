@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Footer Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleDarkMode(cb) {
+      if(cb.checked) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-foreground transition-colors duration-300 dark:bg-zinc-950 dark:text-white">
+  <footer class="relative border-t bg-background text-foreground transition-colors duration-300 dark:bg-zinc-950 dark:text-zinc-100">
+    <div class="container mx-auto px-4 py-12 md:px-6 lg:px-8">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Newsletter -->
+        <div class="relative">
+          <h2 class="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
+          <p class="mb-6 text-zinc-500 dark:text-zinc-400">
+            Join our newsletter for the latest updates and exclusive offers.
+          </p>
+          <form class="relative">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="pr-12 backdrop-blur-sm rounded-md border border-zinc-300 dark:border-zinc-700 px-3 py-2 w-full bg-white/80 dark:bg-zinc-900/80 text-sm dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <button
+              type="submit"
+              class="absolute right-1 top-1 h-8 w-8 rounded-full bg-zinc-900 text-white flex items-center justify-center transition-transform hover:scale-105"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              <span class="sr-only">Subscribe</span>
+            </button>
+          </form>
+          <div class="absolute -right-4 top-0 h-24 w-24 rounded-full bg-indigo-500/10 blur-2xl pointer-events-none"></div>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
+          <nav class="space-y-2 text-sm">
+            <a href="#" class="block transition-colors hover:text-indigo-500">Home</a>
+            <a href="#" class="block transition-colors hover:text-indigo-500">About Us</a>
+            <a href="#" class="block transition-colors hover:text-indigo-500">Services</a>
+            <a href="#" class="block transition-colors hover:text-indigo-500">Products</a>
+            <a href="#" class="block transition-colors hover:text-indigo-500">Contact</a>
+          </nav>
+        </div>
+        <!-- Address -->
+        <div>
+          <h3 class="mb-4 text-lg font-semibold">Contact Us</h3>
+          <address class="space-y-2 text-sm not-italic">
+            <p>789 Sample Avenue</p>
+            <p>Placeholder City, ZZ 98765</p>
+            <p>Phone: (555) 432-1987</p>
+            <p>Email: contact@placeholder.net</p>
+          </address>
+        </div>
+        <!-- Socials & Dark Toggle -->
+        <div class="relative">
+          <h3 class="mb-4 text-lg font-semibold">Follow Us</h3>
+          <div class="mb-6 flex space-x-4">
+            <a href="#" class="rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 transition flex items-center justify-center w-9 h-9" aria-label="Facebook" title="Follow us on Facebook">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+              <span class="sr-only">Facebook</span>
+            </a>
+            <a href="#" class="rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 transition flex items-center justify-center w-9 h-9" aria-label="Twitter" title="Follow us on Twitter">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 16 3a4.48 4.48 0 0 0-4.47 4.48c0 .35.04.69.11 1A12.94 12.94 0 0 1 3 4.15s-4 9 5 13a13 13 0 0 1-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0 0 23 3z"/>
+              </svg>
+              <span class="sr-only">Twitter</span>
+            </a>
+            <a href="#" class="rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 transition flex items-center justify-center w-9 h-9" aria-label="Instagram" title="Follow us on Instagram">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+              </svg>
+              <span class="sr-only">Instagram</span>
+            </a>
+            <a href="#" class="rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 transition flex items-center justify-center w-9 h-9" aria-label="LinkedIn" title="Connect with us on LinkedIn">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <line x1="16" y1="11" x2="16" y2="16"/>
+                <line x1="8" y1="11" x2="8" y2="16"/>
+                <line x1="8" y1="8" x2="8" y2="8"/>
+              </svg>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-2 mt-2">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <label for="dark-toggle" class="sr-only">Toggle dark mode</label>
+            <input type="checkbox" id="dark-toggle" class="appearance-none w-10 h-6 rounded-full bg-zinc-300 dark:bg-zinc-700 checked:bg-indigo-500 relative outline-none transition-colors cursor-pointer" onclick="toggleDarkMode(this)" checked>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-200 dark:border-zinc-700 pt-8 text-center md:flex-row">
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">
+          © 2024 Your Company. All rights reserved.
+        </p>
+        <nav class="flex gap-4 text-sm">
+          <a href="#" class="transition-colors hover:text-indigo-500">Privacy Policy</a>
+          <a href="#" class="transition-colors hover:text-indigo-500">Terms of Service</a>
+          <a href="#" class="transition-colors hover:text-indigo-500">Cookie Settings</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

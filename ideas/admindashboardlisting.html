@@ -1,0 +1,941 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8" data-mc-element-id="44">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-mc-element-id="71">
+    <title data-mc-element-id="146">Admin Dashboard - Pending Approvals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 24px 0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .nav-menu {
+            padding: 24px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: #f1f5f9;
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border-right: 3px solid #2563eb;
+        }
+
+        .nav-item i {
+            width: 20px;
+            margin-right: 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 24px 32px;
+            overflow-x: hidden;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .pending-count {
+            background: #fef3c7;
+            color: #d97706;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+        }
+
+        /* Filters and Controls */
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            min-width: 140px;
+        }
+
+        .bulk-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bulk-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+        }
+
+        .bulk-label {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Business Cards Grid */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .business-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            position: relative;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .card-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+            margin-top: 2px;
+        }
+
+        .business-image {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+
+        .business-info {
+            flex: 1;
+        }
+
+        .business-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .business-category {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .business-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .priority-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-high {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .priority-normal {
+            background: #f0f9ff;
+            color: #0284c7;
+        }
+
+        .card-details {
+            padding: 0 16px 16px;
+        }
+
+        .business-address {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .owner-info {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .owner-name {
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        .owner-email {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 16px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-approve {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .btn-approve:hover {
+            background: #bbf7d0;
+        }
+
+        .btn-changes {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .btn-changes:hover {
+            background: #fde68a;
+        }
+
+        .btn-reject {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .btn-reject:hover {
+            background: #fecaca;
+        }
+
+        .view-details-btn {
+            background: none;
+            border: none;
+            color: #2563eb;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 4px 0;
+            text-decoration: underline;
+        }
+
+        /* Side Panel */
+        .side-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .side-panel.open {
+            right: 0;
+        }
+
+        .panel-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .close-panel {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .panel-content {
+            padding: 24px;
+        }
+
+        /* Footer */
+        .dashboard-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            background: #f8fafc;
+        }
+
+        .page-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        @media (max-width: 1200px) {
+            .business-grid {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .side-panel {
+                width: 100vw;
+                right: -100vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container" data-mc-element-id="11251">
+        <!-- Sidebar -->
+        <nav class="sidebar" data-mc-element-id="11318">
+            <div class="sidebar-header" data-mc-element-id="11352">
+                <div class="logo" data-mc-element-id="11397">LocalHub Admin</div>
+            </div>
+            <div class="nav-menu" data-mc-element-id="11467">
+                <a href="#" class="nav-item" data-mc-element-id="11506">
+                    <i class="fas fa-chart-line" data-mc-element-id="11556"></i>
+                    Overview
+                </a>
+                <a href="#" class="nav-item active" data-mc-element-id="11656">
+                    <i class="fas fa-clock" data-mc-element-id="11713"></i>
+                    Pending Approvals
+                </a>
+                <a href="#" class="nav-item" data-mc-element-id="11817">
+                    <i class="fas fa-building" data-mc-element-id="11867"></i>
+                    All Businesses
+                </a>
+                <a href="#" class="nav-item" data-mc-element-id="11971">
+                    <i class="fas fa-users" data-mc-element-id="12021"></i>
+                    Business Owners
+                </a>
+                <a href="#" class="nav-item" data-mc-element-id="12123">
+                    <i class="fas fa-flag" data-mc-element-id="12173"></i>
+                    Flagged Content
+                </a>
+                <a href="#" class="nav-item" data-mc-element-id="12274">
+                    <i class="fas fa-cog" data-mc-element-id="12324"></i>
+                    Settings
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" data-mc-element-id="12474">
+            <div class="page-header" data-mc-element-id="12514">
+                <div data-mc-element-id="12556">
+                    <h1 class="page-title" data-mc-element-id="12582">
+                        Pending Approvals
+                        <span class="pending-count" data-mc-element-id="12672">23 pending</span>
+                    </h1>
+                </div>
+                <div class="header-actions" data-mc-element-id="12783">
+                    <button class="btn btn-secondary" data-mc-element-id="12832">
+                        <i class="fas fa-download" data-mc-element-id="12891"></i>
+                        Export
+                    </button>
+                    <button class="btn btn-primary" data-mc-element-id="13004">
+                        <i class="fas fa-check-double" data-mc-element-id="13061"></i>
+                        Approve Selected
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-section" data-mc-element-id="13253">
+                <div class="filters" data-mc-element-id="13300">
+                    <div class="filter-group" data-mc-element-id="13342">
+                        <label class="filter-label" data-mc-element-id="13393">Category</label>
+                        <select class="filter-select" data-mc-element-id="13462">
+                            <option data-mc-element-id="13521">All Categories</option>
+                            <option data-mc-element-id="13581">Restaurants</option>
+                            <option data-mc-element-id="13638">Retail</option>
+                            <option data-mc-element-id="13690">Services</option>
+                            <option data-mc-element-id="13744">Healthcare</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" data-mc-element-id="13853">
+                        <label class="filter-label" data-mc-element-id="13904">Priority</label>
+                        <select class="filter-select" data-mc-element-id="13973">
+                            <option data-mc-element-id="14032">All Priorities</option>
+                            <option data-mc-element-id="14092">High Priority</option>
+                            <option data-mc-element-id="14151">Normal</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" data-mc-element-id="14256">
+                        <label class="filter-label" data-mc-element-id="14307">Submitted</label>
+                        <select class="filter-select" data-mc-element-id="14377">
+                            <option data-mc-element-id="14436">All Time</option>
+                            <option data-mc-element-id="14490">Today</option>
+                            <option data-mc-element-id="14541">This Week</option>
+                            <option data-mc-element-id="14596">This Month</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bulk-actions" data-mc-element-id="14724">
+                    <input type="checkbox" id="select-all" class="bulk-checkbox" data-mc-element-id="14771">
+                    <label for="select-all" class="bulk-label" data-mc-element-id="14853">Select All</label>
+                </div>
+            </div>
+
+            <!-- Business Cards Grid -->
+            <div class="business-grid" data-mc-element-id="15011">
+                <!-- Business Card 1 -->
+                <div class="business-card" data-mc-element-id="15096">
+                    <div class="card-header" data-mc-element-id="15144">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="15194">
+                        <img src="https://storage.googleapis.com/forge-sites/1e7a979e6e57ea6f5d428bfa86dd26270f29fbbe655d46183ef3e570d24107e9.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=43a106dddbd51d8c7eebeedd6ef300ee414f44e4033d308dc7b8aa1e536a4acfeb984a9b1624e64f6f085005af7f933b63b4d7b2933c28944d60730e52acf04cd003b8e239282db03aae44d54fba756f9eb1ef615e2d3457d74563811ca180406275c93fd9d7514880c9de6a4bae8a89a1889fc011f3a2c18e6990fc3d61b8cf2f9044c1396197145bc84e27ac40e8d2d333ac3678007955c990d3c0f680d3057efe53c2c9a9b8485003e4989e8bac41c812789f95935a3227c379da3202764c264426e1f201a0d118d07d29e6ee52143db2a20a011da352f22c57dde28ef087b3bac487878a2462cc13fef014869172d09e6c57ea24fd6952c8644364ccf848" alt="Cozy Italian restaurant interior with warm lighting and wooden tables" class="business-image" data-mc-element-id="15264">
+                        <div class="business-info" data-mc-element-id="15419">
+                            <h3 class="business-name" data-mc-element-id="15475">Bella Vista Bistro</h3>
+                            <div class="business-category" data-mc-element-id="15553">Italian Restaurant</div>
+                            <div class="business-meta" data-mc-element-id="15637">
+                                <div class="meta-item" data-mc-element-id="15697">
+                                    <i class="fas fa-calendar" data-mc-element-id="15757"></i>
+                                    Submitted 2 days ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="15917">
+                                    <i class="fas fa-user" data-mc-element-id="15977"></i>
+                                    Maria Rossi
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-high" data-mc-element-id="16182">High Priority</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="16291">
+                        <div class="business-address" data-mc-element-id="16342">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="16401"></i>
+                            1247 Oak Street, Downtown
+                        </div>
+                        <div class="owner-info" data-mc-element-id="16548">
+                            <div class="owner-name" data-mc-element-id="16601">Maria Rossi</div>
+                            <div class="owner-email" data-mc-element-id="16671">maria@bellavistabistro.com</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="16784">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="16913">
+                        <button class="action-btn btn-approve" data-mc-element-id="16964">
+                            <i class="fas fa-check" data-mc-element-id="17032"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="17155">
+                            <i class="fas fa-edit" data-mc-element-id="17223"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="17345">
+                            <i class="fas fa-times" data-mc-element-id="17412"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business Card 2 -->
+                <div class="business-card" data-mc-element-id="17618">
+                    <div class="card-header" data-mc-element-id="17666">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="17716">
+                        <img src="https://storage.googleapis.com/forge-sites/47eeeb2ef1308e13154e5122db749e0bc6d47eb446ceb4eb35333f7ff2bfa594.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4e30351fe41d7d73f004027a589753b2a6d0be7cbd86a9b679fcc696014582cf5582513cb897ea6fcd6987455ca8048dd694bd7f70d2255741fcc18b431bfc61613d7a58721a04c4f9751b1e9209a282c4035d01317c66431b5e84b27a45a9bd857312e045fe3be613666f7cae39a16899af021b97838860bf5a9b0397f2fb17700f0ed216bd26205895e89d513830dd5ac670a72953a2319a9111f2cfae4875e901b049ff0d82bb604f516a790f840babb50fa3b3fc7e29c5865bf28fe66d1ac5e17d69589e9267e0439b788e7690ba69dffcfe95310f55f6156b4a7aa39691efd460304a2b24a11bf168a7fd0a06f46c660861b206bd990ea35f636f06bf1e" alt="Modern bookstore with floor-to-ceiling shelves and comfortable reading areas" class="business-image" data-mc-element-id="17786">
+                        <div class="business-info" data-mc-element-id="17949">
+                            <h3 class="business-name" data-mc-element-id="18005">Chapter &amp; Verse Books</h3>
+                            <div class="business-category" data-mc-element-id="18086">Bookstore</div>
+                            <div class="business-meta" data-mc-element-id="18161">
+                                <div class="meta-item" data-mc-element-id="18221">
+                                    <i class="fas fa-calendar" data-mc-element-id="18281"></i>
+                                    Submitted 1 day ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="18440">
+                                    <i class="fas fa-user" data-mc-element-id="18500"></i>
+                                    David Chen
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-normal" data-mc-element-id="18704">Normal</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="18808">
+                        <div class="business-address" data-mc-element-id="18859">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="18918"></i>
+                            892 Elm Avenue, Arts District
+                        </div>
+                        <div class="owner-info" data-mc-element-id="19069">
+                            <div class="owner-name" data-mc-element-id="19122">David Chen</div>
+                            <div class="owner-email" data-mc-element-id="19191">david@chapterverse.com</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="19300">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="19429">
+                        <button class="action-btn btn-approve" data-mc-element-id="19480">
+                            <i class="fas fa-check" data-mc-element-id="19548"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="19671">
+                            <i class="fas fa-edit" data-mc-element-id="19739"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="19861">
+                            <i class="fas fa-times" data-mc-element-id="19928"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business Card 3 -->
+                <div class="business-card" data-mc-element-id="20134">
+                    <div class="card-header" data-mc-element-id="20182">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="20232">
+                        <img src="https://storage.googleapis.com/forge-sites/8fb419f37a63c9042d9456884b2e3ee208d5f49f78a13f79047f428ffce9013c.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=4961db31794109706dcff6081a89c652243d0a5acb076c6a110b35c3d71dc63d8c96c3a5be4a31e3ce3df895beff46c8707f1db4d90534bd2d230b87645e70ab47664efc975b89e07367f1a277dd195bafb8e394c59cec2d2a5137fe6825a8afbeeec691df289450e6b39aece31da7cfb55d6a3a5c17a0551109ad43f4c32a4f5dcd9cf92b1af066f51c29ee8ef64f00149874fc4071802f5ba641e80548b4f9ff348c2e4bc8848ea8cfcbee749a6263dfe93bfbdc504ddb450597cad6a5d636ef1be594e8f2a8d6aee5fdb9a15a80ab962eb1aedd7421998b3ba54717a568f5de0dbc3823ea3126d4c2fb28f46d3e39eb24a6a61afa05de7b4d31d4fd999076" alt="Peaceful yoga studio with natural lighting, mats arranged in rows, and plants" class="business-image" data-mc-element-id="20302">
+                        <div class="business-info" data-mc-element-id="20461">
+                            <h3 class="business-name" data-mc-element-id="20517">Zen Flow Yoga Studio</h3>
+                            <div class="business-category" data-mc-element-id="20597">Health &amp; Wellness</div>
+                            <div class="business-meta" data-mc-element-id="20680">
+                                <div class="meta-item" data-mc-element-id="20740">
+                                    <i class="fas fa-calendar" data-mc-element-id="20800"></i>
+                                    Submitted 3 hours ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="20961">
+                                    <i class="fas fa-user" data-mc-element-id="21021"></i>
+                                    Sarah Williams
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-high" data-mc-element-id="21229">High Priority</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="21338">
+                        <div class="business-address" data-mc-element-id="21389">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="21448"></i>
+                            456 Wellness Way, Riverside
+                        </div>
+                        <div class="owner-info" data-mc-element-id="21597">
+                            <div class="owner-name" data-mc-element-id="21650">Sarah Williams</div>
+                            <div class="owner-email" data-mc-element-id="21723">sarah@zenflowstudio.com</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="21833">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="21962">
+                        <button class="action-btn btn-approve" data-mc-element-id="22013">
+                            <i class="fas fa-check" data-mc-element-id="22081"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="22204">
+                            <i class="fas fa-edit" data-mc-element-id="22272"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="22394">
+                            <i class="fas fa-times" data-mc-element-id="22461"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business Card 4 -->
+                <div class="business-card" data-mc-element-id="22667">
+                    <div class="card-header" data-mc-element-id="22715">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="22765">
+                        <img src="https://storage.googleapis.com/forge-sites/ef884815549e8edd2d72228805035d91887380ec303a52d024b973fb635d1066.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=b3f5aec7e9a58478765a808d2d8089529dfdc684e3e634fe9277b0e74bfa60105cf173ae6a8f3b1e8b9e5dae595b0c2fddab03137526112248c9f633cb0808d39c1014a03fb1b0e14f9a6f37738ff289ef3cbfeec194437859c547bc8b6857934b0df8190bcf792a23651b9427a9051b29b29a2f9b8d2075027e4166e6349e950d5f9ef667b90ccd5e82e593637c8a6f3346287cb40a72996dced890e26eb01ef98a6960fd55688f07e0ef984ce5c1b23c4e7f40d38c1b8cba7d5ebe0cf3af1fbe71edded7b8ff41e31cd1ccd8db3ae56b429d630cb6a12004cb7dad6ca3e85842c012ae1c3324d37861e64e16b4194468bdea2c615e04c535e2790c0db74b02" alt="Artisanal coffee shop with exposed brick walls, wooden furniture, and barista at work" class="business-image" data-mc-element-id="22835">
+                        <div class="business-info" data-mc-element-id="23002">
+                            <h3 class="business-name" data-mc-element-id="23058">Grind Coffee Co.</h3>
+                            <div class="business-category" data-mc-element-id="23134">Cafe</div>
+                            <div class="business-meta" data-mc-element-id="23204">
+                                <div class="meta-item" data-mc-element-id="23264">
+                                    <i class="fas fa-calendar" data-mc-element-id="23324"></i>
+                                    Submitted 4 days ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="23484">
+                                    <i class="fas fa-user" data-mc-element-id="23544"></i>
+                                    Mike Johnson
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-normal" data-mc-element-id="23750">Normal</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="23854">
+                        <div class="business-address" data-mc-element-id="23905">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="23964"></i>
+                            234 Main Street, Historic Quarter
+                        </div>
+                        <div class="owner-info" data-mc-element-id="24119">
+                            <div class="owner-name" data-mc-element-id="24172">Mike Johnson</div>
+                            <div class="owner-email" data-mc-element-id="24243">mike@grindcoffee.co</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="24349">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="24478">
+                        <button class="action-btn btn-approve" data-mc-element-id="24529">
+                            <i class="fas fa-check" data-mc-element-id="24597"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="24720">
+                            <i class="fas fa-edit" data-mc-element-id="24788"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="24910">
+                            <i class="fas fa-times" data-mc-element-id="24977"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business Card 5 -->
+                <div class="business-card" data-mc-element-id="25183">
+                    <div class="card-header" data-mc-element-id="25231">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="25281">
+                        <img src="https://storage.googleapis.com/forge-sites/551467afa9f2b18dda7a8802c8dc3db6b24806ff80e16f7a74a3622c87634721.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=84c5f978f8ad43219115e739bb98157ba51819883542152dc3720b1df701771458d15e3c67248530d341274269e4e559fb70a7134b309771d1cc4ff39e8d0f884e2104590dce47d1defc60d8a9fa348dd32ebdd90ffef913092ba42b222e98046b5b51c82a663204d08713b08931327afe4cadce24df4ee462fe16c472c212be54c79c6e9e613b9b8c6e04d67d99e6a4609583047c8cdd3390f46a103aa2ba319a3308bfc3a13b4e74c8d0fe28427e0a33b5b435829ebde5f14eb34d4431ef21e45286e46717b7d98eede9dbf20d1ef45ebaf1a7803666d087bc5c0d70e85037eef8d65272a027cc9683050d5e2f92f22d78a2aaa8678d7230c31b5542a0f53d" alt="Professional auto repair shop with modern equipment and clean work bays" class="business-image" data-mc-element-id="25351">
+                        <div class="business-info" data-mc-element-id="25504">
+                            <h3 class="business-name" data-mc-element-id="25560">Premier Auto Care</h3>
+                            <div class="business-category" data-mc-element-id="25637">Automotive</div>
+                            <div class="business-meta" data-mc-element-id="25713">
+                                <div class="meta-item" data-mc-element-id="25773">
+                                    <i class="fas fa-calendar" data-mc-element-id="25833"></i>
+                                    Submitted 1 week ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="25993">
+                                    <i class="fas fa-user" data-mc-element-id="26053"></i>
+                                    Robert Garcia
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-normal" data-mc-element-id="26260">Normal</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="26364">
+                        <div class="business-address" data-mc-element-id="26415">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="26474"></i>
+                            567 Industrial Blvd, East Side
+                        </div>
+                        <div class="owner-info" data-mc-element-id="26626">
+                            <div class="owner-name" data-mc-element-id="26679">Robert Garcia</div>
+                            <div class="owner-email" data-mc-element-id="26751">robert@premierauto.com</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="26860">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="26989">
+                        <button class="action-btn btn-approve" data-mc-element-id="27040">
+                            <i class="fas fa-check" data-mc-element-id="27108"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="27231">
+                            <i class="fas fa-edit" data-mc-element-id="27299"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="27421">
+                            <i class="fas fa-times" data-mc-element-id="27488"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Business Card 6 -->
+                <div class="business-card" data-mc-element-id="27694">
+                    <div class="card-header" data-mc-element-id="27742">
+                        <input type="checkbox" class="card-checkbox" data-mc-element-id="27792">
+                        <img src="https://storage.googleapis.com/forge-sites/d30503148de12a9df4309284cc6a7ad3e80f749cf1cd9cb97c96f49768a43c7c.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251010%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251010T000414Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=1e12e764b1ed122e471041c172096587f343763c0eb0b677c6c438af2355425b6d3e8f4e3cc7705d20e71187a0ea7e76ce665aa68604890a69879167ee00f548a28fa5f6ece1ec144e92fb1780f7ebefc1258d843d89037fa040d947c88c22620f1095e2268773d9adb7f0e631ecee2811e2de5fefa82b01c7df978dddeea3188c781a70eb3f2cabcd010bb0f610aedec4886504e612397be100a39a8d29572cb2281280f03e09cc9969c53709bb0d658fb6f29ffd0481a98255c210da38c3aafdc413c4fc845eaa7d6137ee064d119e22cea2f74b6d871ac2c6f9bd5fa0109316f63c8530b57a35d384d1fe7e80f97940376cfa36de677599ae7376b8f1bbc4" alt="Trendy boutique clothing store with stylish displays and modern fixtures" class="business-image" data-mc-element-id="27862">
+                        <div class="business-info" data-mc-element-id="28022">
+                            <h3 class="business-name" data-mc-element-id="28078">Urban Threads Boutique</h3>
+                            <div class="business-category" data-mc-element-id="28160">Fashion &amp; Retail</div>
+                            <div class="business-meta" data-mc-element-id="28242">
+                                <div class="meta-item" data-mc-element-id="28302">
+                                    <i class="fas fa-calendar" data-mc-element-id="28362"></i>
+                                    Submitted 6 hours ago
+                                </div>
+                                <div class="meta-item" data-mc-element-id="28523">
+                                    <i class="fas fa-user" data-mc-element-id="28583"></i>
+                                    Lisa Park
+                                </div>
+                            </div>
+                        </div>
+                        <div class="priority-badge priority-high" data-mc-element-id="28786">High Priority</div>
+                    </div>
+                    <div class="card-details" data-mc-element-id="28895">
+                        <div class="business-address" data-mc-element-id="28946">
+                            <i class="fas fa-map-marker-alt" data-mc-element-id="29005"></i>
+                            789 Fashion Square, Shopping District
+                        </div>
+                        <div class="owner-info" data-mc-element-id="29164">
+                            <div class="owner-name" data-mc-element-id="29217">Lisa Park</div>
+                            <div class="owner-email" data-mc-element-id="29285">lisa@urbanthreads.com</div>
+                        </div>
+                        <button class="view-details-btn" onclick="openPanel()" data-mc-element-id="29393">View Full Details</button>
+                    </div>
+                    <div class="card-actions" data-mc-element-id="29522">
+                        <button class="action-btn btn-approve" data-mc-element-id="29573">
+                            <i class="fas fa-check" data-mc-element-id="29641"></i>
+                            Approve
+                        </button>
+                        <button class="action-btn btn-changes" data-mc-element-id="29764">
+                            <i class="fas fa-edit" data-mc-element-id="29832"></i>
+                            Changes
+                        </button>
+                        <button class="action-btn btn-reject" data-mc-element-id="29954">
+                            <i class="fas fa-times" data-mc-element-id="30021"></i>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="dashboard-footer" data-mc-element-id="30229">
+                <div data-mc-element-id="30276">Showing 6 of 23 pending approvals</div>
+                <div class="pagination" data-mc-element-id="30337">
+                    <button class="page-btn" data-mc-element-id="30382"><i class="fas fa-chevron-left" data-mc-element-id="30407"></i></button>
+                    <button class="page-btn active" data-mc-element-id="30472">1</button>
+                    <button class="page-btn" data-mc-element-id="30535">2</button>
+                    <button class="page-btn" data-mc-element-id="30591">3</button>
+                    <button class="page-btn" data-mc-element-id="30647">4</button>
+                    <button class="page-btn" data-mc-element-id="30703"><i class="fas fa-chevron-right" data-mc-element-id="30728"></i></button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Side Panel -->
+        <div class="side-panel" id="sidePanel" data-mc-element-id="30869">
+            <div class="panel-header" data-mc-element-id="30921">
+                <h2 class="panel-title" data-mc-element-id="30964">Business Details</h2>
+                <button class="close-panel" onclick="closePanel()" data-mc-element-id="31026">
+                    <i class="fas fa-times" data-mc-element-id="31098"></i>
+                </button>
+            </div>
+            <div class="panel-content" data-mc-element-id="31184">
+                <p data-mc-element-id="31228">Detailed business information will appear here when you click "View Full Details" on any business card.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPanel() {
+            document.getElementById('sidePanel').classList.add('open');
+        }
+
+        function closePanel() {
+            document.getElementById('sidePanel').classList.remove('open');
+        }
+
+        // Handle select all checkbox
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.card-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // Update select all when individual checkboxes change
+        document.querySelectorAll('.card-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allCheckboxes = document.querySelectorAll('.card-checkbox');
+                const checkedCheckboxes = document.querySelectorAll('.card-checkbox:checked');
+                const selectAllCheckbox = document.getElementById('select-all');
+                
+                if (checkedCheckboxes.length === allCheckboxes.length) {
+                    selectAllCheckbox.checked = true;
+                    selectAllCheckbox.indeterminate = false;
+                } else if (checkedCheckboxes.length > 0) {
+                    selectAllCheckbox.checked = false;
+                    selectAllCheckbox.indeterminate = true;
+                } else {
+                    selectAllCheckbox.checked = false;
+                    selectAllCheckbox.indeterminate = false;
+                }
+            });
+        });
+    </script>
+
+<script>__MC_SITE_ID__ = "21ee20a4f9b8b33e9c6f831d563ddbcddc3c21c83ebc4f2d5911a515dce42688"</script><script>__MC_OPTIONS__ = {
+  "svg": false,
+  "overlay": false
+}</script><script src="/public/devigner.js" type="module"></script></body></html>
